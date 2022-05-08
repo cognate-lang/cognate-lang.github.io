@@ -1,0 +1,55 @@
+body {
+}
+
+h1 {
+	text-align:center;
+	font-size: 10vw;
+	margin-bottom: 0;
+}
+
+h2 {
+	text-align:center;
+	font-size: 2.5vw;
+}
+
+ul {
+	font-family: inherit;
+	font-size: inherit;
+	text-align:center;
+	list-style:none;
+	font-style: italic;
+}
+
+.center {
+	margin: auto;
+	display: block;
+	width: 75%;
+}
+
+.text {
+	font-family: serif;
+	font-size: 2em;
+	margin: auto;
+	display: block;
+	width: 70%;
+}
+
+a {
+	font-family: inherit;
+	font-size: inherit;
+}
+
+pre { font-size: 2.5vw; font-family: monospace; color: #333333; background-color: #ffffff; }
+* { color: #333333; background-color: #ffffff; }
+.Special { color: #183691; }
+.Function { color: #795da3; }
+.Conditional { color: #a71d5d; }
+.Number { color: #0086b3; }
+.String { color: #183691; }
+.Normal { color: #333333; background-color: #ffffff; padding-bottom: 1px; }
+.Comment { color: #969896; font-style: italic}
+.Keyword { color: #a71d5d; }
+.Constant { color: #0086b3; }
+.Operator { color: #333333; }
+
+
