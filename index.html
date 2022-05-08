@@ -51,7 +51,16 @@ Cognate is a project aiming to create a human readable programming language with
 </div>
 <div class="text">
 As you can see, Cognate ignores words starting with lowercase letters, allowing them to be used to describe functionality and enhance readability.
-Cognate is a stack-oriented programming language like <a href="https://www.forth.com/forth/">Forth</a> or <a href="https://factorcode.org/">Factor</a>, except statements are evaluated in reverse. This gives the benefits of concatenative programming and the readability of prefix notation.
+</div>
+<div class="center">
+<pre id='square'>
+<span class="Constant">Def</span> <span class="Function">Square</span> <span class="Normal">as</span> (<span class="Operator">*</span> <span class="Function">Twin</span>)<span class="Normal">;</span>
+<span class="Function">Map</span> (<span class="Function">Square</span>) <span class="Normal">over</span> <span class="Function">Range</span> <span class="Number">1</span> <span class="Normal">to</span> <span class="Number">10</span><span class="Normal">;</span>
+<span class="Special">Print</span>
+</pre>
+</div>
+<div class="text">
+Cognate is a stack-oriented programming language like <a href="https://www.forth.com/forth/">Forth</a> or <a href="https://factorcode.org/">Factor</a>, except expressions are evaluated right to left. This gives the benefits of concatenative programming and the readability of prefix notation.
 <ul>
 	<li>Point-free functions</li>
 	<li>Operation chaining</li>
@@ -65,14 +74,6 @@ As well as these, Cognate offers unique features of its own.
 	<li>Gradual typing with inference</li>
 </ul>
 Interested? Visit our <a href="https://github.com/cognate-lang/cognate">GitHub repository</a> for installation instructions and a <a href="https://github.com/cognate-lang/cognate/blob/master/INTRODUCTION.md">small introduction</a> to the language.
-</div>
-<div class="center">
-<pre id='square'>
-<span class="Constant">Def</span> <span class="Function">Square</span> <span class="Normal">as</span> (<span class="Operator">*</span> <span class="Function">Twin</span>)<span class="Normal">;</span>
-
-<span class="Function">Map</span> (<span class="Function">Square</span>) <span class="Normal">over</span> <span class="Function">Range</span> <span class="Number">1</span> <span class="Normal">to</span> <span class="Number">10</span><span class="Normal">;</span>
-<span class="Special">Print</span>
-</pre>
 </div>
 </body>
 </html>
