@@ -15,12 +15,13 @@ h2 {
 	margin-right: 5%;
 }
 
-ul {
+li {
 	font-family: inherit;
 	font-size: inherit;
 	text-align:center;
 	list-style:none;
 	font-style: italic;
+	margin-bottom: 0.5em;
 }
 
 .center {
