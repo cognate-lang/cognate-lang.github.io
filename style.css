@@ -1,14 +1,18 @@
 body {
 	font-family: serif;
+	color: #333333;
+	background-color: #ffffff;
 }
 
 h1 {
+	font-style: italic;
 	text-align:center;
 	font-size: 5em;
 	margin-bottom: 0;
 }
 
 h2 {
+	font-style: italic;
 	text-align:center;
 	font-size: 2em;
 	margin-left: 5%;
@@ -44,7 +48,6 @@ a {
 }
 
 pre { font-size: 2em; font-family: monospace; color: #333333; background-color: #ffffff; }
-* { color: #333333; background-color: #ffffff; }
 .Special { color: #183691; }
 .Function { color: #795da3; }
 .Conditional { color: #a71d5d; }
