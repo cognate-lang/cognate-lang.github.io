@@ -25,7 +25,7 @@ cognac foo.cog
 </pre>
 </div>
 <div class="text">
-<p>
+p>
 To compile into an optimized executable (this takes longer and worsens error messages) you can use the <i>-release</i> flag. To automatically run the produced executable, you can use <i>-run</i>.
 </p>
 </div>
@@ -183,7 +183,7 @@ We can use variables to define functions that take named parameters - here's an 
 </div>
 <div class="text">
 <p>
-Notice that the last statement in a function does not need to be terminated with a semicolon. Notice also that there is no return statement, since values are implicitely returned on the stack. This means we can actually define functions that return multiple values, such as the <i>Twin</i> function we saw earlier.
+Notice that the last statement in a function does not need to be terminated with a semicolon. Notice also that there is no return statement, since values are implicitly returned on the stack. This means we can actually define functions that return multiple values, such as the <i>Twin</i> function we saw earlier.
 </p>
 </div>
 <div class="center">
@@ -191,6 +191,78 @@ Notice that the last statement in a function does not need to be terminated with
 <span class="Constant">Def</span> <span class="Function">Twin</span> <span class="Normal">as</span> (
    <span class="Constant">Let</span> <span class="Function">X</span><span class="Normal">;</span>
    <span class="Function">X</span> <span class="Function">X</span>
+)<span class="Normal">;</span>
+</pre>
+</div>
+<h2>Control Flow</h2>
+<div class="text">
+Like most programming languages, Cognate has if statements and loops and all that jazz. The simplest form of control flow is <i>When</i> that simply executes a block of code if given <i>True</i> or not if <i>False</i>.
+</div>
+<div class="center">
+<pre>
+<span class="Function">When</span> <span class="Operator">==</span> <span class="Number">1</span> <span class="Number">1</span> (
+   <span class="Special">Print</span> <span class="String">&quot;who'd have guessed?&quot;</span>
+)<span class="Normal">;</span>
+</pre>
+</div>
+<div class="text">
+There is also <i>Unless</i> that evaluates the block if given <i>False</i> instead. <i>While</i> takes a condition in brackets and evaluates the block of code until the condition is <i>False</i>. <i>Until</i>, you guessed it, is the opposite of <i>While</i> and runs until the condition is <i>True</i>.
+</div>
+<div class="center">
+<pre>
+<span class="Conditional">While</span> (<span class="Boolean">True</span>) (
+   <span class="Special">Print</span> <span class="String">&quot;this may well print forever&quot;</span>
+)<span class="Normal">;</span>
+</pre>
+</div>
+<div class="text">
+What's with the second set of brackets? <i>When</i> doesn't have them, so why should <i>While</i>? This is because brackets denote <i>blocks</i>; they prevent code being instantly evaluates and instead push a reference to it onto the stack. Blocks also control variable scopes. We can evaluate a block using the <i>Do</i> function - which is how our control flow functions are implemented.
+</div>
+<div class="center">
+<pre>
+<span class="Conditional">Do</span> (
+   <span class="Special">Print</span> <span class="String">&quot;Hello from inside a block!&quot;</span>
+)<span class="Normal">;</span>
+</pre>
+</div>
+<div class="text">
+<p>
+This explains the syntax for functions: <i>Def</i> simply binds a block to a name, much like <i>Let</i>. Blocks can be passed around the program like any other value - even if they reference variables that go out of scope.
+</p>
+<p>
+Now that this (hopefully) makes some sense, we can introduce the <i>If</i> statement! <i>If</i> is a function that takes three parameters. The first is a boolean, if this is <i>True</i> then the second argument is returned. If not, the third argument is returned. We can chain <i>Ifs</i> together to have more complex control flow.
+</div>
+<div class="center">
+<pre>
+<span class="Special">Print</span>
+   <span class="Conditional">If</span> <span class="Operator">==</span> <span class="Function">X</span> <span class="Number">1</span> <span class="Normal">then</span> <span class="String">&quot;foo&quot;</span>
+   <span class="Conditional">If</span> <span class="Operator">==</span> <span class="Function">X</span> <span class="Number">2</span> <span class="Normal">then</span> <span class="String">&quot;bar&quot;</span>
+             <span class="Normal">else</span> <span class="String">&quot;baz&quot;</span><span class="Normal">;</span>
+</pre>
+</div>
+<div class="text">
+We can combine this with <i>Do</i> to have conditional code execution.
+</div>
+<div class="center">
+<pre>
+<span class="Conditional">Do</span>
+   <span class="Conditional">If</span> <span class="Operator">==</span> <span class="Function">X</span> <span class="Number">1</span> <span class="Normal">then</span> ( <span class="Special">Print</span> <span class="String">&quot;foo&quot;</span> )
+   <span class="Conditional">If</span> <span class="Operator">==</span> <span class="Function">X</span> <span class="Number">2</span> <span class="Normal">then</span> ( <span class="Special">Print</span> <span class="String">&quot;bar&quot;</span> )
+             <span class="Normal">else</span> ( <span class="Special">Print</span> <span class="String">&quot;baz&quot;</span> )<span class="Normal">;</span>
+</pre>
+</div>
+<div class="text">
+Now, lets use our knowledge of blocks to define our own control flow function: <i>Thrice</i>. This should evaluate a block three times in a row. This demonstrates a different use of <i>Def</i> in which we bind a block from the stack.
+</div>
+<div class="center">
+<pre>
+<span class="Constant">Def</span> <span class="Function">Thrice</span> <span class="Normal">as</span> (
+   <span class="Constant">Def</span> <span class="Function">F</span><span class="Normal">;</span>
+   <span class="Function">F</span> <span class="Function">F</span> <span class="Function">F</span>
+)<span class="Normal">;</span>
+
+<span class="Function">Thrice</span> (
+   <span class="Special">Print</span> <span class="String">&quot;hip hip hooray!&quot;</span>
 )<span class="Normal">;</span>
 </pre>
 </div>
