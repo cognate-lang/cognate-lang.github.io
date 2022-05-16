@@ -1,269 +1,131 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Cognate: Readable and concise concatenative programming</title>
 <meta charset="UTF-8">
-<head>
 <link rel="stylesheet" href="style.css">
+<title>Cognate: Readable and concise concatenative programming</title>
 </head>
 <body>
-<h1><i>Learn Cognate</i></h1>
-<h2><i>A brief introduction to the language</i></h2>
-</body>
+<h1>Learn Cognate</h1>
+<h2>A brief introduction to the language</h2>
 <h2>Install</h2>
-<div class="text">
-<p>
-First install <i>CognaC</i> the Cognate Compiler from <a href="https://github.com/cognate-lang/cognate">here</a> using the provided instructions. Currently <i>CognaC</i> will run on recent Linux or Mac systems. Windows users can install it onto the Windows Subsystem for Linux - native Windows support is planned.
-</p>
-<p>
-Invoking <i>CognaC</i> is simple. If you have a file named <i>foo.cog</i> containing a Cognate program, it can be compiled into an executable named <i>foo</i> with the following command.
-</p>
-</div>
-<div class="code">
-<pre>
+<div class="text"><p>First install <span class="mono">CognaC</span> the Cognate Compiler from here using the provided instructions. Currently <span class="mono">CognaC</span> will run on recent Linux or Mac systems. Windows users can install it onto the Windows Subsystem for Linux - native Windows support is planned.</p><p>Invoking <span class="mono">CognaC</span> is simple. If you have a file named <span class="mono">foo.cog</span> containing a Cognate program, it can be compiled into an executable named <span class="mono">foo</span> with the following command.</p></div>
+<div class="code"><pre>
 cognac foo.cog
-</pre>
-</div>
-<div class="text">
-<p>
-To compile into an optimized executable (this takes longer and worsens error messages) you can use the <i>-release</i> flag. To automatically run the produced executable, you can use <i>-run</i>.
-</p>
-</div>
+</pre></div>
+<div class="text">To compile into an optimized executable (this takes longer and worsens error messages) you can use the <span class="mono">-release</span> flag. To automatically run the produced executable, you can use <span class="mono">-run</span>.</div>
 <h2>First Programs</h2>
-<div class="code">
-<pre>
-<span class="Special">Print</span> <span class="String">&quot;Hello world!&quot;</span><span class="Normal">;</span>
-</pre>
-</div>
-<div class="text">
-<p>
-Fairly simple right? This example calls the <i>Print</i> function with one parameter - the string <i>"Hello world!"</i>. Now let's do another simple example, adding two numbers.
-</p>
-</div>
-<div class="code">
-<pre>
-<span class="Special">Print</span> <span class="Operator">+</span> <span class="Number">2</span> <span class="Number">3</span><span class="Normal">;</span>
-</pre>
-</div>
-<div class="text">
-<p>
-Wait what? That isn't how maths works!
-</p>
-<p>
-Cognate doesn't care how maths works. Where in most programming languages, <i>+</i> would be an operator and would be used in the infix position, in Cognate <i>+</i> is a function. Like <i>Print</i>, the <i>+</i> function is called by being written before its arguments like shown above.
-</p>
-</div>
-<div class="code">
-<pre>
-<span class="Special">Print</span> <span class="Operator">-</span> <span class="Number">10</span> <span class="Number">36</span><span class="Normal">;</span> <span class="Comment">~~ Subtracts 10 from 36</span>
-</pre>
-</div>
-<div class="text">
-<p>
-Another thing to note is that the order of parameters for <i>-</i> and <i>/</i> are backwards. The reason for this will become clear later. Also note that line comments are started with <i>~~</i>
-</p>
-</div>
+<div class="code"><pre>
+<span class="Special">Print</span><span class="NonText"> </span><span class="String">&quot;Hello world!&quot;</span><span class="Normal">;</span>
+</pre></div>
+<div class="text">Fairly simple right? This example calls the <span class="mono">Print</span> function with one parameter - the string <span class="mono">"Hello world!"</span>. Now let's do another simple example, adding two numbers.</div>
+<div class="code"><pre>
+<span class="Special">Print</span><span class="NonText"> </span><span class="Operator">+</span><span class="NonText"> </span><span class="Number">2</span><span class="NonText"> </span><span class="Number">3</span><span class="Normal">;</span>
+</pre></div>
+<div class="text"><p>Wait what? That isn't how maths works!</p><p>Cognate doesn't care how maths works. Where in most programming languages, <span class="mono">+</span> would be an operator and would be used in the infix position, in Cognate <span class="mono">+</span> is a function. Like <span class="mono">Print</span>, the <span class="mono">+</span> function is called by being written before its arguments like shown above.</p></div>
+<div class="code"><pre>
+<span class="Special">Print</span><span class="NonText"> </span><span class="Operator">-</span><span class="NonText"> </span><span class="Number">10</span><span class="NonText"> </span><span class="Number">36</span><span class="Normal">;</span><span class="NonText"> </span><span class="Comment">~ Subtracts 10 from 36</span>
+</pre></div>
+<div class="text">Another thing to note is that the order of parameters for <span class="mono">-</span> and <span class="mono">/</span> are backwards. The reason for this will become clear later. Also note that line comments are started with <span class="mono">~~</span>.</div>
 <h2>The Stack</h2>
-<div class="text">
-<p>
-Let's have a more complex example, this subtracts 12 from 15 and then multiplies the result by 2.
-</p>
-</div>
-<div class="code">
-<pre>
-<span class="Special">Print</span> <span class="Operator">*</span> <span class="Number">2</span> <span class="Operator">-</span> <span class="Number">12</span> <span class="Number">15</span><span class="Normal">;</span>
-</pre>
-</div>
-<div class="text">
-<p>
-By now you may have realised that Cognate is evaluating our programs backwards - right to left. The subtraction is being performed before the multiplication above. This is being done using a stack, as explained here.
-<ul>
-	<li>Place 15 on top of the stack</li>
-	<li>Place 12 on top of the stack</li>
-	<li>Remove the top two numbers from the stack, subtract them and put the result (3) on top of the stack</li>
-	<li>Place 2 on top of the stack</li>
-	<li>Remove the top two numbers from the stack, multiply them and put the result (6) on top of the stack</li>
-	<li>Remove the top number from the stack, print it</li>
-</ul>
-Cognate comes with functions to manipulate the stack. The simplest of these is <i>Twin</i>, which takes the top element from the stack, and puts it back on again twice. The below snippet uses <i>Twin</i> to square a number by multiplying it by itself.
-</div>
-<div class="code">
-<pre>
-<span class="Special">Print</span> <span class="Operator">*</span> <span class="Function">Twin</span> <span class="Number">8</span><span class="Normal">;</span>
-</pre>
-</div>
-<div class="text">
-Now we don't want to write this every time we square a number right? So let's create a <i>Square</i> function to do this for us.
-</div>
+<div class="text">Let's have a more complex example, this subtracts 12 from 15 and then multiplies the result by 2.</div>
+<div class="code"><pre>
+<span class="Special">Print</span><span class="NonText"> </span><span class="Operator">*</span><span class="NonText"> </span><span class="Number">2</span><span class="NonText"> </span><span class="Operator">-</span><span class="NonText"> </span><span class="Number">12</span><span class="NonText"> </span><span class="Number">15</span><span class="Normal">;</span>
+</pre></div>
+<div class="text">By now you may have realised that Cognate is evaluating our programs backwards - right to left. The subtraction is being performed before the multiplication above. This is being done using a stack, as explained here.</div>
+<ul><li>Place 15 on top of the stack</li><li>Place 12 on top of the stack</li><li>Remove the top two numbers from the stack, subtract them and put the result (3) on top of the stack</li><li>Place 2 on top of the stack</li><li>Remove the top two numbers from the stack, multiply them and put the result (6) on top of the stack</li><li>Remove the top number from the stack, print it</li></ul>
+<div class="text">Cognate comes with functions to manipulate the stack. The simplest of these is <span class="mono">Twin</span>, which takes the top element from the stack, and puts it back on again - twice. The below snippet uses <span class="mono">Twin</span> to square a number by multiplying it by itself.</div>
+<div class="code"><pre>
+<span class="Special">Print</span><span class="NonText"> </span><span class="Operator">*</span><span class="NonText"> </span><span class="Function">Twin</span><span class="NonText"> </span><span class="Number">8</span><span class="Normal">;</span>
+</pre></div>
+<div class="text">Now we don't want to write this every time we square a number right? So let's create a <span class="mono">Square</span> function to do this for us.</div>
 <h2>First Functions</h2>
-<div class="text">
-<p>
-Functions in Cognate are defined using <i>Def</i> and the name of the function. The function body is put in brackets after this.
-</p>
-</div>
-<div class="code">
-<pre>
-<span class="Constant">Def</span> <span class="Function">Square</span> (<span class="Operator">*</span> <span class="Function">Twin</span>)<span class="Normal">;</span>
-<span class="Special">Print</span> <span class="Function">Square</span> <span class="Number">8</span><span class="Normal">;</span>
-</pre>
-</div>
-<div class="text">
-<p>
-This is great, but it certainly could flow better. Cognate ignores words starting with lowercase letters, allowing them to be used as comments. This lets us write:
-</p>
-</div>
-<div class="code">
-<pre>
-<span class="Special">Print</span> <span class="Normal">the</span> <span class="Function">Square</span> <span class="Normal">of</span> <span class="Number">8</span><span class="Normal">;</span>
-</pre>
-</div>
-<div class="text">
-<p>
-In this example the readability isn't really improved much, but in more complex programs this <i>informal syntax</i> can be invaluable.
-</p>
-<p>
-By now you've probably noticed the semicolons. These delimit statements so that Cognate knows what order to evaluate functions in (remember that these are executed backwards). Definitions should also be terminated with semicolons. The stack persists between statements, letting us do things like this.
-</p>
-</div>
-<div class="code">
-<pre>
-<span class="Number">8</span> <span class="Normal">;</span> <span class="Function">Square</span> <span class="Normal">;</span> <span class="Special">Print</span> <span class="Normal">;</span>
-</pre>
-</div>
-<div class="text">
-<p>
-or this
-</p>
-</div>
-<div class="code">
-<pre>
-<span class="Function">Square</span> <span class="Number">8</span> <span class="Normal">;</span> <span class="Special">Print</span> <span class="Normal">;</span>
-</pre>
-</div>
-<div>
-<div class="text">
-<p>
-or this
-</p>
-</div>
-<div class="code">
-<pre>
-<span class="Number">8</span> <span class="Normal">;</span> <span class="Special">Print</span> <span class="Normal">the</span> <span class="Function">Square</span> <span class="Normal">;</span>
-</pre>
-</div>
-<div class="text">
-<p>
-Permitting this sort of complexity allows Cognate programs to flow as if written in sentences. It also means that much of the time variables are not even needed. Of course, Cognate does have variables.
-</p>
-</div>
+<div class="text">Functions in Cognate are defined using <span class="mono">Def</span> and the name of the function. The function body is put in brackets after this.</div>
+<div class="code"><pre>
+<span class="Constant">Def</span><span class="NonText"> </span><span class="Function">Square</span><span class="NonText"> </span>(<span class="Operator">*</span><span class="NonText"> </span><span class="Function">Twin</span>)<span class="Normal">;</span>
+<span class="Special">Print</span><span class="NonText"> </span><span class="Function">Square</span><span class="NonText"> </span><span class="Number">8</span><span class="Normal">;</span>
+</pre></div>
+<div class="text">This is great, but it certainly could flow better. Cognate ignores words starting with lowercase letters, allowing them to be used as comments. This lets us write:</div>
+<div class="code"><pre>
+<span class="Special">Print</span><span class="NonText"> </span><span class="Normal">the</span><span class="NonText"> </span><span class="Function">Square</span><span class="NonText"> </span><span class="Normal">of</span><span class="NonText"> </span><span class="Number">8</span><span class="Normal">;</span>
+</pre></div>
+<div class="text"><p>In this example the readability isn't really improved much, but in more complex programs this informal syntax can be invaluable.</p><p>By now you've probably noticed the semicolons. These delimit statements so that Cognate knows what order to evaluate functions in (remember that these are executed backwards). Definitions should also be terminated with semicolons. The stack persists between statements, letting us do things like this.</p></div>
+<div class="code"><pre>
+<span class="Number">8</span><span class="NonText"> </span><span class="Normal">;</span><span class="NonText"> </span><span class="Function">Square</span><span class="NonText"> </span><span class="Normal">;</span><span class="NonText"> </span><span class="Special">Print</span><span class="NonText"> </span><span class="Normal">;</span>
+</pre></div>
+<div class="text">or this</div>
+<div class="code"><pre>
+<span class="Function">Square</span><span class="NonText"> </span><span class="Number">8</span><span class="NonText"> </span><span class="Normal">;</span><span class="NonText"> </span><span class="Special">Print</span><span class="NonText"> </span><span class="Normal">;</span>
+</pre></div>
+<div class="text">or this</div>
+<div class="code"><pre>
+<span class="Number">8</span><span class="NonText"> </span><span class="Normal">;</span><span class="NonText"> </span><span class="Special">Print</span><span class="NonText"> </span><span class="Normal">the</span><span class="NonText"> </span><span class="Function">Square</span><span class="NonText"> </span><span class="Normal">;</span>
+</pre></div>
+<div class="text">This flexible syntax allows Cognate programs to flow as if written in sentences. It also means that much of the time variables are not even needed. Of course, Cognate <i>does</i> have variables.</div>
 <h2>Variables</h2>
-<div class="text">
-<p>
-Variables are defined in a fairly similar manner to functions using <i>Let</i> and their name. Variables take a value from the stack and bind it to this name. Variables are referenced with the same syntax in which functions are called.
-</p>
-</div>
-<div class="code">
-<pre>
-<span class="Constant">Let</span> <span class="Function">X</span> <span class="Normal">be</span> <span class="Number">4</span><span class="Normal">;</span>
-<span class="Special">Print</span> <span class="Function">X</span><span class="Normal">;</span>
-</pre>
-</div>
-<div class="text">
-<p>
-We can use variables to define functions that take named parameters - here's an alternate version of the <i>Square</i> function.
-</p>
-</div>
-<div class="code">
-<pre>
-<span class="Constant">Def</span> <span class="Function">Square</span> <span class="Normal">as</span> (
-   <span class="Constant">Let</span> <span class="Function">X</span><span class="Normal">;</span>
-   <span class="Operator">*</span> <span class="Function">X</span> <span class="Function">X</span>
+<div class="text">Variables are defined in a fairly similar manner to functions using <span class="mono">Let</span> and their name. This takes a value from the stack, binding it to this name. Variables are referenced with the same syntax in which functions are called.</div>
+<div class="code"><pre>
+<span class="Constant">Let</span><span class="NonText"> </span><span class="Function">X</span><span class="NonText"> </span><span class="Normal">be</span><span class="NonText"> </span><span class="Number">4</span><span class="Normal">;</span>
+<span class="Special">Print</span><span class="NonText"> </span><span class="Function">X</span><span class="Normal">;</span>
+</pre></div>
+<div class="text">We can use variables to define functions that take named parameters - here's an alternate version of the <span class="mono">Square</span> function.</div>
+<div class="code"><pre>
+<span class="Constant">Def</span><span class="NonText"> </span><span class="Function">Square</span><span class="NonText"> </span><span class="Normal">as</span><span class="NonText"> </span>(
+<span class="NonText">   </span><span class="Constant">Let</span><span class="NonText"> </span><span class="Function">X</span><span class="Normal">;</span>
+<span class="NonText">   </span><span class="Operator">*</span><span class="NonText"> </span><span class="Function">X</span><span class="NonText"> </span><span class="Function">X</span>
 )<span class="Normal">;</span>
-</pre>
-</div>
-<div class="text">
-<p>
-Notice that the last statement in a function does not need to be terminated with a semicolon. Notice also that there is no return statement, since values are implicitly returned on the stack. This means we can actually define functions that return multiple values, such as the <i>Twin</i> function we saw earlier.
-</p>
-</div>
-<div class="code">
-<pre>
-<span class="Constant">Def</span> <span class="Function">Twin</span> <span class="Normal">as</span> (
-   <span class="Constant">Let</span> <span class="Function">X</span><span class="Normal">;</span>
-   <span class="Function">X</span> <span class="Function">X</span>
+</pre></div>
+<div class="text">Notice that the last statement before a closing bracket does not need to be terminated with a semicolon. Also there is no return statement, since values are implicitly returned on the stack. This means we can actually define functions that return multiple values, such as the <span class="mono">Twin</span> function we saw earlier.</div>
+<div class="code"><pre>
+<span class="Constant">Def</span><span class="NonText"> </span><span class="Function">Twin</span><span class="NonText"> </span><span class="Normal">as</span><span class="NonText"> </span>(
+<span class="NonText">   </span><span class="Constant">Let</span><span class="NonText"> </span><span class="Function">X</span><span class="Normal">;</span>
+<span class="NonText">   </span><span class="Function">X</span><span class="NonText"> </span><span class="Function">X</span>
 )<span class="Normal">;</span>
-</pre>
-</div>
+</pre></div>
 <h2>Control Flow</h2>
-<div class="text">
-Like most programming languages, Cognate has if statements and loops and all that jazz. The simplest form of control flow is <i>When</i> that simply executes a block of code if given <i>True</i> or not if <i>False</i>.
-</div>
-<div class="code">
-<pre>
-<span class="Function">When</span> <span class="Operator">==</span> <span class="Number">1</span> <span class="Number">1</span> (
-   <span class="Special">Print</span> <span class="String">&quot;Who'd have guessed?&quot;</span>
+<div class="text">Like most programming languages, Cognate has if statements and loops and all that jazz. The simplest form of control flow is <span class="mono">When</span>, which simply executes a block of code if given <span class="mono">True</span> or not if <span class="mono">False</span>.</div>
+<div class="code"><pre>
+<span class="Function">When</span><span class="NonText"> </span><span class="Operator">==</span><span class="NonText"> </span><span class="Number">1</span><span class="NonText"> </span><span class="Number">1</span><span class="NonText"> </span>(
+<span class="NonText">   </span><span class="Special">Print</span><span class="NonText"> </span><span class="String">&quot;Who'd have guessed?&quot;</span>
 )<span class="Normal">;</span>
-</pre>
-</div>
-<div class="text">
-There is also <i>Unless</i> that evaluates the block if given <i>False</i> instead. <i>While</i> takes a condition in brackets and evaluates the block of code until the condition is <i>False</i>. <i>Until</i>, you guessed it, is the opposite of <i>While</i> and runs until the condition is <i>True</i>.
-</div>
-<div class="code">
-<pre>
-<span class="Conditional">While</span> (<span class="Boolean">True</span>) (
-   <span class="Special">Print</span> <span class="String">&quot;This may well print forever&quot;</span>
+</pre></div>
+<div class="text">There is also <span class="mono">Unless</span> that evaluates the block if given <span class="mono">False</span>. <span class="mono">While</span> takes a condition in brackets and evaluates the block of code until the condition is <span class="mono">False</span>. <span class="mono">Until</span>, you guessed it, is the opposite of <span class="mono">While</span> and runs until the condition is <span class="mono">True</span>.</div>
+<div class="code"><pre>
+<span class="Conditional">While</span><span class="NonText"> </span>(<span class="Boolean">True</span>)<span class="NonText"> </span>(
+<span class="NonText">   </span><span class="Special">Print</span><span class="NonText"> </span><span class="String">&quot;This may well print forever&quot;</span>
 )<span class="Normal">;</span>
-</pre>
-</div>
-<div class="text">
-What's with the second set of brackets? <i>When</i> doesn't have them, so why should <i>While</i>? This is because brackets denote <i>blocks</i>; they prevent code being instantly evaluates and instead push a reference to it onto the stack. Blocks also control variable scopes. We can evaluate a block using the <i>Do</i> function - which is how our control flow functions are implemented.
-</div>
-<div class="code">
-<pre>
-<span class="Conditional">Do</span> (
-   <span class="Special">Print</span> <span class="String">&quot;Hello from inside a block!&quot;</span>
+</pre></div>
+<div class="text">What's with the second set of brackets? <span class="mono">When</span> doesn't have them, so why should <span class="mono">While</span>? This is because brackets denote blocks! These prevent code being instantly evaluated and instead push a reference onto the stack. Blocks also control variable scopes. We can evaluate a block using the <span class="mono">Do</span> function - which is how our control flow functions are implemented.</div>
+<div class="code"><pre>
+<span class="Conditional">Do</span><span class="NonText"> </span>(
+<span class="NonText">   </span><span class="Special">Print</span><span class="NonText"> </span><span class="String">&quot;Hello from inside a block!&quot;</span>
 )<span class="Normal">;</span>
-</pre>
-</div>
-<div class="text">
-<p>
-This explains the syntax for functions: <i>Def</i> simply binds a block to a name, much like <i>Let</i>. Blocks can be passed around the program like any other value - even if they reference variables that go out of scope.
-</p>
-<p>
-Now that this (hopefully) makes some sense, we can introduce the <i>If</i> statement! <i>If</i> is a function that takes three parameters. The first is a boolean, if this is <i>True</i> then the second argument is returned. If not, the third argument is returned. We can chain <i>Ifs</i> together to have more complex control flow.
-</div>
-<div class="code">
-<pre>
+</pre></div>
+<div class="text"><p>This explains the syntax for functions: <span class="mono">Def</span> simply binds a block to a name, much like <span class="mono">Let</span>. Blocks can be passed around the program like any other value - even if they reference variables that go out of scope.</p><p>Now that this (hopefully) makes some sense, we can finally introduce the <span class="mono">If</span> statement! <span class="mono">If</span> is a function that takes three parameters. The first is a boolean, if this is <span class="mono">True</span> then the second argument is returned. If not, the third argument is returned. We can chain <span class="mono">If</span>s together to have more complex control flow.</p></div>
+<div class="code"><pre>
 <span class="Special">Print</span>
-   <span class="Conditional">If</span> <span class="Operator">==</span> <span class="Function">X</span> <span class="Number">1</span> <span class="Normal">then</span> <span class="String">&quot;foo&quot;</span>
-   <span class="Conditional">If</span> <span class="Operator">==</span> <span class="Function">X</span> <span class="Number">2</span> <span class="Normal">then</span> <span class="String">&quot;bar&quot;</span>
-             <span class="Normal">else</span> <span class="String">&quot;baz&quot;</span><span class="Normal">;</span>
-</pre>
-</div>
-<div class="text">
-We can combine this with <i>Do</i> to have conditional code execution.
-</div>
-<div class="code">
-<pre>
+<span class="NonText">   </span><span class="Conditional">If</span><span class="NonText"> </span><span class="Operator">==</span><span class="NonText"> </span><span class="Function">X</span><span class="NonText"> </span><span class="Number">1</span><span class="NonText"> </span><span class="Normal">then</span><span class="NonText"> </span><span class="String">&quot;foo&quot;</span>
+<span class="NonText">   </span><span class="Conditional">If</span><span class="NonText"> </span><span class="Operator">==</span><span class="NonText"> </span><span class="Function">X</span><span class="NonText"> </span><span class="Number">2</span><span class="NonText"> </span><span class="Normal">then</span><span class="NonText"> </span><span class="String">&quot;bar&quot;</span>
+<span class="NonText">             </span><span class="Normal">else</span><span class="NonText"> </span><span class="String">&quot;baz&quot;</span><span class="Normal">;</span>
+</pre></div>
+<div class="text">We can combine this with <span class="mono">Do</span> to have conditional code execution.</div>
+<div class="code"><pre>
 <span class="Conditional">Do</span>
-   <span class="Conditional">If</span> <span class="Operator">==</span> <span class="Function">X</span> <span class="Number">1</span> <span class="Normal">then</span> ( <span class="Special">Print</span> <span class="String">&quot;foo&quot;</span> )
-   <span class="Conditional">If</span> <span class="Operator">==</span> <span class="Function">X</span> <span class="Number">2</span> <span class="Normal">then</span> ( <span class="Special">Print</span> <span class="String">&quot;bar&quot;</span> )
-             <span class="Normal">else</span> ( <span class="Special">Print</span> <span class="String">&quot;baz&quot;</span> )<span class="Normal">;</span>
-</pre>
-</div>
-<div class="text">
-Now, lets use our knowledge of blocks to define our own control flow function: <i>Thrice</i>. This should evaluate a block three times in a row. This demonstrates a different use of <i>Def</i> in which we bind a block from the stack.
-</div>
-<div class="code">
-<pre>
-<span class="Constant">Def</span> <span class="Function">Thrice</span> <span class="Normal">as</span> (
-   <span class="Constant">Def</span> <span class="Function">F</span><span class="Normal">;</span>
-   <span class="Function">F</span> <span class="Function">F</span> <span class="Function">F</span>
+<span class="NonText">   </span><span class="Conditional">If</span><span class="NonText"> </span><span class="Operator">==</span><span class="NonText"> </span><span class="Function">X</span><span class="NonText"> </span><span class="Number">1</span><span class="NonText"> </span><span class="Normal">then</span><span class="NonText"> </span>(<span class="NonText"> </span><span class="Special">Print</span><span class="NonText"> </span><span class="String">&quot;foo&quot;</span><span class="NonText"> </span>)
+<span class="NonText">   </span><span class="Conditional">If</span><span class="NonText"> </span><span class="Operator">==</span><span class="NonText"> </span><span class="Function">X</span><span class="NonText"> </span><span class="Number">2</span><span class="NonText"> </span><span class="Normal">then</span><span class="NonText"> </span>(<span class="NonText"> </span><span class="Special">Print</span><span class="NonText"> </span><span class="String">&quot;bar&quot;</span><span class="NonText"> </span>)
+<span class="NonText">             </span><span class="Normal">else</span><span class="NonText"> </span>(<span class="NonText"> </span><span class="Special">Print</span><span class="NonText"> </span><span class="String">&quot;baz&quot;</span><span class="NonText"> </span>)<span class="Normal">;</span>
+</pre></div>
+<div class="text">Now, lets use our knowledge of blocks to define our own control flow function: <span class="mono">Thrice</span>, which should evaluate a block three times in a row. This demonstrates a different use of Def in which we bind a block from the stack.</div>
+<div class="code"><pre>
+<span class="Constant">Def</span><span class="NonText"> </span><span class="Function">Thrice</span><span class="NonText"> </span><span class="Normal">as</span><span class="NonText"> </span>(
+<span class="NonText">   </span><span class="Constant">Def</span><span class="NonText"> </span><span class="Function">F</span><span class="Normal">;</span>
+<span class="NonText">   </span><span class="Function">F</span><span class="NonText"> </span><span class="Function">F</span><span class="NonText"> </span><span class="Function">F</span>
 )<span class="Normal">;</span>
 
-<span class="Function">Thrice</span> (
-   <span class="Special">Print</span> <span class="String">&quot;hip hip hooray!&quot;</span>
+<span class="Function">Thrice</span><span class="NonText"> </span>(
+<span class="NonText">   </span><span class="Special">Print</span><span class="NonText"> </span><span class="String">&quot;hip hip hooray!&quot;</span>
 )<span class="Normal">;</span>
-</pre>
-</div>
+</pre></div>
+
+</body>
 </html>
