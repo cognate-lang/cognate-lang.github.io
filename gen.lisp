@@ -40,7 +40,7 @@
                             "-c" "syntax on"
                             "-c" (format nil "set ft=~a" (string-downcase (string filetype)))
                             "-c" "runtime syntax/2html.vim"
-                            "-cwqa" "tmp"))
+                            "-cwqa" "tmp") :pty t)
   (with-open-file (stream "tmp.html" :direction :input)
     (loop for line = (read-line stream nil)
           until (string= line "<pre id='vimCodeElement'>"))
