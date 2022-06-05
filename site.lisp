@@ -178,4 +178,69 @@ Print X;")
 
 Thrice (
    Print \"hip hip hooray!\"
-);"))
+);")
+(text "A more general version of this function, "(mono "Times")" can be defined using recursion.")
+(code 'cognate
+"Def Times (
+	Let N number of repetitions;
+	Def F function to repeat;
+	Unless Zero? N ( F ; Times - 1 N (F) );
+);
+
+Times 5 (
+	Print \"wow!\";
+);")
+(text "Now you may see a small problem with this. If the user calls "(mono "Times")" with a non-integer parameter it will loop forever - that won't do at all! We use the "(mono "Integer!")" function to throw a type error if a decimal is given.")
+(code 'cognate
+"Def Times (
+	Let N is Integer! number of repetitions;
+	Def F function to repeat;
+	Unless Zero? N ( F ; Times - 1 N (F) );
+);")
+(text
+  (para "We could also use the "(mono "Block!")" function for "(mono "F")" but we'll already get a type error when we use "(mono "Def")" to bind anything that isn't a block, so there is no point.")
+  (para "The "(mono "Times") " function is also our first loop. We don't need to define it every time though as it's also in the standard library. Another loop is "(mono "While")"."))
+(code 'cognate
+"While (!= \"done\" Twin Input) (
+  Print
+);
+Drop;")
+(text
+  (para (mono "While") " takes two block parameters. The first one is the condition and is evaluated immediately, returning a boolean. If this is "(mono "True")" then the second block (the loop body) is evaluated and then the loop repeats, if not the loop finishes. The example above shows the use of a "(mono "While")" loop. The program simply echoes the user's inputs back to them until they write " (mono "\"done\"") ".")
+  (para "This loop is most useful in imperative code where intermediary values are passed on the stack between iterations. It is less useful for iterating over data structures such as lists. Lists?"))
+(small-header "Lists")
+(text "In Cognate, lists are generated using - you guessed it - a function. The " (mono "List") " function takes a block as a parameter. It evaluates this block "(italic "in a new stack") " and then returns that stack as a list.")
+(code 'cognate "Print List (1 2 3 4 5);")
+(text "This allows Cognate's list creation to be much more flexible than other languages - for example what if we wanted a list of 100 ones?")
+(code 'cognate "Print List ( Times 100 (1) );")
+(text
+  (para "The three most fundamental list functions are " (mono "Push") ", " (mono "First") ", and " (mono "Rest") ".")
+  (para " The " (mono "Push") " function takes a value and a list as parameters, and returns the list with the value " (italic "pushed") " to it's first element. " (mono "First") " simply returns the first element of a list. " (mono "Rest") " returns a list without its first element."))
+(code 'cognate
+"Let L be Push \"foo\" to List ( \"bar\" \"baz\" );
+Print First element of L;
+Print Rest of L;")
+(text (mono "Range") " creates a list of numbers from a starting (inclusive) and an ending (exclusive) number. " (mono "For") " is a higher order function that applied an operation to each element of a list - it is the loop for iterating over lists.")
+(code 'cognate
+"Def Square as (* Twin);
+For each in Range 1 to 20 (Print the Square);")
+(text (mono "Map") " is like " (mono "For") " but the result of the computation is stored in a new list.")
+(code 'cognate
+"Let Evens be Map (* 2) over Range 1 to 50;
+Print Evens;")
+(text (mono "Filter") " applies a function to each element of a list also. This function should return a boolean - if this is " (mono "False") " then the function is removed from the returned list.")
+(code 'cognate
+"Let Even? be (Zero? Modulo 2);
+Let Evens be Filter (Even?) over Range 1 to 100;
+Print Evens;")
+(text "The functional programmers reading this are likely expecting a Fold or Reduce function next - which applies an operation to a list with an accumulator. However Cognate needs no fold function, as " (mono "For") " can store intermediary values on the stack, acting like a fold.")
+(code 'cognate
+"Def Factorial as (
+   Let N be Integer!;
+   For each in Range 1 to N (*) from 1;
+);
+
+Print Factorial 10;")
+(small-header "Todo")
+(text "This tutorial isn't finished yet!"))
+(exit)
