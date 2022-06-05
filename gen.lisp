@@ -19,6 +19,7 @@
 </head>
 <body>
 ~{~a~%~}
+<br><br><br>
 </body>
 </html>" style title contents)))
 
