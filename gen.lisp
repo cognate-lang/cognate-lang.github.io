@@ -34,7 +34,7 @@
 
 (defun code (filetype text)
   (with-open-file (stream "tmp" :direction :output :if-does-not-exist :create :if-exists :supersede)
-    (format stream text))
+    (format stream "~a" text))
   (sb-ext:run-program "/usr/bin/env"
                       (list "vim" "-E"
                             "-c" "let g:html_no_progress=1"

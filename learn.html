@@ -24,7 +24,7 @@ cognac foo.cog
 </pre></div>
 <div class="text"><p>Wait what? That isn't how maths works!</p><p>Cognate doesn't care how maths works. Where in most programming languages, <span class="mono">+</span> would be an operator and would be used in the infix position, in Cognate <span class="mono">+</span> is a function. Like <span class="mono">Print</span>, the <span class="mono">+</span> function is called by being written before its arguments like shown above.</p></div>
 <div class="code"><pre>
-<span class="Special">Print</span> <span class="Operator">-</span> <span class="Number">10</span> <span class="Number">36</span><span class="Normal">;</span> <span class="Comment">~ Subtracts 10 from 36</span>
+<span class="Special">Print</span> <span class="Operator">-</span> <span class="Number">10</span> <span class="Number">36</span><span class="Normal">;</span> <span class="Comment">~~ Subtracts 10 from 36</span>
 </pre></div>
 <div class="text">Another thing to note is that the order of parameters for <span class="mono">-</span> and <span class="mono">/</span> are backwards. The reason for this will become clear later. Also note that line comments are started with <span class="mono">~~</span>.</div>
 <h2>The Stack</h2>
@@ -193,6 +193,41 @@ cognac foo.cog
 )<span class="Normal">;</span>
 
 <span class="Special">Print</span> <span class="Function">Factorial</span> <span class="Number">10</span><span class="Normal">;</span>
+</pre></div>
+<h2>Boxes</h2>
+<div class="text"><p>While storing state between loop iterations is very useful, in some cases you just need mutable variables. Cognate's boxes are references used to generalise the concept of mutation.</p><p> The <span class="mono">Box</span> function takes a value and places it in a box. <span class="mono">Unbox</span> returns the item stored in a box. <span class="mono">Set</span> takes a box and a value as parameters and mutates the box to hold the value, updating all references to it.</p></div>
+<div class="code"><pre>
+<span class="Constant">Let</span> <span class="Function">X</span> <span class="Normal">be</span> <span class="Function">Box</span> <span class="Number">1</span><span class="Normal">;</span>
+<span class="Special">Print</span> <span class="Function">Unbox</span> <span class="Function">X</span><span class="Normal">;</span> <span class="Comment">~~ prints 1</span>
+
+<span class="Constant">Set</span> <span class="Function">X</span> <span class="Normal">to</span> <span class="Number">2</span><span class="Normal">;</span>
+<span class="Special">Print</span> <span class="Function">Unbox</span> <span class="Function">X</span><span class="Normal">;</span> <span class="Comment">~~ prints 2</span>
+</pre></div>
+<div class="text">Boxes aren't limited to mutating variables, they can be used for any value.</div>
+<div class="code"><pre>
+<span class="Constant">Let</span> <span class="Function">L</span> <span class="Normal">be</span> <span class="Function">Map</span> (<span class="Function">Box</span>) <span class="Normal">over</span> <span class="Function">Range</span> <span class="Number">1</span> <span class="Normal">to</span> <span class="Number">10</span><span class="Normal">;</span>
+<span class="Special">Print</span> <span class="Function">L</span><span class="Normal">;</span>
+
+<span class="Conditional">For</span> <span class="Normal">each</span> <span class="Normal">in</span> <span class="Function">L</span> (
+   <span class="Constant">Let</span> <span class="Function">X</span><span class="Normal">;</span>
+   <span class="Constant">Set</span> <span class="Function">X</span> <span class="Normal">to</span> <span class="Operator">*</span> <span class="Number">2</span> <span class="Function">Unbox</span> <span class="Function">X</span><span class="Normal">;</span> <span class="Comment">~~ double the element in place</span>
+)<span class="Normal">;</span>
+<span class="Special">Print</span> <span class="Function">L</span><span class="Normal">;</span>
+</pre></div>
+<div class="text">While boxes may not seem as ergonomic as mutation in other languages, they are both more flexible than mutable variables and more predictable than implicit references. We can also easily extend mutation, like this:</div>
+<div class="code"><pre>
+<span class="Constant">Def</span> <span class="Function">Box-list</span> <span class="Normal">as</span> ( <span class="Function">Map</span> (<span class="Function">Box</span>) )<span class="Normal">;</span>
+
+<span class="Constant">Def</span> <span class="Function">Inplace-map</span> <span class="Normal">as</span> (
+   <span class="Constant">Def</span> <span class="Function">F</span><span class="Normal">;</span>
+   <span class="Function">Drop</span> <span class="Function">Map</span> ( <span class="Constant">Let</span> <span class="Function">X</span> <span class="Normal">;</span> <span class="Constant">Set</span> <span class="Function">X</span> <span class="Normal">to</span> <span class="Function">F</span> <span class="Function">Unbox</span> <span class="Function">X</span> )<span class="Normal">;</span>
+)<span class="Normal">;</span>
+
+<span class="Constant">Let</span> <span class="Function">L</span> <span class="Normal">be</span> <span class="Function">Box-list</span> <span class="Function">Range</span> <span class="Number">1</span> <span class="Normal">to</span> <span class="Number">10</span><span class="Normal">;</span>
+<span class="Special">Print</span> <span class="Function">L</span><span class="Normal">;</span>
+
+<span class="Function">Inplace-map</span> (<span class="Operator">*</span> <span class="Number">2</span>) <span class="Normal">over</span> <span class="Function">L</span><span class="Normal">;</span>
+<span class="Special">Print</span> <span class="Function">L</span><span class="Normal">;</span>
 </pre></div>
 <h2>Todo</h2>
 <div class="text">This tutorial isn't finished yet!</div>

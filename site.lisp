@@ -36,7 +36,7 @@ Def Move discs as (
 );
 
 Move 5 discs from \a via \b to \c")
-  (text "As you can see, Cognate ignores words starting with lowercase letters, allowing them to be used to describe functionality and enhance readability. This makes Cognate codebases intuitive and maintainable.")
+(text "As you can see, Cognate ignores words starting with lowercase letters, allowing them to be used to describe functionality and enhance readability. This makes Cognate codebases intuitive and maintainable.")
 (code 'cognate
 "~~ Square numbers in Cognate
 
@@ -241,6 +241,40 @@ Print Evens;")
 );
 
 Print Factorial 10;")
+(small-header "Boxes")
+(text
+  (para "While storing state between loop iterations is very useful, in some cases you just need mutable variables. Cognate's boxes are references used to generalise the concept of mutation.")
+  (para " The " (mono "Box") " function takes a value and places it in a box. " (mono "Unbox") " returns the item stored in a box. " (mono "Set") " takes a box and a value as parameters and mutates the box to hold the value, updating all references to it."))
+(code 'cognate
+"Let X be Box 1;
+Print Unbox X; ~~ prints 1
+
+Set X to 2;
+Print Unbox X; ~~ prints 2")
+(text "Boxes aren't limited to mutating variables, they can be used for any value.")
+(code 'cognate
+"Let L be Map (Box) over Range 1 to 10;
+Print L;
+
+For each in L (
+   Let X;
+   Set X to * 2 Unbox X; ~~ double the element in place
+);
+Print L;")
+(text "While boxes may not seem as ergonomic as mutation in other languages, they are both more flexible than mutable variables and more predictable than implicit references. We can also easily extend mutation, like this:")
+(code 'cognate
+"Def Box-list as ( Map (Box) );
+
+Def Inplace-map as (
+	Def F;
+	Drop Map ( Let X ; Set X to F Unbox X );
+);
+
+Let L be Box-list Range 1 to 10;
+Print L;
+
+Inplace-map (* 2) over L;
+Print L;")
 (small-header "Todo")
 (text "This tutorial isn't finished yet!"))
 (exit)
