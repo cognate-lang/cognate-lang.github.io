@@ -35,7 +35,7 @@ Def Move discs as (
    )
 );
 
-Move 5 discs from \a via \b to \c")
+Move 5 discs from \"a\" via \"b\" to \"c\"")
 (text "As you can see, Cognate ignores words starting with lowercase letters, allowing them to be used to describe functionality and enhance readability. This makes Cognate codebases intuitive and maintainable.")
 (code 'cognate
 "~~ Square numbers in Cognate
