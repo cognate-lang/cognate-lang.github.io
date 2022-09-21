@@ -54,11 +54,11 @@ Def Primes (
    initially List ();
    For Range 2 to U (
       Let P is potential prime;
-      Let Primes is found primes;
-      Let To-check be Take-while (<= Sqrt P) Primes;
+      Let Found be list of found primes;
+      Let To-check be Take-while (<= Sqrt P) Found;
       When All (Not Factor of P) To-check (
          Append P
-      ) to Primes
+      ) to Found
    )
 );
 
