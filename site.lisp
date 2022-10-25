@@ -169,7 +169,7 @@ Print X;")
    If == X 1 then ( Print \"foo\" )
    If == X 2 then ( Print \"bar\" )
              else ( Print \"baz\" );")
-(text "Now, lets use our knowledge of blocks to define our own control flow function "(mono "Thrice")", which should evaluate a block three times in a row. This demonstrates a different use of Def in which we bind a block from the stack.")
+(text "Now, lets use our knowledge of blocks to define our own control flow function "(mono "Thrice")", which should evaluate a block three times in a row. This demonstrates a different use of "(mono "Def")" in which we bind a block from the stack.")
 (code 'cognate
 "Def Thrice as (
    Def F;
