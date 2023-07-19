@@ -267,7 +267,8 @@ Print L;")
 
 Def Inplace-map as (
 	Def F;
-	Drop Map ( Let X ; Set X to F Unbox X );
+	Let L;
+	For each in L ( Let X ; Set X to F Unbox X );
 );
 
 Let L be Box-list Range 1 to 10;
