@@ -70,8 +70,7 @@ Print Primes up to 1000;")
   "Multiple return values"
   "Combinator oriented programming"
   "Predicate pattern matching"
-  "Natural language programming"
-  "Gradual typing with inference")
+  "Natural language programming")
 (text "Interested? Read the " (link "tutorial" 'learn) " or visit our "(link "GitHub repository" "https://github.com/cognate-lang/cognate") "."))
 
 (page 'learn
