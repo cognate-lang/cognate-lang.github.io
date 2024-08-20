@@ -71,7 +71,7 @@ Print Primes up to 1000;")
   "Combinator oriented programming"
   "Predicate pattern matching"
   "Natural language programming")
-(text "Interested? Read the " (link "tutorial" 'learn) " or visit our "(link "GitHub repository" "https://github.com/cognate-lang/cognate") "."))
+(text "Interested? Read the " (link "tutorial" 'learn) ", check out the " (link "interactive web playground" "https://cognate-playground.hedy.dev/") ", or visit our "(link "GitHub repository" "https://github.com/cognate-lang/cognate") "."))
 
 (page 'learn
 (large-header "Learn Cognate")
