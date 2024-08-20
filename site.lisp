@@ -43,7 +43,7 @@ Move 5 discs from \"a\" via \"b\" to \"c\"")
 Def Square as (* Twin);
 Map (Square) over Range 1 to 10;
 Print")
-(text "Cognate is a stack-oriented programming language similar to Forth or Factor, except expressions are evaluated right to left. This gives the expressiveness of concatenative programming as well as the readability of prefix notation. Expressions can be delimited at arbitrary points, allowing them to read as sentences would in English.")
+(text "Cognate is a stack-oriented programming language similar to Forth or Factor, except statements are evaluated right to left. This gives the expressiveness of concatenative programming as well as the readability of prefix notation. Statements can be delimited at arbitrary points, allowing them to read as sentences would in English.")
 (code 'cognate
 "~~ Prime numbers in Cognate
 
@@ -82,7 +82,9 @@ Print Primes up to 1000;")
   (para "First install " (mono "CognaC") " the Cognate Compiler from here using the provided instructions. Currently " (mono "CognaC") " will run on recent Linux or Mac systems. Windows users can install it onto the Windows Subsystem for Linux - native Windows support is planned.")
   (para "Invoking " (mono "CognaC") " is simple. If you have a file named " (mono "foo.cog") " containing a Cognate program, it can be compiled into an executable named " (mono "foo") " with the following command."))
 (code 'none "cognac foo.cog")
-(text "To compile into an optimized executable (this takes longer and worsens error messages) you can use the " (mono "-release") " flag. To automatically run the produced executable, you can use " (mono "-run") ".")
+(text
+  (para "To compile a debug executable, which will run slower but give a nice backtrace if there's an error, you can use the " (mono "-debug") " flag.")
+  (para "Alternatively, you can use the interactive web playground " (link "here" "https://cognate-playground.hedy.dev/") " which runs Cognate programs client-side in the browser. It also has intelligent syntax highlighting, code folding, and error reporting in the editor"))
 (small-header "First Programs")
 (code 'cognate "Print \"Hello world!\";")
 (text "Fairly simple right? This example calls the " (mono "Print") " function with one parameter - the string " (mono "\"Hello world!\"") ". Now let's do another simple example, adding two numbers.")
