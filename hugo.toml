@@ -1,0 +1,4 @@
+baseURL = 'https://cognate-lang.github.io/'
+languageCode = 'en-us'
+title = 'Cognate'
+theme = 'ananke'
