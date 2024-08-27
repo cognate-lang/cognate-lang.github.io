@@ -5,7 +5,7 @@ title = 'Learn'
 +++
 
 
-## A brief introduction to the language
+A brief introduction to the language
 
 
 ## Install

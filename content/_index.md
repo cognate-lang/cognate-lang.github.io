@@ -1,10 +1,10 @@
 +++
 menus = 'main'
-title = 'Cognate'
+title = 'About'
 +++
 
-
-## Readable and concise concatenative programming
+# Cognate
+Readable and concise concatenative programming
 
 ```
 ~~ Fizzbuzz in Cognate
