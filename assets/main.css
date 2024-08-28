@@ -47,8 +47,8 @@ p {
 	display: block;
 	width: 70%;
 	margin: auto;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
 }
 
 a {
@@ -57,13 +57,13 @@ a {
 }
 
 code {
-  font-family: monospace;
-  font-size: 1.2em;
-  background-color: #eeeeee;
+	font-family: monospace;
+	font-size: 1.2rem;
+	background-color: #eeeeee;
 }
 
-pre {
-  font-size: 2em;
+pre code {
+	font-size: 1.6rem;
 	font-family: monospace;
 	color: #333333;
 	background-color: #ffffff;
