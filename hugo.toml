@@ -1,4 +1,3 @@
 baseURL = 'https://cognate-lang.github.io/'
 languageCode = 'en-us'
-title = 'Cognate'
-theme = 'PaperMod'
+title = 'Cognate: Readable and concise concatenative programming'

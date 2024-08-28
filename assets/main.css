@@ -1,0 +1,71 @@
+body {
+	font-family: serif;
+	color: #333333;
+	font-size: 100%;
+	background-color: #ffffff;
+}
+
+h1 {
+	font-style: italic;
+	text-align:center;
+	font-size: 5em;
+	margin-bottom: 0;
+}
+
+h2 {
+	font-style: italic;
+	text-align:center;
+	font-size: 2em;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+li {
+	font-family: serif;
+	font-size: 1.2em;
+	text-align:center;
+	list-style:none;
+	font-style: italic;
+	margin-bottom: 0.5em;
+}
+
+.mono {
+	font-family: monospace;
+	font-size: 1.2em;
+	background-color: #eeeeee;
+}
+
+.code {
+	margin: auto;
+	display: block;
+	width: 40em;
+}
+
+p {
+	font-family: serif;
+	font-size: 1.2em;
+	display: block;
+	width: 70%;
+	margin: auto;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+
+a {
+	font-family: inherit;
+	font-size: inherit;
+}
+
+code {
+  font-family: monospace;
+  font-size: 1.2em;
+  background-color: #eeeeee;
+}
+
+pre {
+  font-size: 2em;
+	font-family: monospace;
+	color: #333333;
+	background-color: #ffffff;
+	margin-bottom: 0;
+}

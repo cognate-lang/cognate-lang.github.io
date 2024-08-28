@@ -1,11 +1,11 @@
-
 +++
 menus = 'main'
-title = 'Learn'
+title = 'Learn Cognate'
 +++
 
+# Learn Cognate
 
-A brief introduction to the language
+## A brief introduction to the language
 
 
 ## Install

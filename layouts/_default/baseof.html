@@ -1,0 +1,19 @@
+{{/* A base template for all pages in the site */}}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    {{ $css := resources.Get "main.css" | minify -}}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+    {{ if eq .RelPermalink "/" -}}
+    <title>{{ $.Site.Title }}</title>
+    {{ else -}}
+    <title>{{ .Title }}</title>
+    {{ end -}}
+  </head>
+  <body>
+    {{/* Allows child templates to define this block */}}
+    {{ block "main" . }}{{ end }}
+    <br /><br /><br />
+  </body>
+</html>

@@ -4,7 +4,8 @@ title = 'About'
 +++
 
 # Cognate
-Readable and concise concatenative programming
+
+## Readable and concise concatenative programming
 
 ```
 ~~ Fizzbuzz in Cognate
@@ -85,5 +86,5 @@ Cognate borrows from other concatenative languages, but also adds unique feature
 - Natural language programming
 
 
-Interested? Read the [tutorial](learn.html), check out the [interactive web playground](https://cognate-playground.hedy.dev/), or visit our [GitHub repository](https://github.com/cognate-lang/cognate).
+Interested? Read the [tutorial](/learn/), check out the [interactive web playground](https://cognate-playground.hedy.dev/), or visit our [GitHub repository](https://github.com/cognate-lang/cognate).
 

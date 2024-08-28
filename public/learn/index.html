@@ -1,149 +1,44 @@
-<!DOCTYPE html>
-<html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-<title>Learn | Cognate</title>
-<meta name="keywords" content="">
-<meta name="description" content="A brief introduction to the language
-Install First install CognaC the Cognate Compiler from here using the provided instructions. Currently CognaC will run on recent Linux or Mac systems. Windows users can install it onto the Windows Subsystem for Linux - native Windows support is planned.
-Invoking CognaC is simple. If you have a file named foo.cog containing a Cognate program, it can be compiled into an executable named foo with the following command.">
-<meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/learn/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/learn/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
-
-    </style>
-</noscript>
-</head>
-
-<body class="" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Cognate (Alt + H)">Cognate</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="http://localhost:1313/" title="About">
-                    <span>About</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://localhost:1313/learn/" title="Learn">
-                    <span class="active">Learn</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/main.min.css" />
+    <title>Learn Cognate</title>
+    </head>
+  <body>
     
-    <h1 class="post-title entry-hint-parent">
-      Learn
-    </h1>
-    <div class="post-meta">
-
-</div>
-  </header> 
-  <div class="post-content"><p>A brief introduction to the language</p>
-<h2 id="install">Install<a hidden class="anchor" aria-hidden="true" href="#install">#</a></h2>
+    
+<h1 id="learn-cognate">Learn Cognate</h1>
+<h2 id="a-brief-introduction-to-the-language">A brief introduction to the language</h2>
+<h2 id="install">Install</h2>
 <p>First install <code>CognaC</code> the Cognate Compiler from here using the provided instructions. Currently <code>CognaC</code> will run on recent Linux or Mac systems. Windows users can install it onto the Windows Subsystem for Linux - native Windows support is planned.</p>
 <p>Invoking <code>CognaC</code> is simple. If you have a file named <code>foo.cog</code> containing a Cognate program, it can be compiled into an executable named <code>foo</code> with the following command.</p>
-<pre tabindex="0"><code>cognac foo.cog
-</code></pre><p>To compile a debug executable, which will run slower but give a nice backtrace if there&rsquo;s an error, you can use the <code>-debug</code> flag.</p>
+<div class="code">
+  <pre>cognac foo.cog
+  </pre>
+</div><p>To compile a debug executable, which will run slower but give a nice backtrace if there&rsquo;s an error, you can use the <code>-debug</code> flag.</p>
 <p>Alternatively, you can use the interactive web playground <a href="https://cognate-playground.hedy.dev/">here</a> which runs Cognate programs client-side in the browser. It also has intelligent syntax highlighting, code folding, and error reporting in the editor</p>
-<h2 id="first-programs">First Programs<a hidden class="anchor" aria-hidden="true" href="#first-programs">#</a></h2>
-<pre tabindex="0"><code>Print &#34;Hello world!&#34;;
-</code></pre><p>Fairly simple right? This example calls the <code>Print</code> function with one parameter - the string <code>&quot;Hello world!&quot;</code>. Now let&rsquo;s do another simple example, adding two numbers.</p>
-<pre tabindex="0"><code>Print + 2 3;
-</code></pre><p>Wait what? That isn&rsquo;t how maths works!</p>
+<h2 id="first-programs">First Programs</h2>
+<div class="code">
+  <pre>Print "Hello world!";
+  </pre>
+</div><p>Fairly simple right? This example calls the <code>Print</code> function with one parameter - the string <code>&quot;Hello world!&quot;</code>. Now let&rsquo;s do another simple example, adding two numbers.</p>
+<div class="code">
+  <pre>Print + 2 3;
+  </pre>
+</div><p>Wait what? That isn&rsquo;t how maths works!</p>
 <p>Cognate doesn&rsquo;t care how maths works. Where in most programming languages, <code>+</code> would be an operator and would be used in the infix position, in Cognate <code>+</code> is a function. Like <code>Print</code>, the <code>+</code> function is called by being written before its arguments like shown above.</p>
-<pre tabindex="0"><code>Print - 10 36; ~~ Subtracts 10 from 36
-</code></pre><p>Another thing to note is that the order of parameters for <code>-</code> and <code>/</code> are backwards. The reason for this will become clear later. Also note that line comments are started with <code>~~</code>.</p>
-<h2 id="the-stack">The Stack<a hidden class="anchor" aria-hidden="true" href="#the-stack">#</a></h2>
+<div class="code">
+  <pre>Print - 10 36; ~~ Subtracts 10 from 36
+  </pre>
+</div><p>Another thing to note is that the order of parameters for <code>-</code> and <code>/</code> are backwards. The reason for this will become clear later. Also note that line comments are started with <code>~~</code>.</p>
+<h2 id="the-stack">The Stack</h2>
 <p>Let&rsquo;s have a more complex example, this subtracts 12 from 15 and then multiplies the result by 2.</p>
-<pre tabindex="0"><code>Print * 2 - 12 15;
-</code></pre><p>By now you may have realised that Cognate is evaluating our programs backwards - right to left. The subtraction is being performed before the multiplication above. This is being done using a stack, as explained here.</p>
+<div class="code">
+  <pre>Print * 2 - 12 15;
+  </pre>
+</div><p>By now you may have realised that Cognate is evaluating our programs backwards - right to left. The subtraction is being performed before the multiplication above. This is being done using a stack, as explained here.</p>
 <ul>
 <li>Place 15 on top of the stack</li>
 <li>Place 12 on top of the stack</li>
@@ -153,130 +48,183 @@ Invoking CognaC is simple. If you have a file named foo.cog containing a Cognate
 <li>Remove the top number from the stack, print it</li>
 </ul>
 <p>Cognate comes with functions to manipulate the stack. The simplest of these is <code>Twin</code>, which takes the top element from the stack, and puts it back on again - twice. The below snippet uses <code>Twin</code> to square a number by multiplying it by itself.</p>
-<pre tabindex="0"><code>Print * Twin 8;
-</code></pre><p>Now we don&rsquo;t want to write this every time we square a number right? So let&rsquo;s create a <code>Square</code> function to do this for us.</p>
-<h2 id="first-functions">First Functions<a hidden class="anchor" aria-hidden="true" href="#first-functions">#</a></h2>
+<div class="code">
+  <pre>Print * Twin 8;
+  </pre>
+</div><p>Now we don&rsquo;t want to write this every time we square a number right? So let&rsquo;s create a <code>Square</code> function to do this for us.</p>
+<h2 id="first-functions">First Functions</h2>
 <p>Functions in Cognate are defined using <code>Def</code> and the name of the function. The function body is put in brackets after this.</p>
-<pre tabindex="0"><code>Def Square (* Twin);
+<div class="code">
+  <pre>Def Square (* Twin);
 Print Square 8;
-</code></pre><p>This is great, but it certainly could flow better. Cognate ignores words starting with lowercase letters, allowing them to be used as comments. This lets us write:</p>
-<pre tabindex="0"><code>Print the Square of 8;
-</code></pre><p>In this example the readability isn&rsquo;t really improved much, but in more complex programs this informal syntax can be invaluable.</p>
+  </pre>
+</div><p>This is great, but it certainly could flow better. Cognate ignores words starting with lowercase letters, allowing them to be used as comments. This lets us write:</p>
+<div class="code">
+  <pre>Print the Square of 8;
+  </pre>
+</div><p>In this example the readability isn&rsquo;t really improved much, but in more complex programs this informal syntax can be invaluable.</p>
 <p>By now you&rsquo;ve probably noticed the semicolons. These delimit statements so that Cognate knows what order to evaluate functions in (remember that these are executed backwards). Definitions should also be terminated with semicolons. The stack persists between statements, letting us do things like this.</p>
-<pre tabindex="0"><code>8 ; Square ; Print ;
-</code></pre><p>or this</p>
-<pre tabindex="0"><code>Square 8 ; Print ;
-</code></pre><p>or this</p>
-<pre tabindex="0"><code>8 ; Print the Square ;
-</code></pre><p>This flexible syntax allows Cognate programs to flow as if written in sentences. It also means that much of the time variables are not even needed. Of course, Cognate <em>does</em> have variables.</p>
-<h2 id="variables">Variables<a hidden class="anchor" aria-hidden="true" href="#variables">#</a></h2>
+<div class="code">
+  <pre>8 ; Square ; Print ;
+  </pre>
+</div><p>or this</p>
+<div class="code">
+  <pre>Square 8 ; Print ;
+  </pre>
+</div><p>or this</p>
+<div class="code">
+  <pre>8 ; Print the Square ;
+  </pre>
+</div><p>This flexible syntax allows Cognate programs to flow as if written in sentences. It also means that much of the time variables are not even needed. Of course, Cognate <em>does</em> have variables.</p>
+<h2 id="variables">Variables</h2>
 <p>Variables are defined in a fairly similar manner to functions using <code>Let</code> and their name. This takes a value from the stack, binding it to this name. Variables are referenced with the same syntax in which functions are called.</p>
-<pre tabindex="0"><code>Let X be 4;
+<div class="code">
+  <pre>Let X be 4;
 Print X;
-</code></pre><p>We can use variables to define functions that take named parameters - here&rsquo;s an alternate version of the <code>Square</code> function.</p>
-<pre tabindex="0"><code>Def Square as (
+  </pre>
+</div><p>We can use variables to define functions that take named parameters - here&rsquo;s an alternate version of the <code>Square</code> function.</p>
+<div class="code">
+  <pre>Def Square as (
    Let X;
    * X X
 );
-</code></pre><p>Notice that the last statement before a closing bracket does not need to be terminated with a semicolon. Also there is no return statement, since values are implicitly returned on the stack. This means we can actually define functions that return multiple values, such as the <code>Twin</code> function we saw earlier.</p>
-<pre tabindex="0"><code>Def Twin as (
+  </pre>
+</div><p>Notice that the last statement before a closing bracket does not need to be terminated with a semicolon. Also there is no return statement, since values are implicitly returned on the stack. This means we can actually define functions that return multiple values, such as the <code>Twin</code> function we saw earlier.</p>
+<div class="code">
+  <pre>Def Twin as (
    Let X;
    X X
 );
-</code></pre><h2 id="control-flow">Control Flow<a hidden class="anchor" aria-hidden="true" href="#control-flow">#</a></h2>
+  </pre>
+</div><h2 id="control-flow">Control Flow</h2>
 <p>Like most programming languages, Cognate has if statements and loops and all that jazz. The simplest form of control flow is <code>When</code>, which simply executes a block of code if given <code>True</code> or not if <code>False</code>.</p>
-<pre tabindex="0"><code>When == 1 1 (
-   Print &#34;Who&#39;d have guessed?&#34;
+<div class="code">
+  <pre>When == 1 1 (
+   Print "Who'd have guessed?"
 );
-</code></pre><p>There is also <code>Unless</code> that evaluates the block if given <code>False</code>. <code>While</code> takes a condition in brackets and evaluates the block of code until the condition is <code>False</code>. <code>Until</code>, you guessed it, is the opposite of <code>While</code> and runs until the condition is <code>True</code>.</p>
-<pre tabindex="0"><code>While (True) (
-   Print &#34;This may well print forever&#34;
+  </pre>
+</div><p>There is also <code>Unless</code> that evaluates the block if given <code>False</code>. <code>While</code> takes a condition in brackets and evaluates the block of code until the condition is <code>False</code>. <code>Until</code>, you guessed it, is the opposite of <code>While</code> and runs until the condition is <code>True</code>.</p>
+<div class="code">
+  <pre>While (True) (
+   Print "This may well print forever"
 );
-</code></pre><p>What&rsquo;s with the second set of brackets? <code>When</code> doesn&rsquo;t have them, so why should <code>While</code>? This is because brackets denote blocks! These prevent code being instantly evaluated and instead push a reference onto the stack. Blocks also control variable scopes. We can evaluate a block using the <code>Do</code> function - which is how our control flow functions are implemented.</p>
-<pre tabindex="0"><code>Do (
-   Print &#34;Hello from inside a block!&#34;
+  </pre>
+</div><p>What&rsquo;s with the second set of brackets? <code>When</code> doesn&rsquo;t have them, so why should <code>While</code>? This is because brackets denote blocks! These prevent code being instantly evaluated and instead push a reference onto the stack. Blocks also control variable scopes. We can evaluate a block using the <code>Do</code> function - which is how our control flow functions are implemented.</p>
+<div class="code">
+  <pre>Do (
+   Print "Hello from inside a block!"
 );
-</code></pre><p>This explains the syntax for functions: <code>Def</code> simply binds a block to a name, much like <code>Let</code>. Blocks can be passed around the program like any other value - even if they reference variables that go out of scope.</p>
+  </pre>
+</div><p>This explains the syntax for functions: <code>Def</code> simply binds a block to a name, much like <code>Let</code>. Blocks can be passed around the program like any other value - even if they reference variables that go out of scope.</p>
 <p>Now that this (hopefully) makes some sense, we can finally introduce the <code>If</code> statement! <code>If</code> is a function that takes three parameters. The first is a boolean, if this is <code>True</code> then the second argument is returned. If not, the third argument is returned. We can chain <code>If</code>s together to have more complex control flow.</p>
-<pre tabindex="0"><code>Print
-   If == X 1 then &#34;foo&#34;
-   If == X 2 then &#34;bar&#34;
-             else &#34;baz&#34;;
-</code></pre><p>We can combine this with <code>Do</code> to have conditional code execution.</p>
-<pre tabindex="0"><code>Do
-   If == X 1 then ( Print &#34;foo&#34; )
-   If == X 2 then ( Print &#34;bar&#34; )
-             else ( Print &#34;baz&#34; );
-</code></pre><p>Now, lets use our knowledge of blocks to define our own control flow function <code>Thrice</code>, which should evaluate a block three times in a row. This demonstrates a different use of <code>Def</code> in which we bind a block from the stack.</p>
-<pre tabindex="0"><code>Def Thrice as (
+<div class="code">
+  <pre>Print
+   If == X 1 then "foo"
+   If == X 2 then "bar"
+             else "baz";
+  </pre>
+</div><p>We can combine this with <code>Do</code> to have conditional code execution.</p>
+<div class="code">
+  <pre>Do
+   If == X 1 then ( Print "foo" )
+   If == X 2 then ( Print "bar" )
+             else ( Print "baz" );
+  </pre>
+</div><p>Now, lets use our knowledge of blocks to define our own control flow function <code>Thrice</code>, which should evaluate a block three times in a row. This demonstrates a different use of <code>Def</code> in which we bind a block from the stack.</p>
+<div class="code">
+  <pre>Def Thrice as (
    Def F;
    F F F
 );
 
 Thrice (
-   Print &#34;hip hip hooray!&#34;
+   Print "hip hip hooray!"
 );
-</code></pre><p>A more general version of this function, <code>Times</code> can be defined using recursion.</p>
-<pre tabindex="0"><code>Def Times (
+  </pre>
+</div><p>A more general version of this function, <code>Times</code> can be defined using recursion.</p>
+<div class="code">
+  <pre>Def Times (
 	Let N number of repetitions;
 	Def F function to repeat;
 	Unless Zero? N ( F ; Times - 1 N (F) );
 );
 
 Times 5 (
-	Print &#34;wow!&#34;;
+	Print "wow!";
 );
-</code></pre><p>Now you may see a small problem with this. If the user calls <code>Times</code> with a non-integer parameter it will loop forever - that won&rsquo;t do at all! We use the <code>Integer!</code> function to throw a type error if a decimal is given.</p>
-<pre tabindex="0"><code>Def Times (
+  </pre>
+</div><p>Now you may see a small problem with this. If the user calls <code>Times</code> with a non-integer parameter it will loop forever - that won&rsquo;t do at all! We use the <code>Integer!</code> function to throw a type error if a decimal is given.</p>
+<div class="code">
+  <pre>Def Times (
 	Let N is Integer! number of repetitions;
 	Def F function to repeat;
 	Unless Zero? N ( F ; Times - 1 N (F) );
 );
-</code></pre><p>We could also use the <code>Block!</code> function for <code>F</code> but we&rsquo;ll already get a type error when we use <code>Def</code> to bind anything that isn&rsquo;t a block, so there is no point.</p>
+  </pre>
+</div><p>We could also use the <code>Block!</code> function for <code>F</code> but we&rsquo;ll already get a type error when we use <code>Def</code> to bind anything that isn&rsquo;t a block, so there is no point.</p>
 <p>The <code>Times</code> function is also our first loop. We don&rsquo;t need to define it every time though as it&rsquo;s also in the standard library. Another loop is <code>While</code>.</p>
-<pre tabindex="0"><code>While (!= &#34;done&#34; Twin Input) (
+<div class="code">
+  <pre>While (!= "done" Twin Input) (
   Print
 );
 Drop;
-</code></pre><p><code>While</code> takes two block parameters. The first one is the condition and is evaluated immediately, returning a boolean. If this is <code>True</code> then the second block (the loop body) is evaluated and then the loop repeats, if not the loop finishes. The example above shows the use of a <code>While</code> loop. The program simply echoes the user&rsquo;s inputs back to them until they write <code>&quot;done&quot;</code>.</p>
+  </pre>
+</div><p><code>While</code> takes two block parameters. The first one is the condition and is evaluated immediately, returning a boolean. If this is <code>True</code> then the second block (the loop body) is evaluated and then the loop repeats, if not the loop finishes. The example above shows the use of a <code>While</code> loop. The program simply echoes the user&rsquo;s inputs back to them until they write <code>&quot;done&quot;</code>.</p>
 <p>This loop is most useful in imperative code where intermediary values are passed on the stack between iterations. It is less useful for iterating over data structures such as lists. Lists?</p>
-<h2 id="lists">Lists<a hidden class="anchor" aria-hidden="true" href="#lists">#</a></h2>
+<h2 id="lists">Lists</h2>
 <p>In Cognate, lists are generated using - you guessed it - a function. The <code>List</code> function takes a block as a parameter. It evaluates this block <em>in a new stack</em> and then returns that stack as a list.</p>
-<pre tabindex="0"><code>Print List (1 2 3 4 5);
-</code></pre><p>This allows Cognate&rsquo;s list creation to be much more flexible than other languages - for example what if we wanted a list of 100 ones?</p>
-<pre tabindex="0"><code>Print List ( Times 100 (1) );
-</code></pre><p>The three most fundamental list functions are <code>Push</code>, <code>First</code>, and <code>Rest</code>.</p>
+<div class="code">
+  <pre>Print List (1 2 3 4 5);
+  </pre>
+</div><p>This allows Cognate&rsquo;s list creation to be much more flexible than other languages - for example what if we wanted a list of 100 ones?</p>
+<div class="code">
+  <pre>Print List ( Times 100 (1) );
+  </pre>
+</div><p>The three most fundamental list functions are <code>Push</code>, <code>First</code>, and <code>Rest</code>.</p>
 <p>The <code>Push</code> function takes a value and a list as parameters, and returns the list with the value <em>pushed</em> to it&rsquo;s first element. <code>First</code> simply returns the first element of a list. <code>Rest</code> returns a list without its first element.</p>
-<pre tabindex="0"><code>Let L be Push &#34;foo&#34; to List ( &#34;bar&#34; &#34;baz&#34; );
+<div class="code">
+  <pre>Let L be Push "foo" to List ( "bar" "baz" );
 Print First element of L;
 Print Rest of L;
-</code></pre><p><code>Range</code> creates a list of numbers from a starting (inclusive) and an ending (exclusive) number. <code>For</code> is a higher order function that applied an operation to each element of a list - it is the loop for iterating over lists.</p>
-<pre tabindex="0"><code>Def Square as (* Twin);
+  </pre>
+</div><p><code>Range</code> creates a list of numbers from a starting (inclusive) and an ending (exclusive) number. <code>For</code> is a higher order function that applied an operation to each element of a list - it is the loop for iterating over lists.</p>
+<div class="code">
+  <pre>Def Square as (* Twin);
 For each in Range 1 to 20 (Print the Square);
-</code></pre><p><code>Map</code> is like <code>For</code> but the result of the computation is stored in a new list.</p>
-<pre tabindex="0"><code>Let Evens be Map (* 2) over Range 1 to 50;
+  </pre>
+</div><p><code>Map</code> is like <code>For</code> but the result of the computation is stored in a new list.</p>
+<div class="code">
+  <pre>Let Evens be Map (* 2) over Range 1 to 50;
 Print Evens;
-</code></pre><p><code>Filter</code> applies a function to each element of a list also. This function should return a boolean - if this is <code>False</code> then the function is removed from the returned list.</p>
-<pre tabindex="0"><code>Let Even? be (Zero? Modulo 2);
+  </pre>
+</div><p><code>Filter</code> applies a function to each element of a list also. This function should return a boolean - if this is <code>False</code> then the function is removed from the returned list.</p>
+<div class="code">
+  <pre>Let Even? be (Zero? Modulo 2);
 Let Evens be Filter (Even?) over Range 1 to 100;
 Print Evens;
-</code></pre><p>The functional programmers reading this are likely expecting a Fold or Reduce function next - which applies an operation to a list with an accumulator. However Cognate needs no fold function, as <code>For</code> can store intermediary values on the stack, acting like a fold.</p>
-<pre tabindex="0"><code>Def Factorial as (
+  </pre>
+</div><p>The functional programmers reading this are likely expecting a Fold or Reduce function next - which applies an operation to a list with an accumulator. However Cognate needs no fold function, as <code>For</code> can store intermediary values on the stack, acting like a fold.</p>
+<div class="code">
+  <pre>Def Factorial as (
    Let N be Integer!;
    For each in Range 1 to N (*) from 1;
 );
 
 Print Factorial 10;
-</code></pre><h2 id="boxes">Boxes<a hidden class="anchor" aria-hidden="true" href="#boxes">#</a></h2>
+  </pre>
+</div><h2 id="boxes">Boxes</h2>
 <p>While storing state between loop iterations is very useful, in some cases you just need mutable variables. Cognate&rsquo;s boxes are references used to generalise the concept of mutation.</p>
 <p>The <code>Box</code> function takes a value and places it in a box. <code>Unbox</code> returns the item stored in a box. <code>Set</code> takes a box and a value as parameters and mutates the box to hold the value, updating all references to it.</p>
-<pre tabindex="0"><code>Let X be Box 1;
+<div class="code">
+  <pre>Let X be Box 1;
 Print Unbox X; ~~ prints 1
 
 Set X to 2;
 Print Unbox X; ~~ prints 2
-</code></pre><p>Boxes aren&rsquo;t limited to mutating variables, they can be used for any value.</p>
-<pre tabindex="0"><code>Let L be Map (Box) over Range 1 to 10;
+  </pre>
+</div><p>Boxes aren&rsquo;t limited to mutating variables, they can be used for any value.</p>
+<div class="code">
+  <pre>Let L be Map (Box) over Range 1 to 10;
 Print L;
 
 For each in L (
@@ -284,8 +232,10 @@ For each in L (
    Set X to * 2 Unbox X; ~~ double the element in place
 );
 Print L;
-</code></pre><p>While boxes may not seem as ergonomic as mutation in other languages, they are both more flexible than mutable variables and more predictable than implicit references. We can also easily extend mutation, like this:</p>
-<pre tabindex="0"><code>Def Box-list as ( Map (Box) );
+  </pre>
+</div><p>While boxes may not seem as ergonomic as mutation in other languages, they are both more flexible than mutable variables and more predictable than implicit references. We can also easily extend mutation, like this:</p>
+<div class="code">
+  <pre>Def Box-list as ( Map (Box) );
 
 Def Inplace-map as (
 	Def F;
@@ -298,88 +248,11 @@ Print L;
 
 Inplace-map (* 2) over L;
 Print L;
-</code></pre><h2 id="todo">Todo<a hidden class="anchor" aria-hidden="true" href="#todo">#</a></h2>
+  </pre>
+</div><h2 id="todo">Todo</h2>
 <p>This tutorial isn&rsquo;t finished yet!</p>
 
 
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-    </ul>
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2024 <a href="http://localhost:1313/">Cognate</a></span> · 
-
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
-
-<script>
-    let menu = document.getElementById('menu')
-    if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-</body>
-
+    <br /><br /><br />
+  </body>
 </html>
