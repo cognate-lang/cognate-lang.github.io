@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
   <head>
-	<meta name="generator" content="Hugo 0.113.0">
+	<meta name="generator" content="Hugo 0.133.1">
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="/main.min.css" />
     <title>Cognate: Readable and concise concatenative programming</title>
@@ -12,65 +12,65 @@
     
 <h1 id="cognate">Cognate</h1>
 <h2 id="readable-and-concise-concatenative-programming">Readable and concise concatenative programming</h2>
-<div class="code">
-  <pre><code>~~ Fizzbuzz in Cognate
+<div class="code"><pre><code><span style='font-style: italic;color: #8a8a8a'>~~ Fizzbuzz in Cognate</span>
 
-Def Multiple as (Zero? Modulo);
+<span style='color: #5f00d7'>Def</span> Multiple <span style='font-style: italic;color: #8a8a8a'>as</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #005fd7'>Zero?</span> <span style='font-weight: bold;color: #005fd7'>Modulo</span><span style='color: #4e4e4e'>)</span>;
 
-Def Fizzbuzz
-   Case (Multiple of 15) is "fizzbuzz"
-   Case (Multiple of 3)  is "fizz"
-   Case (Multiple of 5)  is "buzz"
-   otherwise ();
+<span style='color: #5f00d7'>Def</span> Fizzbuzz
+   <span style='font-weight: bold;color: #005fd7'>Case</span> <span style='color: #4e4e4e'>(</span>Multiple <span style='font-style: italic;color: #8a8a8a'>of</span> <span style='font-weight: bold;color: #875f00'>15</span><span style='color: #4e4e4e'>)</span> <span style='font-style: italic;color: #8a8a8a'>is</span> <span style='color: #008700'>&quot;fizzbuzz&quot;</span>
+   <span style='font-weight: bold;color: #005fd7'>Case</span> <span style='color: #4e4e4e'>(</span>Multiple <span style='font-style: italic;color: #8a8a8a'>of</span> <span style='font-weight: bold;color: #875f00'>3</span><span style='color: #4e4e4e'>)</span>  <span style='font-style: italic;color: #8a8a8a'>is</span> <span style='color: #008700'>&quot;fizz&quot;</span>
+   <span style='font-weight: bold;color: #005fd7'>Case</span> <span style='color: #4e4e4e'>(</span>Multiple <span style='font-style: italic;color: #8a8a8a'>of</span> <span style='font-weight: bold;color: #875f00'>5</span><span style='color: #4e4e4e'>)</span>  <span style='font-style: italic;color: #8a8a8a'>is</span> <span style='color: #008700'>&quot;buzz&quot;</span>
+   <span style='font-style: italic;color: #8a8a8a'>otherwise</span> <span style='color: #4e4e4e'>(</span><span style='color: #4e4e4e'>)</span>;
 
-For each in Range 1 to 100 (Print Fizzbuzz)</code></pre>
-</div><p>Cognate is a project aiming to create a human readable programming language with as little syntax as possible. Where natural language programming usually uses many complex syntax rules, instead Cognate takes them away. What it adds is simple, a way to embed comments into statements.</p>
-<div class="code">
-  <pre><code>~~ Towers of Hanoi in Cognate
+<span style='color: #5f00d7'>For</span> <span style='font-style: italic;color: #8a8a8a'>each</span> <span style='font-style: italic;color: #8a8a8a'>in</span> <span style='font-weight: bold;color: #005fd7'>Range</span> <span style='font-weight: bold;color: #875f00'>1</span> <span style='font-style: italic;color: #8a8a8a'>to</span> <span style='font-weight: bold;color: #875f00'>100</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #005fd7'>Print</span> Fizzbuzz<span style='color: #4e4e4e'>)</span>
+</code></pre></div>
+<p>Cognate is a project aiming to create a human readable programming language with as little syntax as possible. Where natural language programming usually uses many complex syntax rules, instead Cognate takes them away. What it adds is simple, a way to embed comments into statements.</p>
+<div class="code"><pre><code><span style='font-style: italic;color: #8a8a8a'>~~ Towers of Hanoi in Cognate</span>
 
-Def Move discs as (
+<span style='color: #5f00d7'>Def</span> Move <span style='font-style: italic;color: #8a8a8a'>discs</span> <span style='font-style: italic;color: #8a8a8a'>as</span> <span style='color: #4e4e4e'>(</span>
 
-   Let N be number of discs;
-   Let A be first rod;
-   Let B be second rod;
-   Let C be third rod;
+   <span style='color: #5f00d7'>Let</span> N <span style='font-style: italic;color: #8a8a8a'>be</span> <span style='font-style: italic;color: #8a8a8a'>number</span> <span style='font-style: italic;color: #8a8a8a'>of</span> <span style='font-style: italic;color: #8a8a8a'>discs</span>;
+   <span style='color: #5f00d7'>Let</span> A <span style='font-style: italic;color: #8a8a8a'>be</span> <span style='font-style: italic;color: #8a8a8a'>first</span> <span style='font-style: italic;color: #8a8a8a'>rod</span>;
+   <span style='color: #5f00d7'>Let</span> B <span style='font-style: italic;color: #8a8a8a'>be</span> <span style='font-style: italic;color: #8a8a8a'>second</span> <span style='font-style: italic;color: #8a8a8a'>rod</span>;
+   <span style='color: #5f00d7'>Let</span> C <span style='font-style: italic;color: #8a8a8a'>be</span> <span style='font-style: italic;color: #8a8a8a'>third</span> <span style='font-style: italic;color: #8a8a8a'>rod</span>;
 
-   Unless Zero? N (
-      Move - 1 N discs from A via C to B;
-      Prints ("Move disc " N " from " A " to " C);
-      Move - 1 N discs from B via A to C;
-   )
-);
+   <span style='color: #5f00d7'>Unless</span> <span style='font-weight: bold;color: #005fd7'>Zero?</span> N <span style='color: #4e4e4e'>(</span>
+      Move <span style='font-weight: bold;color: #4e4e4e'>-</span> <span style='font-weight: bold;color: #875f00'>1</span> N <span style='font-style: italic;color: #8a8a8a'>discs</span> <span style='font-style: italic;color: #8a8a8a'>from</span> A <span style='font-style: italic;color: #8a8a8a'>via</span> C <span style='font-style: italic;color: #8a8a8a'>to</span> B;
+      <span style='font-weight: bold;color: #005fd7'>Prints</span> <span style='color: #4e4e4e'>(</span><span style='color: #008700'>&quot;Move disc &quot;</span> N <span style='color: #008700'>&quot; from &quot;</span> A <span style='color: #008700'>&quot; to &quot;</span> C<span style='color: #4e4e4e'>)</span>;
+      Move <span style='font-weight: bold;color: #4e4e4e'>-</span> <span style='font-weight: bold;color: #875f00'>1</span> N <span style='font-style: italic;color: #8a8a8a'>discs</span> <span style='font-style: italic;color: #8a8a8a'>from</span> B <span style='font-style: italic;color: #8a8a8a'>via</span> A <span style='font-style: italic;color: #8a8a8a'>to</span> C;
+   <span style='color: #4e4e4e'>)</span>
+<span style='color: #4e4e4e'>)</span>;
 
-Move 5 discs from "a" via "b" to "c"</code></pre>
-</div><p>As you can see, Cognate ignores words starting with lowercase letters, allowing them to be used to describe functionality and enhance readability. This makes Cognate codebases intuitive and maintainable.</p>
-<div class="code">
-  <pre><code>~~ Square numbers in Cognate
+Move <span style='font-weight: bold;color: #875f00'>5</span> <span style='font-style: italic;color: #8a8a8a'>discs</span> <span style='font-style: italic;color: #8a8a8a'>from</span> <span style='color: #008700'>&quot;a&quot;</span> <span style='font-style: italic;color: #8a8a8a'>via</span> <span style='color: #008700'>&quot;b&quot;</span> <span style='font-style: italic;color: #8a8a8a'>to</span> <span style='color: #008700'>&quot;c&quot;</span>
+</code></pre></div>
+<p>As you can see, Cognate ignores words starting with lowercase letters, allowing them to be used to describe functionality and enhance readability. This makes Cognate codebases intuitive and maintainable.</p>
+<div class="code"><pre><code><span style='font-style: italic;color: #8a8a8a'>~~ Square numbers in Cognate</span>
 
-Def Square as (* Twin);
-Map (Square) over Range 1 to 10;
-Print</code></pre>
-</div><p>Cognate is a stack-oriented programming language similar to Forth or Factor, except statements are evaluated right to left. This gives the expressiveness of concatenative programming as well as the readability of prefix notation. Statements can be delimited at arbitrary points, allowing them to read as sentences would in English.</p>
-<div class="code">
-  <pre><code>~~ Prime numbers in Cognate
+<span style='color: #5f00d7'>Def</span> Square <span style='font-style: italic;color: #8a8a8a'>as</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='font-weight: bold;color: #005fd7'>Twin</span><span style='color: #4e4e4e'>)</span>;
+<span style='font-weight: bold;color: #005fd7'>Map</span> <span style='color: #4e4e4e'>(</span>Square<span style='color: #4e4e4e'>)</span> <span style='font-style: italic;color: #8a8a8a'>over</span> <span style='font-weight: bold;color: #005fd7'>Range</span> <span style='font-weight: bold;color: #875f00'>1</span> <span style='font-style: italic;color: #8a8a8a'>to</span> <span style='font-weight: bold;color: #875f00'>10</span>;
+<span style='font-weight: bold;color: #005fd7'>Print</span>
+</code></pre></div>
+<p>Cognate is a stack-oriented programming language similar to Forth or Factor, except statements are evaluated right to left. This gives the expressiveness of concatenative programming as well as the readability of prefix notation. Statements can be delimited at arbitrary points, allowing them to read as sentences would in English.</p>
+<div class="code"><pre><code><span style='font-style: italic;color: #8a8a8a'>~~ Prime numbers in Cognate</span>
 
-Def Factor (Zero? Modulo Swap);
+<span style='color: #5f00d7'>Def</span> Factor <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #005fd7'>Zero?</span> <span style='font-weight: bold;color: #005fd7'>Modulo</span> <span style='font-weight: bold;color: #005fd7'>Swap</span><span style='color: #4e4e4e'>)</span>;
 
-Def Primes (
-   Let U is upper bound;
-   initially List ();
-   For Range 2 to U (
-      Let P is potential prime;
-      Let Found be list of found primes;
-      Let To-check be Take-while (<= Sqrt P) Found;
-      When All (Not Factor of P) To-check (
-         Append P
-      ) to Found
-   )
-);
+<span style='color: #5f00d7'>Def</span> Primes <span style='color: #4e4e4e'>(</span>
+   <span style='color: #5f00d7'>Let</span> U <span style='font-style: italic;color: #8a8a8a'>is</span> <span style='font-style: italic;color: #8a8a8a'>upper</span> <span style='font-style: italic;color: #8a8a8a'>bound</span>;
+   <span style='font-style: italic;color: #8a8a8a'>initially</span> <span style='font-weight: bold;color: #005f5f'>List</span> <span style='color: #4e4e4e'>(</span><span style='color: #4e4e4e'>)</span>;
+   <span style='color: #5f00d7'>For</span> <span style='font-weight: bold;color: #005fd7'>Range</span> <span style='font-weight: bold;color: #875f00'>2</span> <span style='font-style: italic;color: #8a8a8a'>to</span> U <span style='color: #4e4e4e'>(</span>
+      <span style='color: #5f00d7'>Let</span> P <span style='font-style: italic;color: #8a8a8a'>is</span> <span style='font-style: italic;color: #8a8a8a'>potential</span> <span style='font-style: italic;color: #8a8a8a'>prime</span>;
+      <span style='color: #5f00d7'>Let</span> Found <span style='font-style: italic;color: #8a8a8a'>be</span> <span style='font-style: italic;color: #8a8a8a'>list</span> <span style='font-style: italic;color: #8a8a8a'>of</span> <span style='font-style: italic;color: #8a8a8a'>found</span> <span style='font-style: italic;color: #8a8a8a'>primes</span>;
+      <span style='color: #5f00d7'>Let</span> To-check <span style='font-style: italic;color: #8a8a8a'>be</span> <span style='color: #5f00d7'>Take-while</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>&lt;=</span> <span style='font-weight: bold;color: #005fd7'>Sqrt</span> P<span style='color: #4e4e4e'>)</span> Found;
+      <span style='font-weight: bold;color: #005fd7'>When</span> <span style='font-weight: bold;color: #005fd7'>All</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>Not</span> Factor <span style='font-style: italic;color: #8a8a8a'>of</span> P<span style='color: #4e4e4e'>)</span> To-check <span style='color: #4e4e4e'>(</span>
+         <span style='font-weight: bold;color: #005fd7'>Append</span> P
+      <span style='color: #4e4e4e'>)</span> <span style='font-style: italic;color: #8a8a8a'>to</span> Found
+   <span style='color: #4e4e4e'>)</span>
+<span style='color: #4e4e4e'>)</span>;
 
-Print Primes up to 1000;</code></pre>
-</div><p>Cognate borrows from other concatenative languages, but also adds unique features of its own.</p>
+<span style='font-weight: bold;color: #005fd7'>Print</span> Primes <span style='font-style: italic;color: #8a8a8a'>up</span> <span style='font-style: italic;color: #8a8a8a'>to</span> <span style='font-weight: bold;color: #875f00'>1000</span>;
+</code></pre></div>
+<p>Cognate borrows from other concatenative languages, but also adds unique features of its own.</p>
 <ul>
 <li>Point-free functions</li>
 <li>Operation chaining</li>
