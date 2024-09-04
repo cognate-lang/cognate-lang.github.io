@@ -1,0 +1,3 @@
+[submodule "tree-sitter-cognate"]
+	path = tree-sitter-cognate
+	url = https://github.com/hedyhli/tree-sitter-cognate

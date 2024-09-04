@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-tree-sitter highlight --scope source.cog -H /dev/stdin | sed -z '
+tree-sitter highlight --query-paths $PWD/highlights.scm --config-path tree-sitter.json --scope source.cog -H /dev/stdin | sed -z '
   s/.*<table>\n\(.*\)\n<\/table>.*/\1/
   s/<tr><td class=line-number>[0-9]\+<\/td><td class=line>\([^\n]*\)\n<\/td><\/tr>/\1/g'

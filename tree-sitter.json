@@ -1,0 +1,45 @@
+{
+  "parser-directories": [
+    "."
+  ],
+  "theme": {
+    "function": "#795da3",
+    "function.builtin": "#183691",
+    "attribute": {
+      "italic": true,
+      "color": 124
+    },
+    "keyword": "#a71d5d",
+    "number": "#0086b3",
+    "punctuation.delimiter": 239,
+    "variable.parameter": {
+      "underline": true
+    },
+    "operator": {
+      "bold": true,
+      "color": 239
+    },
+    "tag": 18,
+    "constructor": 136,
+    "string": "#183691",
+    "variable": "#795da3",
+    "comment": {
+      "color": "#969896",
+      "italic": true
+    },
+    "comment.inline": {
+      "color": "#333333",
+      "italic": false
+    },
+    "module": 136,
+    "string.special": "#183691",
+    "variable.builtin": {
+      "bold": true
+    },
+    "type": "#794da3",
+    "property": 124,
+    "keyword.special": "#0086b3",
+    "embedded": null,
+    "punctuation.bracket": 239
+  }
+}
