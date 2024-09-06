@@ -1,71 +1,85 @@
 body {
 	font-family: serif;
 	color: #333333;
-	font-size: 100%;
+	font-size: 16px;
 	background-color: #ffffff;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+main {
+	margin: 0 .5rem;
+	font-size: 1.2rem;
 }
 
 h1 {
 	font-style: italic;
 	text-align:center;
-	font-size: 5em;
+	font-size: 3rem;
 	margin-bottom: 0;
 }
 
 h2 {
 	font-style: italic;
 	text-align:center;
-	font-size: 2em;
+	font-size: 1.5rem;
 	margin-left: 5%;
 	margin-right: 5%;
 }
 
+ul {
+	padding: 0;
+}
+
 li {
-	font-family: serif;
-	font-size: 1.2em;
-	text-align:center;
-	list-style:none;
+	text-align: center;
+	list-style: none;
 	font-style: italic;
 	margin-bottom: 0.5em;
 }
 
-.mono {
-	font-family: monospace;
-	font-size: 1.2em;
-	background-color: #eeeeee;
-}
-
 .code {
-	margin: auto;
+	margin-left: 1.5rem;
 	display: block;
-	width: 40em;
 }
 
-p {
-	font-family: serif;
-	font-size: 1.2em;
-	display: block;
-	width: 70%;
-	margin: auto;
-	margin-block-start: 1em;
-	margin-block-end: 1em;
-}
-
-a {
-	font-family: inherit;
-	font-size: inherit;
+pre {
+	overflow-x: scroll;
 }
 
 code {
 	font-family: monospace;
-	font-size: 1.2rem;
+	font-size: 1rem;
 	background-color: #eeeeee;
 }
 
 pre code {
-	font-size: 1.6rem;
-	font-family: monospace;
+	font-size: 1.25rem;
 	color: #333333;
 	background-color: #ffffff;
 	margin-bottom: 0;
+}
+
+@media (min-width: 850px) {
+  main {
+		max-width: 70%;
+		margin: auto;
+	}
+	h1 {
+		font-size: 5rem;
+	}
+	h2 {
+		font-size: 2rem;
+	}
+	code {
+  	font-size: 1.2rem;
+	}
+	pre code {
+		font-size: 1.6rem;
+	}
+	.code {
+		margin-left: 5rem;
+	}
 }

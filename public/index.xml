@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>About on Cognate: Readable and concise concatenative programming</title>
-    <link>https://cognate-lang.github.io/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content in About on Cognate: Readable and concise concatenative programming</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="https://cognate-lang.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Learn Cognate</title>
-      <link>https://cognate-lang.github.io/learn/</link>
+      <link>http://localhost:1313/learn/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://cognate-lang.github.io/learn/</guid>
+      <guid>http://localhost:1313/learn/</guid>
       <description>Learn Cognate A brief introduction to the language Install First install CognaC the Cognate Compiler from here using the provided instructions. Currently CognaC will run on recent Linux or Mac systems. Windows users can install it onto the Windows Subsystem for Linux &amp;ndash; native Windows support is planned.&#xA;Invoking CognaC is simple. If you have a file named foo.cog containing a Cognate program, it can be compiled into an executable named foo with the following command.</description>
     </item>
   </channel>

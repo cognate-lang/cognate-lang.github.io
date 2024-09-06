@@ -412,7 +412,6 @@ Begin (
 This essentially allows any control flow to have a break statement, not just loops. `Begin` can also be used to implement a return statement to break out of a function early.
 
 ```cognate
-
 ~~ Inefficiently decrements a number 100 times
 ~~ If it reaches zero, returns zero instead.
 Def F (

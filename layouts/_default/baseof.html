@@ -3,6 +3,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ $css := resources.Get "main.css" | minify -}}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
     {{ if eq .RelPermalink "/" -}}
@@ -13,7 +14,9 @@
   </head>
   <body>
     {{/* Allows child templates to define this block */}}
-    {{ block "main" . }}{{ end }}
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
     <br /><br /><br />
   </body>
 </html>

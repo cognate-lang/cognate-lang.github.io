@@ -15,7 +15,7 @@ $0 == "</code></pre></div>" {
     printf "%s", "<div class=\"code\"><pre><code>" >> outfile;
     print code | (highlightCmd " >> " outfile);
     close(highlightCmd " >> " outfile);
-    print "</code></pre></div>" >> outfile;
+    printf "%s", "</code></pre></div>" >> outfile;
 
     inCode = 0;
     code = "";
