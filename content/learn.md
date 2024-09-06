@@ -257,6 +257,8 @@ Print First element of L;
 Print Rest of L;
 ```
 
+There's also an `Index` function which takes an integer parameter and a list, returning the corresponding list index (indexed from zero of course).
+
 `Range` creates a list of numbers from a starting (inclusive) and an ending (exclusive) number. `For` is a higher order function that applied an operation to each element of a list -- it is the loop for iterating over lists.
 
 ```cognate
@@ -283,7 +285,7 @@ The functional programmers reading this are likely expecting a Fold or Reduce fu
 
 ```cognate
 Def Factorial as (
-   Let N be Integer!;
+   Let N be Of (Integer?);
    For each in Range 1 to N (*) from 1;
 );
 
@@ -294,7 +296,7 @@ For the sake of convenience Cognate *does* provide `Fold`, which has the order o
 
 ```cognate
 Def Factorial as (
-   Let N be Integer!;
+   Let N be Of (Integer?);
    Fold (*) from 1 over Range 1 to N;
 );
 
@@ -367,8 +369,8 @@ Print . "bar" T;
 ```cognate
 Def Remove-baz (
     Remove "baz"
-    from Of (Table?)
-         Of (Has "baz");
+    from Of (Has "baz")
+         Of (Table?);
 );
 
 Insert "baz" is Range 11 to 100 into T;
@@ -391,23 +393,46 @@ Symbols can't be modified in any way, but can be compared very efficiently (whic
 
 ## Begin
 
-Earlier when we defined loops, you may have noticed something missing -- the break statement (also continue, for that matter). Being a functional language, Cognate encourages avoiding control flow like this, but sometimes you've just gotta get out of a block early. Introducing `Begin` -- this function takes a block parameter and evaluates it, passing it *another* block on the stack. Evaluating *that* block will jump you out of the original block. Confused? Here's an example.
+Earlier when we defined loops, you may have noticed something missing -- the break statement. Being a functional language, Cognate discourages this sort of control flow, but sometimes you've just gotta get out of a block early. Introducing `Begin` -- this function takes a block parameter and evaluates it, passing it *another* block on the stack. Evaluating *that* block will jump you out of the original block. Confused? Here's an example.
 
 ```cognate
 ~~ Let's print the numbers up to 100 in an unnecessarily complicated manner.
-Let L be Box Range 1 to 100;
+Let I be 1;
 
 Begin (
     Def Break;
     While (True) (
-        Print First element of Unbox L;
-        Set L to Rest of Unbox L;
-        When Empty? Unbox L ( Break out of the begin );
+        Print Unbox I;
+        Set I to + 1 of Unbox I;
+        When == 101 Unbox I ( Break out of the begin );
     )
 )
 ```
 
-`Begin` can also be used to implement a return statement to break out of a function early. An advantage of `Begin` over traditional programming languages' break and return statements is that it gives fine-grained control over which block you break out of.
+This essentially allows any control flow to have a break statement, not just loops. `Begin` can also be used to implement a return statement to break out of a function early.
+
+```cognate
+
+~~ Inefficiently decrements a number 100 times
+~~ If it reaches zero, returns zero instead.
+Def F (
+    Begin (
+        Def Return;
+        Let X be Box Of (Integer?);
+
+        Times 100 (
+            Print Unbox X;
+
+            Set X to - 1 Unbox X;
+
+            When Zero? Unbox X ( Return 0 );
+        );
+        Return Unbox X;
+    )
+)
+```
+
+An advantage of `Begin` over traditional programming languages' break and return statements is that it gives fine-grained control over which block you break out of, since nested `Begin` statements can have their exit blocks bound to different names.
 
 ## End
 
