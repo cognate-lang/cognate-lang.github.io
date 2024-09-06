@@ -12,7 +12,7 @@
       <link>https://cognate-lang.github.io/learn/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://cognate-lang.github.io/learn/</guid>
-      <description>Learn Cognate A brief introduction to the language Install First install CognaC the Cognate Compiler from here using the provided instructions. Currently CognaC will run on recent Linux or Mac systems. Windows users can install it onto the Windows Subsystem for Linux - native Windows support is planned.&#xA;Invoking CognaC is simple. If you have a file named foo.cog containing a Cognate program, it can be compiled into an executable named foo with the following command.</description>
+      <description>Learn Cognate A brief introduction to the language Install First install CognaC the Cognate Compiler from here using the provided instructions. Currently CognaC will run on recent Linux or Mac systems. Windows users can install it onto the Windows Subsystem for Linux &amp;ndash; native Windows support is planned.&#xA;Invoking CognaC is simple. If you have a file named foo.cog containing a Cognate program, it can be compiled into an executable named foo with the following command.</description>
     </item>
   </channel>
 </rss>

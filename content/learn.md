@@ -11,7 +11,7 @@ title = 'Learn Cognate'
 ## Install
 
 
-First install `CognaC` the Cognate Compiler from here using the provided instructions. Currently `CognaC` will run on recent Linux or Mac systems. Windows users can install it onto the Windows Subsystem for Linux - native Windows support is planned.
+First install `CognaC` the Cognate Compiler from here using the provided instructions. Currently `CognaC` will run on recent Linux or Mac systems. Windows users can install it onto the Windows Subsystem for Linux -- native Windows support is planned.
 
 Invoking `CognaC` is simple. If you have a file named `foo.cog` containing a Cognate program, it can be compiled into an executable named `foo` with the following command.
 
@@ -33,7 +33,7 @@ Alternatively, you can use the interactive web playground [here](https://cognate
 Print "Hello world!";
 ```
 
-Fairly simple right? This example calls the `Print` function with one parameter - the string `"Hello world!"`. Now let's do another simple example, adding two numbers.
+Fairly simple right? This example calls the `Print` function with one parameter -- the string `"Hello world!"`. Now let's do another simple example, adding two numbers.
 
 ```cognate
 Print + 2 3;
@@ -59,7 +59,7 @@ Let's have a more complex example, this subtracts 12 from 15 and then multiplies
 Print * 2 - 12 15;
 ```
 
-By now you may have realised that Cognate is evaluating our programs backwards - right to left. The subtraction is being performed before the multiplication above. This is being done using a stack, as explained here.
+By now you may have realised that Cognate is evaluating our programs backwards -- right to left. The subtraction is being performed before the multiplication above. This is being done using a stack, as explained here.
 
 - Place 15 on top of the stack
 - Place 12 on top of the stack
@@ -69,7 +69,7 @@ By now you may have realised that Cognate is evaluating our programs backwards -
 - Remove the top number from the stack, print it
 
 
-Cognate comes with functions to manipulate the stack. The simplest of these is `Twin`, which takes the top element from the stack, and puts it back on again - twice. The below snippet uses `Twin` to square a number by multiplying it by itself.
+Cognate comes with functions to manipulate the stack. The simplest of these is `Twin`, which takes the top element from the stack, and puts it back on again -- twice. The below snippet uses `Twin` to square a number by multiplying it by itself.
 
 ```cognate
 Print * Twin 8;
@@ -93,7 +93,7 @@ Print the Square of 8;
 ```
 
 
-In this example the readability isn't really improved much, but in more complex programs this informal syntax can be invaluable.
+In this example the readability isn't really improved much, but in more complex programs this 'informal syntax' can be invaluable.
 
 By now you've probably noticed the semicolons. These delimit statements so that Cognate knows what order to evaluate functions in (remember that these are executed backwards). Definitions should also be terminated with semicolons. The stack persists between statements, letting us do things like this.
 
@@ -125,7 +125,7 @@ Let X be 4;
 Print X;
 ```
 
-We can use variables to define functions that take named parameters - here's an alternate version of the `Square` function.
+We can use variables to define functions that take named parameters -- here's an alternate version of the `Square` function.
 
 ```cognate
 Def Square as (
@@ -162,7 +162,7 @@ While (True) (
 );
 ```
 
-What's with the second set of brackets? `When` doesn't have them, so why should `While`? This is because brackets denote blocks! These prevent code being instantly evaluated and instead push a reference onto the stack. Blocks also control variable scopes. We can evaluate a block using the `Do` function - which is how our control flow functions are implemented.
+What's with the second set of brackets? `When` doesn't have them, so why should `While`? This is because brackets denote blocks! These prevent code being instantly evaluated and instead push a reference onto the stack. Blocks also control variable scopes. We can evaluate a block using the `Do` function -- which is how our control flow functions are implemented.
 
 ```cognate
 Do (
@@ -171,7 +171,7 @@ Do (
 ```
 
 
-This explains the syntax for functions: `Def` simply binds a block to a name, much like `Let`. Blocks can be passed around the program like any other value - even if they reference variables that go out of scope.
+This explains the syntax for functions: `Def` simply binds a block to a name, much like `Let`. Blocks can be passed around the program like any other value -- even if they reference variables that go out of scope.
 
 Now that this (hopefully) makes some sense, we can finally introduce the `If` statement! `If` is a function that takes three parameters. The first is a boolean, if this is `True` then the second argument is returned. If not, the third argument is returned. We can chain `If`s together to have more complex control flow.
 
@@ -211,7 +211,7 @@ A more general version of this function, `Times` can be defined using recursion.
 Def Times (
 	Let N number of repetitions;
 	Def F function to repeat;
-	Unless Zero? N ( F ; Times - 1 N (F) );
+	Unless Zero? N ( F ; Times -- 1 N (F) );
 );
 
 Times 5 (
@@ -219,53 +219,36 @@ Times 5 (
 );
 ```
 
-Now you may see a small problem with this. If the user calls `Times` with a non-integer parameter it will loop forever - that won't do at all! We use the `Integer!` function to throw a type error if a decimal is given.
+Now you may see a small problem with this. If the user calls `Times` with a non-integer parameter it will loop forever -- that won't do at all! We can use the `Of` function here -- it checks a value against a predicate (in this case `Integer?`) and throws an error if it fails.
 
 ```cognate
 Def Times (
-	Let N is Integer! number of repetitions;
+	Let N be Of (Integer?) number of repetitions;
 	Def F function to repeat;
-	Unless Zero? N ( F ; Times - 1 N (F) );
+	Unless Zero? N ( F ; Times -- 1 N (F) );
 );
 ```
 
-
-We could also use the `Block!` function for `F` but we'll already get a type error when we use `Def` to bind anything that isn't a block, so there is no point.
-
-The `Times` function is also our first loop. We don't need to define it every time though as it's also in the standard library. Another loop is `While`.
-
-
-```cognate
-While (!= "done" Twin Input) (
-  Print
-);
-Drop;
-```
-
-
-`While` takes two block parameters. The first one is the condition and is evaluated immediately, returning a boolean. If this is `True` then the second block (the loop body) is evaluated and then the loop repeats, if not the loop finishes. The example above shows the use of a `While` loop. The program simply echoes the user's inputs back to them until they write `"done"`.
-
-This loop is most useful in imperative code where intermediary values are passed on the stack between iterations. It is less useful for iterating over data structures such as lists. Lists?
+We could also use `Of (Block?)` for `F` but we'll already get a type error if we use `Def` to bind anything that isn't a block, so there is no point.
 
 
 ## Lists
 
-In Cognate, lists are generated using - you guessed it - a function. The `List` function takes a block as a parameter. It evaluates this block *in a new stack* and then returns that stack as a list.
+In Cognate, lists are generated using -- you guessed it -- a function. The `List` function takes a block as a parameter. It evaluates this block *in a new empty stack* and then returns that stack as a list.
 
 ```cognate
 Print List (1 2 3 4 5);
 ```
 
-This allows Cognate's list creation to be much more flexible than other languages - for example what if we wanted a list of 100 ones?
+This allows Cognate's list creation to be much more flexible than other languages -- for example what if we wanted a list of 100 ones?
 
 ```cognate
 Print List ( Times 100 (1) );
 ```
 
-
 The three most fundamental list functions are `Push`, `First`, and `Rest`.
 
- The `Push` function takes a value and a list as parameters, and returns the list with the value *pushed* to it's first element. `First` simply returns the first element of a list. `Rest` returns a list without its first element.
+The `Push` function takes a value and a list as parameters, and returns a new list list with the value as it's first element and the list parameter providing following elements. `First` simply returns the first element of a list. `Rest` returns a list without its first element.
 
 
 ```cognate
@@ -274,7 +257,7 @@ Print First element of L;
 Print Rest of L;
 ```
 
-`Range` creates a list of numbers from a starting (inclusive) and an ending (exclusive) number. `For` is a higher order function that applied an operation to each element of a list - it is the loop for iterating over lists.
+`Range` creates a list of numbers from a starting (inclusive) and an ending (exclusive) number. `For` is a higher order function that applied an operation to each element of a list -- it is the loop for iterating over lists.
 
 ```cognate
 Def Square as (* Twin);
@@ -288,7 +271,7 @@ Let Evens be Map (* 2) over Range 1 to 50;
 Print Evens;
 ```
 
-`Filter` applies a function to each element of a list also. This function should return a boolean - if this is `False` then the function is removed from the returned list.
+`Filter` applies a function to each element of a list also. This function should return a boolean -- if this is `False` then the function is removed from the returned list.
 
 ```cognate
 Let Even? be (Zero? Modulo 2);
@@ -296,7 +279,7 @@ Let Evens be Filter (Even?) over Range 1 to 100;
 Print Evens;
 ```
 
-The functional programmers reading this are likely expecting a Fold or Reduce function next - which applies an operation to a list with an accumulator. However Cognate needs no fold function, as `For` can store intermediary values on the stack, acting like a fold.
+The functional programmers reading this are likely expecting a Fold or Reduce function next -- which applies an operation to a list with an accumulator. However Cognate needs no fold function, as `For` can store intermediary values on the stack, acting like a fold.
 
 ```cognate
 Def Factorial as (
@@ -307,13 +290,22 @@ Def Factorial as (
 Print Factorial 10;
 ```
 
+For the sake of convenience Cognate *does* provide `Fold`, which has the order of parameters swapped:
+
+```cognate
+Def Factorial as (
+   Let N be Integer!;
+   Fold (*) from 1 over Range 1 to N;
+);
+
+Print Factorial 10;
+```
 
 ## Boxes
 
+While storing state between loop iterations is very useful, in some cases you just need mutable variables. Cognate's box type implements a reference and generalises mutation.
 
-While storing state between loop iterations is very useful, in some cases you just need mutable variables. Cognate's boxes are references used to generalise the concept of mutation.
-
- The `Box` function takes a value and places it in a box. `Unbox` returns the item stored in a box. `Set` takes a box and a value as parameters and mutates the box to hold the value, updating all references to it.
+ The `Box` function takes a value and places it in a box. `Unbox` returns the item stored in a box. `Set` takes a box and a value as parameters and mutates the box to hold the value -- this affects all references to it.
 
 
 ```cognate
@@ -337,7 +329,7 @@ For each in L (
 Print L;
 ```
 
-While boxes may not seem as ergonomic as mutation in other languages, they are both more flexible than mutable variables and more predictable than implicit references. We can also easily extend mutation, like this:
+While boxes may not seem as ergonomic as mutation in other languages, they're both more flexible than mutable variables and more predictable than implicit references. We can also easily extend mutation, like this:
 
 ```cognate
 Def Box-list as ( Map (Box) );
@@ -355,8 +347,68 @@ Inplace-map (* 2) over L;
 Print L;
 ```
 
+## Tables
 
-## Todo
+The table type provides an efficient, immutable, unordered mapping between keys and values, which can be used to implement many more complex data structures. `Table` creates a table in the same manner in which `List` creates a list, though taking key-value pairs. `.` is used to extract the value corresponding to a key.
 
-This tutorial isn't finished yet!
+```cognate
+Let T be Table (
+    "foo" is 1;
+    "bar" is Range 2 to 10;
+    12 is 13; ~~ Keys can be of any type except box or block
+);
 
+Print . "foo" T;
+Print . "bar" T;
+```
+
+`Insert` returns the table with an extra key-value pair, `Remove` returns the table without a specified key, and `Has` checks whether a key is in the table.
+
+```cognate
+Def Remove-baz (
+    Remove "baz"
+    from Of (Table?)
+         Of (Has "baz");
+);
+
+Insert "baz" is Range 11 to 100 into T;
+Print Twin;
+Remove-baz;
+Print;
+```
+
+`Keys` and `Values` returns lists of the keys and values respectively in a table, in no particular order. Tables are implemented as self-balancing binary trees, and are optimised for fast immutable insertions.
+
+## Symbols
+
+Typically, you'd want to use a *symbol* as a key for your table. Symbols will be familiar to Lisp programmers and can be considered as either a limited string or an unlimited enum, depending how you like to think.
+
+```cognate
+\foo ~~ This is a symbol
+```
+
+Symbols can't be modified in any way, but can be compared very efficiently (which is why they're great keys for tables) and put into any data structure.
+
+## Begin
+
+Earlier when we defined loops, you may have noticed something missing -- the break statement (also continue, for that matter). Being a functional language, Cognate encourages avoiding control flow like this, but sometimes you've just gotta get out of a block early. Introducing `Begin` -- this function takes a block parameter and evaluates it, passing it *another* block on the stack. Evaluating *that* block will jump you out of the original block. Confused? Here's an example.
+
+```cognate
+~~ Let's print the numbers up to 100 in an unnecessarily complicated manner.
+Let L be Box Range 1 to 100;
+
+Begin (
+    Def Break;
+    While (True) (
+        Print First element of Unbox L;
+        Set L to Rest of Unbox L;
+        When Empty? Unbox L ( Break out of the begin );
+    )
+)
+```
+
+`Begin` can also be used to implement a return statement to break out of a function early. An advantage of `Begin` over traditional programming languages' break and return statements is that it gives fine-grained control over which block you break out of.
+
+## End
+
+Nope, there isn't an `End` function. This is just the end of the tutorial.
