@@ -153,6 +153,7 @@
 <span style='color: #183691'>Print</span> <span style='color: #183691'>First</span> <span style='color: #333333'>element</span> <span style='color: #333333'>of</span> <span style='color: #795da3'>L</span>;
 <span style='color: #183691'>Print</span> <span style='color: #183691'>Rest</span> <span style='color: #333333'>of</span> <span style='color: #795da3'>L</span>;
 </code></pre></div>
+<p>There&rsquo;s also an <code>Index</code> function which takes an integer parameter and a list, returning the corresponding list index (indexed from zero of course).</p>
 <p><code>Range</code> creates a list of numbers from a starting (inclusive) and an ending (exclusive) number. <code>For</code> is a higher order function that applied an operation to each element of a list &ndash; it is the loop for iterating over lists.</p>
 <div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Square</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='color: #183691'>Twin</span><span style='color: #4e4e4e'>)</span>;
 <span style='color: #a71d5d'>For</span> <span style='color: #333333'>each</span> <span style='color: #333333'>in</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>20</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Print</span> <span style='color: #333333'>the</span> <span style='color: #795da3'>Square</span><span style='color: #4e4e4e'>)</span>;
@@ -168,7 +169,7 @@
 </code></pre></div>
 <p>The functional programmers reading this are likely expecting a Fold or Reduce function next &ndash; which applies an operation to a list with an accumulator. However Cognate needs no fold function, as <code>For</code> can store intermediary values on the stack, acting like a fold.</p>
 <div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Factorial</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span>
-   <span style='color: #0086b3'>Let</span> <span style='color: #795da3'>N</span> <span style='color: #333333'>be</span> <span style='color: #795da3'>Integer!</span>;
+   <span style='color: #0086b3'>Let</span> <span style='color: #795da3'>N</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Integer?</span><span style='color: #4e4e4e'>)</span>;
    <span style='color: #a71d5d'>For</span> <span style='color: #333333'>each</span> <span style='color: #333333'>in</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #795da3'>N</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>*</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>from</span> <span style='color: #0086b3'>1</span>;
 <span style='color: #4e4e4e'>)</span>;
 
@@ -176,7 +177,7 @@
 </code></pre></div>
 <p>For the sake of convenience Cognate <em>does</em> provide <code>Fold</code>, which has the order of parameters swapped:</p>
 <div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Factorial</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span>
-   <span style='color: #0086b3'>Let</span> <span style='color: #795da3'>N</span> <span style='color: #333333'>be</span> <span style='color: #795da3'>Integer!</span>;
+   <span style='color: #0086b3'>Let</span> <span style='color: #795da3'>N</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Integer?</span><span style='color: #4e4e4e'>)</span>;
    <span style='color: #183691'>Fold</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>*</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>from</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>over</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #795da3'>N</span>;
 <span style='color: #4e4e4e'>)</span>;
 
@@ -230,8 +231,8 @@
 <p><code>Insert</code> returns the table with an extra key-value pair, <code>Remove</code> returns the table without a specified key, and <code>Has</code> checks whether a key is in the table.</p>
 <div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Remove-baz</span> <span style='color: #4e4e4e'>(</span>
     <span style='color: #183691'>Remove</span> <span style='color: #183691'>&quot;baz&quot;</span>
-    <span style='color: #333333'>from</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>Table?</span><span style='color: #4e4e4e'>)</span>
-         <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Has</span> <span style='color: #183691'>&quot;baz&quot;</span><span style='color: #4e4e4e'>)</span>;
+    <span style='color: #333333'>from</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Has</span> <span style='color: #183691'>&quot;baz&quot;</span><span style='color: #4e4e4e'>)</span>
+         <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>Table?</span><span style='color: #4e4e4e'>)</span>;
 <span style='color: #4e4e4e'>)</span>;
 
 <span style='color: #183691'>Insert</span> <span style='color: #183691'>&quot;baz&quot;</span> <span style='color: #333333'>is</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>11</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>100</span> <span style='color: #333333'>into</span> <span style='color: #795da3'>T</span>;
@@ -246,20 +247,40 @@
 </code></pre></div>
 <p>Symbols can&rsquo;t be modified in any way, but can be compared very efficiently (which is why they&rsquo;re great keys for tables) and put into any data structure.</p>
 <h2 id="begin">Begin</h2>
-<p>Earlier when we defined loops, you may have noticed something missing &ndash; the break statement (also continue, for that matter). Being a functional language, Cognate encourages avoiding control flow like this, but sometimes you&rsquo;ve just gotta get out of a block early. Introducing <code>Begin</code> &ndash; this function takes a block parameter and evaluates it, passing it <em>another</em> block on the stack. Evaluating <em>that</em> block will jump you out of the original block. Confused? Here&rsquo;s an example.</p>
+<p>Earlier when we defined loops, you may have noticed something missing &ndash; the break statement. Being a functional language, Cognate discourages this sort of control flow, but sometimes you&rsquo;ve just gotta get out of a block early. Introducing <code>Begin</code> &ndash; this function takes a block parameter and evaluates it, passing it <em>another</em> block on the stack. Evaluating <em>that</em> block will jump you out of the original block. Confused? Here&rsquo;s an example.</p>
 <div class="code"><pre><code><span style='font-style: italic;color: #969896'>~~ Let&#39;s print the numbers up to 100 in an unnecessarily complicated manner.</span>
-<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>be</span> <span style='color: #794da3'>Box</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>100</span>;
+<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>I</span> <span style='color: #333333'>be</span> <span style='color: #0086b3'>1</span>;
 
 <span style='color: #183691'>Begin</span> <span style='color: #4e4e4e'>(</span>
     <span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Break</span>;
     <span style='color: #a71d5d'>While</span> <span style='color: #4e4e4e'>(</span>True<span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>(</span>
-        <span style='color: #183691'>Print</span> <span style='color: #183691'>First</span> <span style='color: #333333'>element</span> <span style='color: #333333'>of</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>L</span>;
-        <span style='color: #0086b3'>Set</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>to</span> <span style='color: #183691'>Rest</span> <span style='color: #333333'>of</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>L</span>;
-        <span style='color: #a71d5d'>When</span> <span style='color: #183691'>Empty?</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>L</span> <span style='color: #4e4e4e'>(</span> <span style='color: #795da3'>Break</span> <span style='color: #333333'>out</span> <span style='color: #333333'>of</span> <span style='color: #333333'>the</span> <span style='color: #333333'>begin</span> <span style='color: #4e4e4e'>)</span>;
+        <span style='color: #183691'>Print</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>I</span>;
+        <span style='color: #0086b3'>Set</span> <span style='color: #795da3'>I</span> <span style='color: #333333'>to</span> <span style='font-weight: bold;color: #4e4e4e'>+</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>of</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>I</span>;
+        <span style='color: #a71d5d'>When</span> <span style='font-weight: bold;color: #4e4e4e'>==</span> <span style='color: #0086b3'>101</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>I</span> <span style='color: #4e4e4e'>(</span> <span style='color: #795da3'>Break</span> <span style='color: #333333'>out</span> <span style='color: #333333'>of</span> <span style='color: #333333'>the</span> <span style='color: #333333'>begin</span> <span style='color: #4e4e4e'>)</span>;
     <span style='color: #4e4e4e'>)</span>
 <span style='color: #4e4e4e'>)</span>
 </code></pre></div>
-<p><code>Begin</code> can also be used to implement a return statement to break out of a function early. An advantage of <code>Begin</code> over traditional programming languages&rsquo; break and return statements is that it gives fine-grained control over which block you break out of.</p>
+<p>This essentially allows any control flow to have a break statement, not just loops. <code>Begin</code> can also be used to implement a return statement to break out of a function early.</p>
+<div class="code"><pre><code>
+<span style='font-style: italic;color: #969896'>~~ Inefficiently decrements a number 100 times</span>
+<span style='font-style: italic;color: #969896'>~~ If it reaches zero, returns zero instead.</span>
+<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span> <span style='color: #4e4e4e'>(</span>
+    <span style='color: #183691'>Begin</span> <span style='color: #4e4e4e'>(</span>
+        <span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Return</span>;
+        <span style='color: #0086b3'>Let</span> <span style='color: #795da3'>X</span> <span style='color: #333333'>be</span> <span style='color: #794da3'>Box</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Integer?</span><span style='color: #4e4e4e'>)</span>;
+
+        <span style='color: #183691'>Times</span> <span style='color: #0086b3'>100</span> <span style='color: #4e4e4e'>(</span>
+            <span style='color: #183691'>Print</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>X</span>;
+
+            <span style='color: #0086b3'>Set</span> <span style='color: #795da3'>X</span> <span style='color: #333333'>to</span> <span style='font-weight: bold;color: #4e4e4e'>-</span> <span style='color: #0086b3'>1</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>X</span>;
+
+            <span style='color: #a71d5d'>When</span> <span style='color: #183691'>Zero?</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>X</span> <span style='color: #4e4e4e'>(</span> <span style='color: #795da3'>Return</span> <span style='color: #0086b3'>0</span> <span style='color: #4e4e4e'>)</span>;
+        <span style='color: #4e4e4e'>)</span>;
+        <span style='color: #795da3'>Return</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>X</span>;
+    <span style='color: #4e4e4e'>)</span>
+<span style='color: #4e4e4e'>)</span>
+</code></pre></div>
+<p>An advantage of <code>Begin</code> over traditional programming languages&rsquo; break and return statements is that it gives fine-grained control over which block you break out of, since nested <code>Begin</code> statements can have their exit blocks bound to different names.</p>
 <h2 id="end">End</h2>
 <p>Nope, there isn&rsquo;t an <code>End</code> function. This is just the end of the tutorial.</p>
 

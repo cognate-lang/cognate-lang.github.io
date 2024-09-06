@@ -421,10 +421,7 @@ Def F (
         Let X be Box Of (Integer?);
 
         Times 100 (
-            Print Unbox X;
-
             Set X to - 1 Unbox X;
-
             When Zero? Unbox X ( Return 0 );
         );
         Return Unbox X;
