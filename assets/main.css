@@ -3,6 +3,7 @@ body {
 	color: #333333;
 	font-size: 16px;
 	background-color: #ffffff;
+	tab-size: 4;
 }
 
 *, *::before, *::after {

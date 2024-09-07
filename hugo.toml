@@ -1,3 +1,6 @@
 baseURL = 'https://cognate-lang.github.io/'
 languageCode = 'en-us'
 title = 'Cognate: Readable and concise concatenative programming'
+
+[markup.goldmark.renderer]
+unsafe = true
