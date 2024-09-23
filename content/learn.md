@@ -211,7 +211,7 @@ A more general version of this function, `Times` can be defined using recursion.
 Def Times (
 	Let N number of repetitions;
 	Def F function to repeat;
-	Unless Zero? N ( F ; Times -- 1 N (F) );
+	Unless Zero? N ( F ; Times - 1 N (F) );
 );
 
 Times 5 (
@@ -225,7 +225,7 @@ Now you may see a small problem with this. If the user calls `Times` with a non-
 Def Times (
 	Let N be Of (Integer?) number of repetitions;
 	Def F function to repeat;
-	Unless Zero? N ( F ; Times -- 1 N (F) );
+	Unless Zero? N ( F ; Times - 1 N (F) );
 );
 ```
 
