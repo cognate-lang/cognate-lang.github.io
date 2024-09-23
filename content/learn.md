@@ -406,7 +406,7 @@ Begin (
         Set I to + 1 of Unbox I;
         When == 101 Unbox I ( Break out of the begin );
     )
-)
+);
 ```
 
 This essentially allows any control flow to have a break statement, not just loops. `Begin` can also be used to implement a return statement to break out of a function early.
@@ -425,7 +425,7 @@ Def F (
         );
         Return Unbox X;
     )
-)
+);
 ```
 
 An advantage of `Begin` over traditional programming languages' break and return statements is that it gives fine-grained control over which block you break out of, since nested `Begin` statements can have their exit blocks bound to different names.
