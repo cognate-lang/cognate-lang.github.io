@@ -192,7 +192,7 @@ Do
              else ( Print "baz" );
 ```
 
-Now, lets use our knowledge of blocks to define our own control flow function `Thrice`, which should evaluate a block three times in a row. This demonstrates a different use of `Def` in which we bind a block from the stack.
+Now, let's use our knowledge of blocks to define our own control flow function `Thrice`, which should evaluate a block three times in a row. This demonstrates a different use of `Def` in which we bind a block from the stack.
 
 ```cognate
 Def Thrice as (
