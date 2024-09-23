@@ -1,5 +1,5 @@
 body {
-	font-family: serif;
+	font-family: "Open Sans", sans-serif;
 	color: #333333;
 	font-size: 16px;
 	background-color: #ffffff;
@@ -16,6 +16,7 @@ main {
 }
 
 h1 {
+	font-family: "STIX Two Text", serif;
 	font-style: italic;
 	text-align:center;
 	font-size: 3em;
@@ -23,6 +24,7 @@ h1 {
 }
 
 h2 {
+	font-family: "STIX Two Text", serif;
 	font-style: italic;
 	text-align:center;
 	font-size: 1.5em;

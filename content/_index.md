@@ -4,7 +4,6 @@ title = 'About'
 +++
 
 # Cognate
-
 ## Readable and concise concatenative programming
 
 ```cognate
