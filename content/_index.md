@@ -10,13 +10,15 @@ title = 'About'
 ```cognate
 ~~ Fizzbuzz in Cognate
 
-Def Multiple as (Zero? Modulo);
-
-Def Fizzbuzz
-   Case (Multiple of 15) is "fizzbuzz"
-   Case (Multiple of 3)  is "fizz"
-   Case (Multiple of 5)  is "buzz"
-   otherwise ();
+Def Fizzbuzz (
+	Let N be Of (Integer?);
+	Def Multiple as (Zero? Modulo Swap N);
+	Print
+		If Multiple of 15 then "fizzbuzz"
+		If Multiple of 3  then "fizz"
+		If Multiple of 5  then "buzz"
+		                  else N
+);
 
 For each in Range 1 to 100 (Print Fizzbuzz)
 ```

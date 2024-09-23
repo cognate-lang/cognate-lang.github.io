@@ -1,192 +1,252 @@
-<!doctype html><html><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=wow/main.min.css><title>Learn Cognate</title></head><body><main><h1 id=learn-cognate>Learn Cognate</h1><h2 id=a-brief-introduction-to-the-language>A brief introduction to the language</h2><h2 id=install>Install</h2><p>First install <code>CognaC</code> the Cognate Compiler from here using the provided instructions. Currently <code>CognaC</code> will run on recent Linux or Mac systems. Windows users can install it onto the Windows Subsystem for Linux &ndash; native Windows support is planned.</p><p>Invoking <code>CognaC</code> is simple. If you have a file named <code>foo.cog</code> containing a Cognate program, it can be compiled into an executable named <code>foo</code> with the following command.</p><div class=code><pre><code>cognac foo.cog</code></pre></div><p>To compile a debug executable, which will run slower but give a nice backtrace if there&rsquo;s an error, you can use the <code>-debug</code> flag.</p><p>Alternatively, you can use the interactive web playground <a href=https://cognate-playground.hedy.dev/>here</a> which runs Cognate programs client-side in the browser. It also has intelligent syntax highlighting, code folding, and error reporting in the editor</p><h2 id=first-programs>First Programs</h2><div class=code><pre><code>
-Print "Hello world!";
-</code></pre></div><p>Fairly simple right? This example calls the <code>Print</code> function with one parameter &ndash; the string <code>"Hello world!"</code>. Now let&rsquo;s do another simple example, adding two numbers.</p><div class=code><pre><code>
-Print + 2 3;
-</code></pre></div><p>Wait what? That isn&rsquo;t how maths works!</p><p>Cognate doesn&rsquo;t care how maths works. Where in most programming languages, <code>+</code> would be an operator and would be used in the infix position, in Cognate <code>+</code> is a function. Like <code>Print</code>, the <code>+</code> function is called by being written before its arguments like shown above.</p><div class=code><pre><code>
-Print - 10 36; ~~ Subtracts 10 from 36
-</code></pre></div><p>Another thing to note is that the order of parameters for <code>-</code> and <code>/</code> are backwards. The reason for this will become clear later. Also note that line comments are started with <code>~~</code>.</p><h2 id=the-stack>The Stack</h2><p>Let&rsquo;s have a more complex example, this subtracts 12 from 15 and then multiplies the result by 2.</p><div class=code><pre><code>
-Print * 2 - 12 15;
-</code></pre></div><p>By now you may have realised that Cognate is evaluating our programs backwards &ndash; right to left. The subtraction is being performed before the multiplication above. This is being done using a stack, as explained here.</p><ul><li>Place 15 on top of the stack</li><li>Place 12 on top of the stack</li><li>Remove the top two numbers from the stack, subtract them and put the result (3) on top of the stack</li><li>Place 2 on top of the stack</li><li>Remove the top two numbers from the stack, multiply them and put the result (6) on top of the stack</li><li>Remove the top number from the stack, print it</li></ul><p>Cognate comes with functions to manipulate the stack. The simplest of these is <code>Twin</code>, which takes the top element from the stack, and puts it back on again &ndash; twice. The below snippet uses <code>Twin</code> to square a number by multiplying it by itself.</p><div class=code><pre><code>
-Print * Twin 8;
-</code></pre></div><p>Now we don&rsquo;t want to write this every time we square a number right? So let&rsquo;s create a <code>Square</code> function to do this for us.</p><h2 id=first-functions>First Functions</h2><p>Functions in Cognate are defined using <code>Def</code> and the name of the function. The function body is put in brackets after this.</p><div class=code><pre><code>
-Def Square (* Twin);
-Print Square 8;
-</code></pre></div><p>This is great, but it certainly could flow better. Cognate ignores words starting with lowercase letters, allowing them to be used as comments. This lets us write:</p><div class=code><pre><code>
-Print the Square of 8;
-</code></pre></div><p>In this example the readability isn&rsquo;t really improved much, but in more complex programs this &lsquo;informal syntax&rsquo; can be invaluable.</p><p>By now you&rsquo;ve probably noticed the semicolons. These delimit statements so that Cognate knows what order to evaluate functions in (remember that these are executed backwards). Definitions should also be terminated with semicolons. The stack persists between statements, letting us do things like this.</p><div class=code><pre><code>
-8 ; Square ; Print ;
-</code></pre></div><p>or this</p><div class=code><pre><code>
-Square 8 ; Print ;
-</code></pre></div><p>or this</p><div class=code><pre><code>
-8 ; Print the Square ;
-</code></pre></div><p>This flexible syntax allows Cognate programs to flow as if written in sentences. It also means that much of the time variables are not even needed. Of course, Cognate <em>does</em> have variables.</p><h2 id=variables>Variables</h2><p>Variables are defined in a fairly similar manner to functions using <code>Let</code> and their name. This takes a value from the stack, binding it to this name. Variables are referenced with the same syntax in which functions are called.</p><div class=code><pre><code>
-Let X be 4;
-Print X;
-</code></pre></div><p>We can use variables to define functions that take named parameters &ndash; here&rsquo;s an alternate version of the <code>Square</code> function.</p><div class=code><pre><code>
-Def Square as (
-   Let X;
-   * X X
-);
-</code></pre></div><p>Notice that the last statement before a closing bracket does not need to be terminated with a semicolon. Also there is no return statement, since values are implicitly returned on the stack. This means we can actually define functions that return multiple values, such as the <code>Twin</code> function we saw earlier.</p><div class=code><pre><code>
-Def Twin as (
-   Let X;
-   X X
-);
-</code></pre></div><h2 id=control-flow>Control Flow</h2><p>Like most programming languages, Cognate has if statements and loops and all that jazz. The simplest form of control flow is <code>When</code>, which simply executes a block of code if given <code>True</code> or not if <code>False</code>.</p><div class=code><pre><code>
-When == 1 1 (
-   Print "Who'd have guessed?"
-);
-</code></pre></div><p>There is also <code>Unless</code> that evaluates the block if given <code>False</code>. <code>While</code> takes a condition in brackets and evaluates the block of code until the condition is <code>False</code>. <code>Until</code>, you guessed it, is the opposite of <code>While</code> and runs until the condition is <code>True</code>.</p><div class=code><pre><code>
-While (True) (
-   Print "This may well print forever"
-);
-</code></pre></div><p>What&rsquo;s with the second set of brackets? <code>When</code> doesn&rsquo;t have them, so why should <code>While</code>? This is because brackets denote blocks! These prevent code being instantly evaluated and instead push a reference onto the stack. Blocks also control variable scopes. We can evaluate a block using the <code>Do</code> function &ndash; which is how our control flow functions are implemented.</p><div class=code><pre><code>
-Do (
-   Print "Hello from inside a block!"
-);
-</code></pre></div><p>This explains the syntax for functions: <code>Def</code> simply binds a block to a name, much like <code>Let</code>. Blocks can be passed around the program like any other value &ndash; even if they reference variables that go out of scope.</p><p>Now that this (hopefully) makes some sense, we can finally introduce the <code>If</code> statement! <code>If</code> is a function that takes three parameters. The first is a boolean, if this is <code>True</code> then the second argument is returned. If not, the third argument is returned. We can chain <code>If</code>s together to have more complex control flow.</p><div class=code><pre><code>
-Print
-   If == X 1 then "foo"
-   If == X 2 then "bar"
-             else "baz";
-</code></pre></div><p>We can combine this with <code>Do</code> to have conditional code execution.</p><div class=code><pre><code>
-Do
-   If == X 1 then ( Print "foo" )
-   If == X 2 then ( Print "bar" )
-             else ( Print "baz" );
-</code></pre></div><p>Now, lets use our knowledge of blocks to define our own control flow function <code>Thrice</code>, which should evaluate a block three times in a row. This demonstrates a different use of <code>Def</code> in which we bind a block from the stack.</p><div class=code><pre><code>
-Def Thrice as (
-   Def F;
-   F F F
-);
 
-Thrice (
-   Print "hip hip hooray!"
-);
-</code></pre></div><p>A more general version of this function, <code>Times</code> can be defined using recursion.</p><div class=code><pre><code>
-Def Times (
-	Let N number of repetitions;
-	Def F function to repeat;
-	Unless Zero? N ( F ; Times -- 1 N (F) );
-);
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/main.min.css" />
+    <title>Learn Cognate</title>
+    </head>
+  <body>
+    
+    <main>
+      
+<h1 id="learn-cognate">Learn Cognate</h1>
+<h2 id="a-brief-introduction-to-the-language">A brief introduction to the language</h2>
+<h2 id="install">Install</h2>
+<p>First install <code>CognaC</code> the Cognate Compiler from here using the provided instructions. Currently <code>CognaC</code> will run on recent Linux or Mac systems. Windows users can install it onto the Windows Subsystem for Linux &ndash; native Windows support is planned.</p>
+<p>Invoking <code>CognaC</code> is simple. If you have a file named <code>foo.cog</code> containing a Cognate program, it can be compiled into an executable named <code>foo</code> with the following command.</p>
+<div class="code">
+  <pre><code>cognac foo.cog</code></pre>
+</div><p>To compile a debug executable, which will run slower but give a nice backtrace if there&rsquo;s an error, you can use the <code>-debug</code> flag.</p>
+<p>Alternatively, you can use the interactive web playground <a href="https://cognate-playground.hedy.dev/">here</a> which runs Cognate programs client-side in the browser. It also has intelligent syntax highlighting, code folding, and error reporting in the editor</p>
+<h2 id="first-programs">First Programs</h2>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;Hello world!&quot;</span>;
+</code></pre></div><p>Fairly simple right? This example calls the <code>Print</code> function with one parameter &ndash; the string <code>&quot;Hello world!&quot;</code>. Now let&rsquo;s do another simple example, adding two numbers.</p>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='font-weight: bold;color: #4e4e4e'>+</span> <span style='color: #0086b3'>2</span> <span style='color: #0086b3'>3</span>;
+</code></pre></div><p>Wait what? That isn&rsquo;t how maths works!</p>
+<p>Cognate doesn&rsquo;t care how maths works. Where in most programming languages, <code>+</code> would be an operator and would be used in the infix position, in Cognate <code>+</code> is a function. Like <code>Print</code>, the <code>+</code> function is called by being written before its arguments like shown above.</p>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='font-weight: bold;color: #4e4e4e'>-</span> <span style='color: #0086b3'>10</span> <span style='color: #0086b3'>36</span>; <span style='font-style: italic;color: #969896'>~~ Subtracts 10 from 36</span>
+</code></pre></div><p>Another thing to note is that the order of parameters for <code>-</code> and <code>/</code> are backwards. The reason for this will become clear later. Also note that line comments are started with <code>~~</code>.</p>
+<h2 id="the-stack">The Stack</h2>
+<p>Let&rsquo;s have a more complex example, this subtracts 12 from 15 and then multiplies the result by 2.</p>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='color: #0086b3'>2</span> <span style='font-weight: bold;color: #4e4e4e'>-</span> <span style='color: #0086b3'>12</span> <span style='color: #0086b3'>15</span>;
+</code></pre></div><p>By now you may have realised that Cognate is evaluating our programs backwards &ndash; right to left. The subtraction is being performed before the multiplication above. This is being done using a stack, as explained here.</p>
+<ul>
+<li>Place 15 on top of the stack</li>
+<li>Place 12 on top of the stack</li>
+<li>Remove the top two numbers from the stack, subtract them and put the result (3) on top of the stack</li>
+<li>Place 2 on top of the stack</li>
+<li>Remove the top two numbers from the stack, multiply them and put the result (6) on top of the stack</li>
+<li>Remove the top number from the stack, print it</li>
+</ul>
+<p>Cognate comes with functions to manipulate the stack. The simplest of these is <code>Twin</code>, which takes the top element from the stack, and puts it back on again &ndash; twice. The below snippet uses <code>Twin</code> to square a number by multiplying it by itself.</p>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='color: #183691'>Twin</span> <span style='color: #0086b3'>8</span>;
+</code></pre></div><p>Now we don&rsquo;t want to write this every time we square a number right? So let&rsquo;s create a <code>Square</code> function to do this for us.</p>
+<h2 id="first-functions">First Functions</h2>
+<p>Functions in Cognate are defined using <code>Def</code> and the name of the function. The function body is put in brackets after this.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Square</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='color: #183691'>Twin</span><span style='color: #4e4e4e'>)</span>;
+<span style='color: #183691'>Print</span> <span style='color: #795da3'>Square</span> <span style='color: #0086b3'>8</span>;
+</code></pre></div><p>This is great, but it certainly could flow better. Cognate ignores words starting with lowercase letters, allowing them to be used as comments. This lets us write:</p>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #333333'>the</span> <span style='color: #795da3'>Square</span> <span style='color: #333333'>of</span> <span style='color: #0086b3'>8</span>;
+</code></pre></div><p>In this example the readability isn&rsquo;t really improved much, but in more complex programs this &lsquo;informal syntax&rsquo; can be invaluable.</p>
+<p>By now you&rsquo;ve probably noticed the semicolons. These delimit statements so that Cognate knows what order to evaluate functions in (remember that these are executed backwards). Definitions should also be terminated with semicolons. The stack persists between statements, letting us do things like this.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>8</span> ; <span style='color: #795da3'>Square</span> ; <span style='color: #183691'>Print</span> ;
+</code></pre></div><p>or this</p>
+<div class="code"><pre><code><span style='color: #795da3'>Square</span> <span style='color: #0086b3'>8</span> ; <span style='color: #183691'>Print</span> ;
+</code></pre></div><p>or this</p>
+<div class="code"><pre><code><span style='color: #0086b3'>8</span> ; <span style='color: #183691'>Print</span> <span style='color: #333333'>the</span> <span style='color: #795da3'>Square</span> ;
+</code></pre></div><p>This flexible syntax allows Cognate programs to flow as if written in sentences. It also means that much of the time variables are not even needed. Of course, Cognate <em>does</em> have variables.</p>
+<h2 id="variables">Variables</h2>
+<p>Variables are defined in a fairly similar manner to functions using <code>Let</code> and their name. This takes a value from the stack, binding it to this name. Variables are referenced with the same syntax in which functions are called.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Let</span> <span style='color: #795da3'>X</span> <span style='color: #333333'>be</span> <span style='color: #0086b3'>4</span>;
+<span style='color: #183691'>Print</span> <span style='color: #795da3'>X</span>;
+</code></pre></div><p>We can use variables to define functions that take named parameters &ndash; here&rsquo;s an alternate version of the <code>Square</code> function.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Square</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span>
+   <span style='color: #0086b3'>Let</span> <span style='color: #795da3'>X</span>;
+   <span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='color: #795da3'>X</span> <span style='color: #795da3'>X</span>
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div><p>Notice that the last statement before a closing bracket does not need to be terminated with a semicolon. Also there is no return statement, since values are implicitly returned on the stack. This means we can actually define functions that return multiple values, such as the <code>Twin</code> function we saw earlier.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Twin</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span>
+   <span style='color: #0086b3'>Let</span> <span style='color: #795da3'>X</span>;
+   <span style='color: #795da3'>X</span> <span style='color: #795da3'>X</span>
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div><h2 id="control-flow">Control Flow</h2>
+<p>Like most programming languages, Cognate has if statements and loops and all that jazz. The simplest form of control flow is <code>When</code>, which simply executes a block of code if given <code>True</code> or not if <code>False</code>.</p>
+<div class="code"><pre><code><span style='color: #a71d5d'>When</span> <span style='font-weight: bold;color: #4e4e4e'>==</span> <span style='color: #0086b3'>1</span> <span style='color: #0086b3'>1</span> <span style='color: #4e4e4e'>(</span>
+   <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;Who&#39;d have guessed?&quot;</span>
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div><p>There is also <code>Unless</code> that evaluates the block if given <code>False</code>. <code>While</code> takes a condition in brackets and evaluates the block of code until the condition is <code>False</code>. <code>Until</code>, you guessed it, is the opposite of <code>While</code> and runs until the condition is <code>True</code>.</p>
+<div class="code"><pre><code><span style='color: #a71d5d'>While</span> <span style='color: #4e4e4e'>(</span>True<span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>(</span>
+   <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;This may well print forever&quot;</span>
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div><p>What&rsquo;s with the second set of brackets? <code>When</code> doesn&rsquo;t have them, so why should <code>While</code>? This is because brackets denote blocks! These prevent code being instantly evaluated and instead push a reference onto the stack. Blocks also control variable scopes. We can evaluate a block using the <code>Do</code> function &ndash; which is how our control flow functions are implemented.</p>
+<div class="code"><pre><code><span style='color: #a71d5d'>Do</span> <span style='color: #4e4e4e'>(</span>
+   <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;Hello from inside a block!&quot;</span>
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div><p>This explains the syntax for functions: <code>Def</code> simply binds a block to a name, much like <code>Let</code>. Blocks can be passed around the program like any other value &ndash; even if they reference variables that go out of scope.</p>
+<p>Now that this (hopefully) makes some sense, we can finally introduce the <code>If</code> statement! <code>If</code> is a function that takes three parameters. The first is a boolean, if this is <code>True</code> then the second argument is returned. If not, the third argument is returned. We can chain <code>If</code>s together to have more complex control flow.</p>
+<div class="code"><pre><code><span style='color: #183691'>Print</span>
+   <span style='color: #a71d5d'>If</span> <span style='font-weight: bold;color: #4e4e4e'>==</span> <span style='color: #795da3'>X</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>then</span> <span style='color: #183691'>&quot;foo&quot;</span>
+   <span style='color: #a71d5d'>If</span> <span style='font-weight: bold;color: #4e4e4e'>==</span> <span style='color: #795da3'>X</span> <span style='color: #0086b3'>2</span> <span style='color: #333333'>then</span> <span style='color: #183691'>&quot;bar&quot;</span>
+             <span style='color: #333333'>else</span> <span style='color: #183691'>&quot;baz&quot;</span>;
+</code></pre></div><p>We can combine this with <code>Do</code> to have conditional code execution.</p>
+<div class="code"><pre><code><span style='color: #a71d5d'>Do</span>
+   <span style='color: #a71d5d'>If</span> <span style='font-weight: bold;color: #4e4e4e'>==</span> <span style='color: #795da3'>X</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>then</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;foo&quot;</span> <span style='color: #4e4e4e'>)</span>
+   <span style='color: #a71d5d'>If</span> <span style='font-weight: bold;color: #4e4e4e'>==</span> <span style='color: #795da3'>X</span> <span style='color: #0086b3'>2</span> <span style='color: #333333'>then</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;bar&quot;</span> <span style='color: #4e4e4e'>)</span>
+             <span style='color: #333333'>else</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;baz&quot;</span> <span style='color: #4e4e4e'>)</span>;
+</code></pre></div><p>Now, lets use our knowledge of blocks to define our own control flow function <code>Thrice</code>, which should evaluate a block three times in a row. This demonstrates a different use of <code>Def</code> in which we bind a block from the stack.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Thrice</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span>
+   <span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span>;
+   <span style='color: #795da3'>F</span> <span style='color: #795da3'>F</span> <span style='color: #795da3'>F</span>
+<span style='color: #4e4e4e'>)</span>;
 
-Times 5 (
-	Print "wow!";
-);
-</code></pre></div><p>Now you may see a small problem with this. If the user calls <code>Times</code> with a non-integer parameter it will loop forever &ndash; that won&rsquo;t do at all! We can use the <code>Of</code> function here &ndash; it checks a value against a predicate (in this case <code>Integer?</code>) and throws an error if it fails.</p><div class=code><pre><code>
-Def Times (
-	Let N be Of (Integer?) number of repetitions;
-	Def F function to repeat;
-	Unless Zero? N ( F ; Times -- 1 N (F) );
-);
-</code></pre></div><p>We could also use <code>Of (Block?)</code> for <code>F</code> but we&rsquo;ll already get a type error if we use <code>Def</code> to bind anything that isn&rsquo;t a block, so there is no point.</p><h2 id=lists>Lists</h2><p>In Cognate, lists are generated using &ndash; you guessed it &ndash; a function. The <code>List</code> function takes a block as a parameter. It evaluates this block <em>in a new empty stack</em> and then returns that stack as a list.</p><div class=code><pre><code>
-Print List (1 2 3 4 5);
-</code></pre></div><p>This allows Cognate&rsquo;s list creation to be much more flexible than other languages &ndash; for example what if we wanted a list of 100 ones?</p><div class=code><pre><code>
-Print List ( Times 100 (1) );
-</code></pre></div><p>The three most fundamental list functions are <code>Push</code>, <code>First</code>, and <code>Rest</code>.</p><p>The <code>Push</code> function takes a value and a list as parameters, and returns a new list list with the value as it&rsquo;s first element and the list parameter providing following elements. <code>First</code> simply returns the first element of a list. <code>Rest</code> returns a list without its first element.</p><div class=code><pre><code>
-Let L be Push "foo" to List ( "bar" "baz" );
-Print First element of L;
-Print Rest of L;
-</code></pre></div><p>There&rsquo;s also an <code>Index</code> function which takes an integer parameter and a list, returning the corresponding list index (indexed from zero of course).</p><p><code>Range</code> creates a list of numbers from a starting (inclusive) and an ending (exclusive) number. <code>For</code> is a higher order function that applied an operation to each element of a list &ndash; it is the loop for iterating over lists.</p><div class=code><pre><code>
-Def Square as (* Twin);
-For each in Range 1 to 20 (Print the Square);
-</code></pre></div><p><code>Map</code> is like <code>For</code> but the result of the computation is stored in a new list.</p><div class=code><pre><code>
-Let Evens be Map (* 2) over Range 1 to 50;
-Print Evens;
-</code></pre></div><p><code>Filter</code> applies a function to each element of a list also. This function should return a boolean &ndash; if this is <code>False</code> then the function is removed from the returned list.</p><div class=code><pre><code>
-Let Even? be (Zero? Modulo 2);
-Let Evens be Filter (Even?) over Range 1 to 100;
-Print Evens;
-</code></pre></div><p>The functional programmers reading this are likely expecting a Fold or Reduce function next &ndash; which applies an operation to a list with an accumulator. However Cognate needs no fold function, as <code>For</code> can store intermediary values on the stack, acting like a fold.</p><div class=code><pre><code>
-Def Factorial as (
-   Let N be Of (Integer?);
-   For each in Range 1 to N (*) from 1;
-);
+<span style='color: #795da3'>Thrice</span> <span style='color: #4e4e4e'>(</span>
+   <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;hip hip hooray!&quot;</span>
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div><p>A more general version of this function, <code>Times</code> can be defined using recursion.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Times</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>N</span> <span style='color: #333333'>number</span> <span style='color: #333333'>of</span> <span style='color: #333333'>repetitions</span>;
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span> <span style='color: #333333'>function</span> <span style='color: #333333'>to</span> <span style='color: #333333'>repeat</span>;
+	<span style='color: #a71d5d'>Unless</span> <span style='color: #183691'>Zero?</span> <span style='color: #795da3'>N</span> <span style='color: #4e4e4e'>(</span> <span style='color: #795da3'>F</span> ; <span style='color: #183691'>Times</span> <span style='color: #795da3'>--</span> <span style='color: #0086b3'>1</span> <span style='color: #795da3'>N</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>F</span><span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>)</span>;
+<span style='color: #4e4e4e'>)</span>;
 
-Print Factorial 10;
-</code></pre></div><p>For the sake of convenience Cognate <em>does</em> provide <code>Fold</code>, which has the order of parameters swapped:</p><div class=code><pre><code>
-Def Factorial as (
-   Let N be Of (Integer?);
-   Fold (*) from 1 over Range 1 to N;
-);
+<span style='color: #183691'>Times</span> <span style='color: #0086b3'>5</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;wow!&quot;</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div><p>Now you may see a small problem with this. If the user calls <code>Times</code> with a non-integer parameter it will loop forever &ndash; that won&rsquo;t do at all! We can use the <code>Of</code> function here &ndash; it checks a value against a predicate (in this case <code>Integer?</code>) and throws an error if it fails.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Times</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>N</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Integer?</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>number</span> <span style='color: #333333'>of</span> <span style='color: #333333'>repetitions</span>;
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span> <span style='color: #333333'>function</span> <span style='color: #333333'>to</span> <span style='color: #333333'>repeat</span>;
+	<span style='color: #a71d5d'>Unless</span> <span style='color: #183691'>Zero?</span> <span style='color: #795da3'>N</span> <span style='color: #4e4e4e'>(</span> <span style='color: #795da3'>F</span> ; <span style='color: #183691'>Times</span> <span style='color: #795da3'>--</span> <span style='color: #0086b3'>1</span> <span style='color: #795da3'>N</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>F</span><span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>)</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div><p>We could also use <code>Of (Block?)</code> for <code>F</code> but we&rsquo;ll already get a type error if we use <code>Def</code> to bind anything that isn&rsquo;t a block, so there is no point.</p>
+<h2 id="lists">Lists</h2>
+<p>In Cognate, lists are generated using &ndash; you guessed it &ndash; a function. The <code>List</code> function takes a block as a parameter. It evaluates this block <em>in a new empty stack</em> and then returns that stack as a list.</p>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #794da3'>List</span> <span style='color: #4e4e4e'>(</span><span style='color: #0086b3'>1</span> <span style='color: #0086b3'>2</span> <span style='color: #0086b3'>3</span> <span style='color: #0086b3'>4</span> <span style='color: #0086b3'>5</span><span style='color: #4e4e4e'>)</span>;
+</code></pre></div><p>This allows Cognate&rsquo;s list creation to be much more flexible than other languages &ndash; for example what if we wanted a list of 100 ones?</p>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #794da3'>List</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Times</span> <span style='color: #0086b3'>100</span> <span style='color: #4e4e4e'>(</span><span style='color: #0086b3'>1</span><span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>)</span>;
+</code></pre></div><p>The three most fundamental list functions are <code>Push</code>, <code>First</code>, and <code>Rest</code>.</p>
+<p>The <code>Push</code> function takes a value and a list as parameters, and returns a new list list with the value as it&rsquo;s first element and the list parameter providing following elements. <code>First</code> simply returns the first element of a list. <code>Rest</code> returns a list without its first element.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Push</span> <span style='color: #183691'>&quot;foo&quot;</span> <span style='color: #333333'>to</span> <span style='color: #794da3'>List</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>&quot;bar&quot;</span> <span style='color: #183691'>&quot;baz&quot;</span> <span style='color: #4e4e4e'>)</span>;
+<span style='color: #183691'>Print</span> <span style='color: #183691'>First</span> <span style='color: #333333'>element</span> <span style='color: #333333'>of</span> <span style='color: #795da3'>L</span>;
+<span style='color: #183691'>Print</span> <span style='color: #183691'>Rest</span> <span style='color: #333333'>of</span> <span style='color: #795da3'>L</span>;
+</code></pre></div><p>There&rsquo;s also an <code>Index</code> function which takes an integer parameter and a list, returning the corresponding list index (indexed from zero of course).</p>
+<p><code>Range</code> creates a list of numbers from a starting (inclusive) and an ending (exclusive) number. <code>For</code> is a higher order function that applied an operation to each element of a list &ndash; it is the loop for iterating over lists.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Square</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='color: #183691'>Twin</span><span style='color: #4e4e4e'>)</span>;
+<span style='color: #a71d5d'>For</span> <span style='color: #333333'>each</span> <span style='color: #333333'>in</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>20</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Print</span> <span style='color: #333333'>the</span> <span style='color: #795da3'>Square</span><span style='color: #4e4e4e'>)</span>;
+</code></pre></div><p><code>Map</code> is like <code>For</code> but the result of the computation is stored in a new list.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Let</span> <span style='color: #795da3'>Evens</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Map</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='color: #0086b3'>2</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>over</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>50</span>;
+<span style='color: #183691'>Print</span> <span style='color: #795da3'>Evens</span>;
+</code></pre></div><p><code>Filter</code> applies a function to each element of a list also. This function should return a boolean &ndash; if this is <code>False</code> then the function is removed from the returned list.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Let</span> <span style='color: #795da3'>Even?</span> <span style='color: #333333'>be</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Zero?</span> <span style='color: #183691'>Modulo</span> <span style='color: #0086b3'>2</span><span style='color: #4e4e4e'>)</span>;
+<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>Evens</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Filter</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>Even?</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>over</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>100</span>;
+<span style='color: #183691'>Print</span> <span style='color: #795da3'>Evens</span>;
+</code></pre></div><p>The functional programmers reading this are likely expecting a Fold or Reduce function next &ndash; which applies an operation to a list with an accumulator. However Cognate needs no fold function, as <code>For</code> can store intermediary values on the stack, acting like a fold.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Factorial</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span>
+   <span style='color: #0086b3'>Let</span> <span style='color: #795da3'>N</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Integer?</span><span style='color: #4e4e4e'>)</span>;
+   <span style='color: #a71d5d'>For</span> <span style='color: #333333'>each</span> <span style='color: #333333'>in</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #795da3'>N</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>*</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>from</span> <span style='color: #0086b3'>1</span>;
+<span style='color: #4e4e4e'>)</span>;
 
-Print Factorial 10;
-</code></pre></div><h2 id=boxes>Boxes</h2><p>While storing state between loop iterations is very useful, in some cases you just need mutable variables. Cognate&rsquo;s box type implements a reference and generalises mutation.</p><p>The <code>Box</code> function takes a value and places it in a box. <code>Unbox</code> returns the item stored in a box. <code>Set</code> takes a box and a value as parameters and mutates the box to hold the value &ndash; this affects all references to it.</p><div class=code><pre><code>
-Let X be Box 1;
-Print Unbox X; ~~ prints 1
+<span style='color: #183691'>Print</span> <span style='color: #795da3'>Factorial</span> <span style='color: #0086b3'>10</span>;
+</code></pre></div><p>For the sake of convenience Cognate <em>does</em> provide <code>Fold</code>, which has the order of parameters swapped:</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Factorial</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span>
+   <span style='color: #0086b3'>Let</span> <span style='color: #795da3'>N</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Integer?</span><span style='color: #4e4e4e'>)</span>;
+   <span style='color: #183691'>Fold</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>*</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>from</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>over</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #795da3'>N</span>;
+<span style='color: #4e4e4e'>)</span>;
 
-Set X to 2;
-Print Unbox X; ~~ prints 2
-</code></pre></div><p>Boxes aren&rsquo;t limited to mutating variables, they can be used for any value.</p><div class=code><pre><code>
-Let L be Map (Box) over Range 1 to 10;
-Print L;
+<span style='color: #183691'>Print</span> <span style='color: #795da3'>Factorial</span> <span style='color: #0086b3'>10</span>;
+</code></pre></div><h2 id="boxes">Boxes</h2>
+<p>While storing state between loop iterations is very useful, in some cases you just need mutable variables. Cognate&rsquo;s box type implements a reference and generalises mutation.</p>
+<p>The <code>Box</code> function takes a value and places it in a box. <code>Unbox</code> returns the item stored in a box. <code>Set</code> takes a box and a value as parameters and mutates the box to hold the value &ndash; this affects all references to it.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Let</span> <span style='color: #795da3'>X</span> <span style='color: #333333'>be</span> <span style='color: #794da3'>Box</span> <span style='color: #0086b3'>1</span>;
+<span style='color: #183691'>Print</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>X</span>; <span style='font-style: italic;color: #969896'>~~ prints 1</span>
 
-For each in L (
-   Let X;
-   Set X to * 2 Unbox X; ~~ double the element in place
-);
-Print L;
-</code></pre></div><p>While boxes may not seem as ergonomic as mutation in other languages, they&rsquo;re both more flexible than mutable variables and more predictable than implicit references. We can also easily extend mutation, like this:</p><div class=code><pre><code>
-Def Box-list as ( Map (Box) );
+<span style='color: #0086b3'>Set</span> <span style='color: #795da3'>X</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>2</span>;
+<span style='color: #183691'>Print</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>X</span>; <span style='font-style: italic;color: #969896'>~~ prints 2</span>
+</code></pre></div><p>Boxes aren&rsquo;t limited to mutating variables, they can be used for any value.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Map</span> <span style='color: #4e4e4e'>(</span><span style='color: #794da3'>Box</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>over</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>10</span>;
+<span style='color: #183691'>Print</span> <span style='color: #795da3'>L</span>;
 
-Def Inplace-map as (
-	Def F;
-	Let L;
-	For each in L ( Let X ; Set X to F Unbox X );
-);
+<span style='color: #a71d5d'>For</span> <span style='color: #333333'>each</span> <span style='color: #333333'>in</span> <span style='color: #795da3'>L</span> <span style='color: #4e4e4e'>(</span>
+   <span style='color: #0086b3'>Let</span> <span style='color: #795da3'>X</span>;
+   <span style='color: #0086b3'>Set</span> <span style='color: #795da3'>X</span> <span style='color: #333333'>to</span> <span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='color: #0086b3'>2</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>X</span>; <span style='font-style: italic;color: #969896'>~~ double the element in place</span>
+<span style='color: #4e4e4e'>)</span>;
+<span style='color: #183691'>Print</span> <span style='color: #795da3'>L</span>;
+</code></pre></div><p>While boxes may not seem as ergonomic as mutation in other languages, they&rsquo;re both more flexible than mutable variables and more predictable than implicit references. We can also easily extend mutation, like this:</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Box-list</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Map</span> <span style='color: #4e4e4e'>(</span><span style='color: #794da3'>Box</span><span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>)</span>;
 
-Let L be Box-list Range 1 to 10;
-Print L;
+<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Inplace-map</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span>;
+	<span style='color: #a71d5d'>For</span> <span style='color: #333333'>each</span> <span style='color: #333333'>in</span> <span style='color: #795da3'>L</span> <span style='color: #4e4e4e'>(</span> <span style='color: #0086b3'>Let</span> <span style='color: #795da3'>X</span> ; <span style='color: #0086b3'>Set</span> <span style='color: #795da3'>X</span> <span style='color: #333333'>to</span> <span style='color: #795da3'>F</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>X</span> <span style='color: #4e4e4e'>)</span>;
+<span style='color: #4e4e4e'>)</span>;
 
-Inplace-map (* 2) over L;
-Print L;
-</code></pre></div><h2 id=tables>Tables</h2><p>The table type provides an efficient, immutable, unordered mapping between keys and values, which can be used to implement many more complex data structures. <code>Table</code> creates a table in the same manner in which <code>List</code> creates a list, though taking key-value pairs. <code>.</code> is used to extract the value corresponding to a key.</p><div class=code><pre><code>
-Let T be Table (
-    "foo" is 1;
-    "bar" is Range 2 to 10;
-    12 is 13; ~~ Keys can be of any type except box or block
-);
+<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>be</span> <span style='color: #795da3'>Box-list</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>10</span>;
+<span style='color: #183691'>Print</span> <span style='color: #795da3'>L</span>;
 
-Print . "foo" T;
-Print . "bar" T;
-</code></pre></div><p><code>Insert</code> returns the table with an extra key-value pair, <code>Remove</code> returns the table without a specified key, and <code>Has</code> checks whether a key is in the table.</p><div class=code><pre><code>
-Def Remove-baz (
-    Remove "baz"
-    from Of (Has "baz")
-         Of (Table?);
-);
+<span style='color: #795da3'>Inplace-map</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='color: #0086b3'>2</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>over</span> <span style='color: #795da3'>L</span>;
+<span style='color: #183691'>Print</span> <span style='color: #795da3'>L</span>;
+</code></pre></div><h2 id="tables">Tables</h2>
+<p>The table type provides an efficient, immutable, unordered mapping between keys and values, which can be used to implement many more complex data structures. <code>Table</code> creates a table in the same manner in which <code>List</code> creates a list, though taking key-value pairs. <code>.</code> is used to extract the value corresponding to a key.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Let</span> <span style='color: #795da3'>T</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Table</span> <span style='color: #4e4e4e'>(</span>
+    <span style='color: #183691'>&quot;foo&quot;</span> <span style='color: #333333'>is</span> <span style='color: #0086b3'>1</span>;
+    <span style='color: #183691'>&quot;bar&quot;</span> <span style='color: #333333'>is</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>2</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>10</span>;
+    <span style='color: #0086b3'>12</span> <span style='color: #333333'>is</span> <span style='color: #0086b3'>13</span>; <span style='font-style: italic;color: #969896'>~~ Keys can be of any type except box or block</span>
+<span style='color: #4e4e4e'>)</span>;
 
-Insert "baz" is Range 11 to 100 into T;
-Print Twin;
-Remove-baz;
-Print;
-</code></pre></div><p><code>Keys</code> and <code>Values</code> returns lists of the keys and values respectively in a table, in no particular order. Tables are implemented as self-balancing binary trees, and are optimised for fast immutable insertions.</p><h2 id=symbols>Symbols</h2><p>Typically, you&rsquo;d want to use a <em>symbol</em> as a key for your table. Symbols will be familiar to Lisp programmers and can be considered as either a limited string or an unlimited enum, depending how you like to think.</p><div class=code><pre><code>
-\foo ~~ This is a symbol
-</code></pre></div><p>Symbols can&rsquo;t be modified in any way, but can be compared very efficiently (which is why they&rsquo;re great keys for tables) and put into any data structure.</p><h2 id=begin>Begin</h2><p>Earlier when we defined loops, you may have noticed something missing &ndash; the break statement. Being a functional language, Cognate discourages this sort of control flow, but sometimes you&rsquo;ve just gotta get out of a block early. Introducing <code>Begin</code> &ndash; this function takes a block parameter and evaluates it, passing it <em>another</em> block on the stack. Evaluating <em>that</em> block will jump you out of the original block. Confused? Here&rsquo;s an example.</p><div class=code><pre><code>
-~~ Let's print the numbers up to 100 in an unnecessarily complicated manner.
-Let I be 1;
+<span style='color: #183691'>Print</span> <span style='color: #183691'>.</span> <span style='color: #183691'>&quot;foo&quot;</span> <span style='color: #795da3'>T</span>;
+<span style='color: #183691'>Print</span> <span style='color: #183691'>.</span> <span style='color: #183691'>&quot;bar&quot;</span> <span style='color: #795da3'>T</span>;
+</code></pre></div><p><code>Insert</code> returns the table with an extra key-value pair, <code>Remove</code> returns the table without a specified key, and <code>Has</code> checks whether a key is in the table.</p>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Remove-baz</span> <span style='color: #4e4e4e'>(</span>
+    <span style='color: #183691'>Remove</span> <span style='color: #183691'>&quot;baz&quot;</span>
+    <span style='color: #333333'>from</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Has</span> <span style='color: #183691'>&quot;baz&quot;</span><span style='color: #4e4e4e'>)</span>
+         <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>Table?</span><span style='color: #4e4e4e'>)</span>;
+<span style='color: #4e4e4e'>)</span>;
 
-Begin (
-    Def Break;
-    While (True) (
-        Print Unbox I;
-        Set I to + 1 of Unbox I;
-        When == 101 Unbox I ( Break out of the begin );
-    )
-)
-</code></pre></div><p>This essentially allows any control flow to have a break statement, not just loops. <code>Begin</code> can also be used to implement a return statement to break out of a function early.</p><div class=code><pre><code>
-~~ Inefficiently decrements a number 100 times
-~~ If it reaches zero, returns zero instead.
-Def F (
-    Begin (
-        Def Return;
-        Let X be Box Of (Integer?);
+<span style='color: #183691'>Insert</span> <span style='color: #183691'>&quot;baz&quot;</span> <span style='color: #333333'>is</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>11</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>100</span> <span style='color: #333333'>into</span> <span style='color: #795da3'>T</span>;
+<span style='color: #183691'>Print</span> <span style='color: #183691'>Twin</span>;
+<span style='color: #795da3'>Remove-baz</span>;
+<span style='color: #183691'>Print</span>;
+</code></pre></div><p><code>Keys</code> and <code>Values</code> returns lists of the keys and values respectively in a table, in no particular order. Tables are implemented as self-balancing binary trees, and are optimised for fast immutable insertions.</p>
+<h2 id="symbols">Symbols</h2>
+<p>Typically, you&rsquo;d want to use a <em>symbol</em> as a key for your table. Symbols will be familiar to Lisp programmers and can be considered as either a limited string or an unlimited enum, depending how you like to think.</p>
+<div class="code"><pre><code>\foo <span style='font-style: italic;color: #969896'>~~ This is a symbol</span>
+</code></pre></div><p>Symbols can&rsquo;t be modified in any way, but can be compared very efficiently (which is why they&rsquo;re great keys for tables) and put into any data structure.</p>
+<h2 id="begin">Begin</h2>
+<p>Earlier when we defined loops, you may have noticed something missing &ndash; the break statement. Being a functional language, Cognate discourages this sort of control flow, but sometimes you&rsquo;ve just gotta get out of a block early. Introducing <code>Begin</code> &ndash; this function takes a block parameter and evaluates it, passing it <em>another</em> block on the stack. Evaluating <em>that</em> block will jump you out of the original block. Confused? Here&rsquo;s an example.</p>
+<div class="code"><pre><code><span style='font-style: italic;color: #969896'>~~ Let&#39;s print the numbers up to 100 in an unnecessarily complicated manner.</span>
+<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>I</span> <span style='color: #333333'>be</span> <span style='color: #0086b3'>1</span>;
 
-        Times 100 (
-            Set X to - 1 Unbox X;
-            When Zero? Unbox X ( Return 0 );
-        );
-        Return Unbox X;
-    )
-)
-</code></pre></div><p>An advantage of <code>Begin</code> over traditional programming languages&rsquo; break and return statements is that it gives fine-grained control over which block you break out of, since nested <code>Begin</code> statements can have their exit blocks bound to different names.</p><h2 id=end>End</h2><p>Nope, there isn&rsquo;t an <code>End</code> function. This is just the end of the tutorial.</p></main><br><br><br></body></html>
+<span style='color: #183691'>Begin</span> <span style='color: #4e4e4e'>(</span>
+    <span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Break</span>;
+    <span style='color: #a71d5d'>While</span> <span style='color: #4e4e4e'>(</span>True<span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>(</span>
+        <span style='color: #183691'>Print</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>I</span>;
+        <span style='color: #0086b3'>Set</span> <span style='color: #795da3'>I</span> <span style='color: #333333'>to</span> <span style='font-weight: bold;color: #4e4e4e'>+</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>of</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>I</span>;
+        <span style='color: #a71d5d'>When</span> <span style='font-weight: bold;color: #4e4e4e'>==</span> <span style='color: #0086b3'>101</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>I</span> <span style='color: #4e4e4e'>(</span> <span style='color: #795da3'>Break</span> <span style='color: #333333'>out</span> <span style='color: #333333'>of</span> <span style='color: #333333'>the</span> <span style='color: #333333'>begin</span> <span style='color: #4e4e4e'>)</span>;
+    <span style='color: #4e4e4e'>)</span>
+<span style='color: #4e4e4e'>)</span>
+</code></pre></div><p>This essentially allows any control flow to have a break statement, not just loops. <code>Begin</code> can also be used to implement a return statement to break out of a function early.</p>
+<div class="code"><pre><code><span style='font-style: italic;color: #969896'>~~ Inefficiently decrements a number 100 times</span>
+<span style='font-style: italic;color: #969896'>~~ If it reaches zero, returns zero instead.</span>
+<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span> <span style='color: #4e4e4e'>(</span>
+    <span style='color: #183691'>Begin</span> <span style='color: #4e4e4e'>(</span>
+        <span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Return</span>;
+        <span style='color: #0086b3'>Let</span> <span style='color: #795da3'>X</span> <span style='color: #333333'>be</span> <span style='color: #794da3'>Box</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Integer?</span><span style='color: #4e4e4e'>)</span>;
+
+        <span style='color: #183691'>Times</span> <span style='color: #0086b3'>100</span> <span style='color: #4e4e4e'>(</span>
+            <span style='color: #0086b3'>Set</span> <span style='color: #795da3'>X</span> <span style='color: #333333'>to</span> <span style='font-weight: bold;color: #4e4e4e'>-</span> <span style='color: #0086b3'>1</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>X</span>;
+            <span style='color: #a71d5d'>When</span> <span style='color: #183691'>Zero?</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>X</span> <span style='color: #4e4e4e'>(</span> <span style='color: #795da3'>Return</span> <span style='color: #0086b3'>0</span> <span style='color: #4e4e4e'>)</span>;
+        <span style='color: #4e4e4e'>)</span>;
+        <span style='color: #795da3'>Return</span> <span style='color: #183691'>Unbox</span> <span style='color: #795da3'>X</span>;
+    <span style='color: #4e4e4e'>)</span>
+<span style='color: #4e4e4e'>)</span>
+</code></pre></div><p>An advantage of <code>Begin</code> over traditional programming languages&rsquo; break and return statements is that it gives fine-grained control over which block you break out of, since nested <code>Begin</code> statements can have their exit blocks bound to different names.</p>
+<h2 id="end">End</h2>
+<p>Nope, there isn&rsquo;t an <code>End</code> function. This is just the end of the tutorial.</p>
+
+
+    </main>
+    <br /><br /><br />
+  </body>
+</html>

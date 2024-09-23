@@ -1,5 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>About on Cognate: Readable and concise concatenative programming</title><link>wow/</link><description>Recent content in About on Cognate: Readable and concise concatenative programming</description><generator>Hugo</generator><language>en-us</language><atom:link href="wow/index.xml" rel="self" type="application/rss+xml"/><item><title>Learn Cognate</title><link>wow/learn/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>wow/learn/</guid><description>Learn Cognate A brief introduction to the language Install First install CognaC the Cognate Compiler from here using the provided instructions. Currently CognaC will run on recent Linux or Mac systems. Windows users can install it onto the Windows Subsystem for Linux &amp;ndash; native Windows support is planned.
-Invoking CognaC is simple. If you have a file named foo.cog containing a Cognate program, it can be compiled into an executable named foo with the following command.</description></item><item><title>Prelude</title><link>wow/reference/prelude/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>wow/reference/prelude/</guid><description>Prelude Drop Discard the top stack item.
-Print Drop "foo" "bar"; Source Def Drop as ( Let X ); Swap Swaps the top two stack items.
-Print Swap 1 2; Source Def Swap as ( Let X ; Let Y ; Y X ); Do Execute a block.
-Do ( Print "hello world!" ); Source Def Do as ( Def F ; F ); Any? Takes a parameter of any type and returns True</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>About on Cognate: Readable and concise concatenative programming</title>
+    <link>https://cognate-lang.github.io/</link>
+    <description>Recent content in About on Cognate: Readable and concise concatenative programming</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://cognate-lang.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learn Cognate</title>
+      <link>https://cognate-lang.github.io/learn/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://cognate-lang.github.io/learn/</guid>
+      <description>Learn Cognate A brief introduction to the language Install First install CognaC the Cognate Compiler from here using the provided instructions. Currently CognaC will run on recent Linux or Mac systems. Windows users can install it onto the Windows Subsystem for Linux &amp;ndash; native Windows support is planned.&#xA;Invoking CognaC is simple. If you have a file named foo.cog containing a Cognate program, it can be compiled into an executable named foo with the following command.</description>
+    </item>
+    <item>
+      <title>Prelude</title>
+      <link>https://cognate-lang.github.io/reference/prelude/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://cognate-lang.github.io/reference/prelude/</guid>
+      <description>Prelude Drop Discard the top stack item.&#xA;Print Drop &#34;foo&#34; &#34;bar&#34;; Source Def Drop as ( Let X ); Swap Swaps the top two stack items.&#xA;Print Swap 1 2; Source Def Swap as ( Let X ; Let Y ; Y X ); Do Execute a block.&#xA;Do ( Print &#34;hello world!&#34; ); Source Def Do as ( Def F ; F ); Any? Takes a parameter of any type and returns True</description>
+    </item>
+  </channel>
+</rss>
