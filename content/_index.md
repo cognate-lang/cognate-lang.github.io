@@ -62,16 +62,13 @@ Cognate is a stack-oriented programming language similar to Forth or Factor, exc
 Def Factor (Zero? Modulo Swap);
 
 Def Primes (
-   Let U is upper bound;
-   initially List ();
-   For Range 2 to U (
-      Let P is potential prime;
-      Let Found be list of found primes;
-      Let To-check be Take-while (<= Sqrt P) Found;
-      When All (Not Factor of P) To-check (
-         Append P
-      ) to Found
-   )
+	Fold (
+        Let I be our potential prime;
+		Let Primes are the found primes;
+		Let To-check be Take-while (<= Sqrt I) Primes;
+		When None (Factor of I) To-check
+			(Append List (I)) to Primes;
+	) from List () over Range from 2
 );
 
 Print Primes up to 1000;
