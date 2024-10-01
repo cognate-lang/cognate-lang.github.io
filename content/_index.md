@@ -13,10 +13,10 @@ Def Fizzbuzz (
 	Let N be Of (Integer?);
 	Def Multiple as (Zero? Modulo Swap N);
 
-    If Multiple of 15 then "fizzbuzz"
-    If Multiple of 3  then "fizz"
-    If Multiple of 5  then "buzz"
-                      else N
+	If Multiple of 15 then "fizzbuzz"
+	If Multiple of 3  then "fizz"
+	If Multiple of 5  then "buzz"
+					  else N
 );
 
 For each in Range 1 to 100 (Print Fizzbuzz);
@@ -35,9 +35,9 @@ Def Move discs as (
    Let C be third rod;
 
    Unless Zero? N (
-      Move - 1 N discs from A via C to B;
-      Prints ("Move disc " N " from " A " to " C);
-      Move - 1 N discs from B via A to C;
+	  Move - 1 N discs from A via C to B;
+	  Prints ("Move disc " N " from " A " to " C);
+	  Move - 1 N discs from B via A to C;
    )
 );
 
@@ -63,7 +63,7 @@ Def Factor (Zero? Modulo Swap);
 
 Def Primes (
 	Fold (
-        Let I be our potential prime;
+		Let I be our potential prime;
 		Let Primes are the found primes;
 		Let To-check be Take-while (<= Sqrt I) Primes;
 		When None (Factor of I) To-check

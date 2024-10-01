@@ -178,26 +178,26 @@ Now that this (hopefully) makes some sense, we can finally introduce the `If` st
 
 ```cognate
 Print
-   If == X 1 then "foo"
-   If == X 2 then "bar"
-             else "baz";
+	If == X 1 then "foo"
+	If == X 2 then "bar"
+	          else "baz";
 ```
 
 We can combine this with `Do` to have conditional code execution.
 
 ```cognate
 Do
-   If == X 1 then ( Print "foo" )
-   If == X 2 then ( Print "bar" )
-             else ( Print "baz" );
+	If == X 1 then ( Print "foo" )
+	If == X 2 then ( Print "bar" )
+	          else ( Print "baz" );
 ```
 
 Now, let's use our knowledge of blocks to define our own control flow function `Thrice`, which should evaluate a block three times in a row. This demonstrates a different use of `Def` in which we bind a block from the stack.
 
 ```cognate
 Def Thrice as (
-   Def F;
-   F F F
+	Def F;
+	F F F
 );
 
 Thrice (
@@ -355,9 +355,9 @@ The table type provides an efficient, immutable, unordered mapping between keys 
 
 ```cognate
 Let T be Table (
-    "foo" is 1;
-    "bar" is Range 2 to 10;
-    12 is 13; ~~ Keys can be of any type except box or block
+	"foo" is 1;
+	"bar" is Range 2 to 10;
+	12 is 13; ~~ Keys can be of any type except box or block
 );
 
 Print . "foo" T;
@@ -368,9 +368,9 @@ Print . "bar" T;
 
 ```cognate
 Def Remove-baz (
-    Remove "baz"
-    from Of (Has "baz")
-         Of (Table?);
+	Remove "baz"
+	from Of (Has "baz")
+	     Of (Table?);
 );
 
 Insert "baz" is Range 11 to 100 into T;
@@ -400,12 +400,12 @@ Earlier when we defined loops, you may have noticed something missing -- the bre
 Let I be 1;
 
 Begin (
-    Def Break;
-    While (True) (
-        Print Unbox I;
-        Set I to + 1 of Unbox I;
-        When == 101 Unbox I ( Break out of the begin );
-    )
+	Def Break;
+	While (True) (
+		Print Unbox I;
+		Set I to + 1 of Unbox I;
+		When == 101 Unbox I ( Break out of the begin );
+	)
 );
 ```
 
@@ -415,16 +415,16 @@ This essentially allows any control flow to have a break statement, not just loo
 ~~ Inefficiently decrements a number 100 times
 ~~ If it reaches zero, returns zero instead.
 Def F (
-    Begin (
-        Def Return;
-        Let X be Box Of (Integer?);
+	Begin (
+		Def Return;
+		Let X be Box Of (Integer?);
 
-        Times 100 (
-            Set X to - 1 Unbox X;
-            When Zero? Unbox X ( Return 0 );
-        );
-        Return Unbox X;
-    )
+		Times 100 (
+			Set X to - 1 Unbox X;
+			When Zero? Unbox X ( Return 0 );
+		);
+		Return Unbox X;
+	)
 );
 ```
 

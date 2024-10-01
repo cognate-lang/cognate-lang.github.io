@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Reference on Cognate: Readable and concise concatenative programming</title>
-    <link>https://cognate-lang.github.io/reference/</link>
+    <link>http://localhost:1313/reference/</link>
     <description>Recent content in Reference on Cognate: Readable and concise concatenative programming</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="https://cognate-lang.github.io/reference/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/reference/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prelude</title>
-      <link>https://cognate-lang.github.io/reference/prelude/</link>
+      <link>http://localhost:1313/reference/prelude/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://cognate-lang.github.io/reference/prelude/</guid>
+      <guid>http://localhost:1313/reference/prelude/</guid>
       <description>Prelude Drop Discard the top stack item.&#xA;Print Drop &#34;foo&#34; &#34;bar&#34;; Source Def Drop as ( Let X ); Swap Swaps the top two stack items.&#xA;Print Swap 1 2; Source Def Swap as ( Let X ; Let Y ; Y X ); Do Execute a block.&#xA;Do ( Print &#34;hello world!&#34; ); Source Def Do as ( Def F ; F ); Any? Takes a parameter of any type and returns True</description>
     </item>
   </channel>
