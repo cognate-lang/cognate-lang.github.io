@@ -16,7 +16,7 @@ Def Fizzbuzz (
 	If Multiple of 15 then "fizzbuzz"
 	If Multiple of 3  then "fizz"
 	If Multiple of 5  then "buzz"
-					  else N
+	                  else N
 );
 
 For each in Range 1 to 100 (Print Fizzbuzz);
@@ -29,16 +29,16 @@ Cognate is a project aiming to create a human readable programming language with
 
 Def Move discs as (
 
-   Let N be number of discs;
-   Let A be first rod;
-   Let B be second rod;
-   Let C be third rod;
+	Let N be number of discs;
+	Let A be first rod;
+	Let B be second rod;
+	Let C be third rod;
 
-   Unless Zero? N (
-	  Move - 1 N discs from A via C to B;
-	  Prints ("Move disc " N " from " A " to " C);
-	  Move - 1 N discs from B via A to C;
-   )
+	Unless Zero? N (
+		Move - 1 N discs from A via C to B;
+		Prints ("Move disc " N " from " A " to " C);
+		Move - 1 N discs from B via A to C;
+	)
 );
 
 Move 5 discs from "a" via "b" to "c";

@@ -129,8 +129,8 @@ We can use variables to define functions that take named parameters -- here's an
 
 ```cognate
 Def Square as (
-   Let X;
-   * X X
+	Let X;
+	* X X
 );
 ```
 
@@ -138,8 +138,8 @@ Notice that the last statement before a closing bracket does not need to be term
 
 ```cognate
 Def Twin as (
-   Let X;
-   X X
+	Let X;
+	X X
 );
 ```
 
