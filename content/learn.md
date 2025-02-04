@@ -8,26 +8,22 @@ title = 'Learn Cognate'
 ## A brief introduction to the language
 
 
-## Install
+## Setup
 
+First get hold of one of Cognate's implementations; installation and invocation instructions are on the respective pages.
 
-First install `CognaC` the Cognate Compiler from here using the provided instructions. Currently `CognaC` will run on recent Linux or Mac systems. Windows users can install it onto the Windows Subsystem for Linux -- native Windows support is planned.
+- [CognaC](https://github.com/cognate-lang/cognate) is the original compiler -- it performs type inference and produces efficient binaries.
+- [Cognate Playground](https://cognate-playground.hedy.dev/) (developed by [hedyhli](https://github.com/hedyhli)) runs Cognate programs in a web browser, requiring no installation.
+- [Cogni](https://github.com/dragoncoder047/cogni) (developed by [dragoncoder047](https://github.com/dragoncoder047)) interprets Cognate programs and is optimised to run on microcontrollers.
 
-Invoking `CognaC` is simple. If you have a file named `foo.cog` containing a Cognate program, it can be compiled into an executable named `foo` with the following command.
-
-
+If you're using `CognaC`, you can compile a Cognate file named `foo.cog` into an executable named `foo` with the following command.
 ```
 cognac foo.cog
 ```
 
-
 To compile a debug executable, which will run slower but give a nice backtrace if there's an error, you can use the `-debug` flag.
 
-Alternatively, you can use the interactive web playground [here](https://cognate-playground.hedy.dev/) which runs Cognate programs client-side in the browser. It also has intelligent syntax highlighting, code folding, and error reporting in the editor
-
-
 ## First Programs
-
 
 ```cognate
 Print "Hello world!";

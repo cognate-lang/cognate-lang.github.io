@@ -74,6 +74,7 @@ Def Primes (
 Print Primes up to 1000;
 ```
 
+
 Cognate borrows from other concatenative languages, but also adds unique features of its own.
 
 - Point-free functions
@@ -84,5 +85,8 @@ Cognate borrows from other concatenative languages, but also adds unique feature
 - Natural language programming
 
 
-Interested? Read the [tutorial](/learn/), check out the [interactive web playground](https://cognate-playground.hedy.dev/), or visit our [GitHub repository](https://github.com/cognate-lang/cognate).
+Interested? Read the [tutorial](/learn/), and check out one of Cognate's implementations:
 
+- [CognaC](https://github.com/cognate-lang/cognate) is the original compiler -- it performs type inference and produces efficient binaries.
+- [Cognate Playground](https://cognate-playground.hedy.dev/) (developed by [hedyhli](https://github.com/hedyhli)) runs Cognate programs in a web browser.
+- [Cogni](https://github.com/dragoncoder047/cogni) (developed by [dragoncoder047](https://github.com/dragoncoder047)) interprets Cognate programs and is optimised to run on microcontrollers.

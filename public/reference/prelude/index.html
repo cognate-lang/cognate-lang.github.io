@@ -1,7 +1,7 @@
 
 <!doctype html>
 <html>
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/main.min.css" />
@@ -17,531 +17,399 @@
 <h1 id="prelude">Prelude</h1>
 <h2 id="drop">Drop</h2>
 <p>Discard the top stack item.</p>
-<!--cognate--><div class="code"><pre><code>
-Print Drop "foo" "bar";
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L8-L8">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Drop as ( Let X );
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #183691'>Drop</span> <span style='color: #183691'>&quot;foo&quot;</span> <span style='color: #183691'>&quot;bar&quot;</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L8-L8">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Drop</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span> <span style='color: #0086b3'>Let</span> <span style='color: #795da3'>X</span> <span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="swap">Swap</h2>
 <p>Swaps the top two stack items.</p>
-<!--cognate--><div class="code"><pre><code>
-Print Swap 1 2;
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L17-L17">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Swap as ( Let X ; Let Y ; Y X );
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #183691'>Swap</span> <span style='color: #0086b3'>1</span> <span style='color: #0086b3'>2</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L17-L17">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Swap</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span> <span style='color: #0086b3'>Let</span> <span style='color: #795da3'>X</span> ; <span style='color: #0086b3'>Let</span> <span style='color: #795da3'>Y</span> ; <span style='color: #795da3'>Y</span> <span style='color: #795da3'>X</span> <span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="do">Do</h2>
 <p>Execute a block.</p>
-<!--cognate--><div class="code"><pre><code>
-Do ( Print "hello world!" );
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L26-L26">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Do as ( Def F ; F );
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #a71d5d'>Do</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;hello world!&quot;</span> <span style='color: #4e4e4e'>)</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L26-L26">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #a71d5d'>Do</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span> <span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span> ; <span style='color: #795da3'>F</span> <span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="any">Any?</h2>
 <p>Takes a parameter of any type and returns True</p>
-<!--cognate--><div class="code"><pre><code>
-Print Any? 12;
-Print Any? "hello";
-Print Any? List (1 2 3);
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L37-L37">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Any? ( True Drop );
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #794da3'>Any?</span> <span style='color: #0086b3'>12</span>;
+<span style='color: #183691'>Print</span> <span style='color: #794da3'>Any?</span> <span style='color: #183691'>&quot;hello&quot;</span>;
+<span style='color: #183691'>Print</span> <span style='color: #794da3'>Any?</span> <span style='color: #794da3'>List</span> <span style='color: #4e4e4e'>(</span><span style='color: #0086b3'>1</span> <span style='color: #0086b3'>2</span> <span style='color: #0086b3'>3</span><span style='color: #4e4e4e'>)</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L37-L37">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #794da3'>Any?</span> <span style='color: #4e4e4e'>(</span> True <span style='color: #183691'>Drop</span> <span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="twin">Twin</h2>
 <p>Duplicate the top stack item.</p>
-<!--cognate--><div class="code"><pre><code>
-Def Square as (* Twin);
-Print Square 8;
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L48-L48">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Twin as (Let X ; X X);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Square</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='color: #183691'>Twin</span><span style='color: #4e4e4e'>)</span>;
+<span style='color: #183691'>Print</span> <span style='color: #795da3'>Square</span> <span style='color: #0086b3'>8</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L48-L48">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Twin</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span><span style='color: #0086b3'>Let</span> <span style='color: #795da3'>X</span> ; <span style='color: #795da3'>X</span> <span style='color: #795da3'>X</span><span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="triplet">Triplet</h2>
 <p>Triplicates the top stack item</p>
-<!--cognate--><div class="code"><pre><code>
-Def Cube as (* * Triplet);
-Print Cube 8;
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L58-L58">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Triplet as (Twin ; Twin);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Cube</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='color: #183691'>Triplet</span><span style='color: #4e4e4e'>)</span>;
+<span style='color: #183691'>Print</span> <span style='color: #795da3'>Cube</span> <span style='color: #0086b3'>8</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L58-L58">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Triplet</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Twin</span> ; <span style='color: #183691'>Twin</span><span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="when">When</h2>
 <p>Takes a boolean (<code>Cond</code>) and a block (<code>F</code>) as parameters. Executes <code>F</code>, given <code>Cond</code> is True.</p>
-<!--cognate--><div class="code"><pre><code>
-When True ( Print "hello!" );
-When False ( Print "bye!" );
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L68-L72">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def When as (
-	Let Cond;
-	Def F;
-	Do If Cond then ( F ) else ();
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #a71d5d'>When</span> True <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;hello!&quot;</span> <span style='color: #4e4e4e'>)</span>;
+<span style='color: #a71d5d'>When</span> False <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;bye!&quot;</span> <span style='color: #4e4e4e'>)</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L68-L72">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #a71d5d'>When</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>Cond</span>;
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span>;
+	<span style='color: #a71d5d'>Do</span> <span style='color: #a71d5d'>If</span> <span style='color: #795da3'>Cond</span> <span style='color: #333333'>then</span> <span style='color: #4e4e4e'>(</span> <span style='color: #795da3'>F</span> <span style='color: #4e4e4e'>)</span> <span style='color: #333333'>else</span> <span style='color: #4e4e4e'>(</span><span style='color: #4e4e4e'>)</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="unless">Unless</h2>
 <p>Opposite of <code>When</code>. Takes a boolean (<code>Cond</code>) and a block (<code>F</code>) as parameters. Executes <code>F</code>, given <code>Cond</code> is False.</p>
-<!--cognate--><div class="code"><pre><code>
-Unless True ( Print "hello!" );
-Unless False ( Print "bye!" );
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L82-L86">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Unless as (
-	Let Cond;
-	Def F;
-	Do If Cond then ( ) else ( F );
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #a71d5d'>Unless</span> True <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;hello!&quot;</span> <span style='color: #4e4e4e'>)</span>;
+<span style='color: #a71d5d'>Unless</span> False <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;bye!&quot;</span> <span style='color: #4e4e4e'>)</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L82-L86">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #a71d5d'>Unless</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>Cond</span>;
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span>;
+	<span style='color: #a71d5d'>Do</span> <span style='color: #a71d5d'>If</span> <span style='color: #795da3'>Cond</span> <span style='color: #333333'>then</span> <span style='color: #4e4e4e'>(</span> <span style='color: #4e4e4e'>)</span> <span style='color: #333333'>else</span> <span style='color: #4e4e4e'>(</span> <span style='color: #795da3'>F</span> <span style='color: #4e4e4e'>)</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="while">While</h2>
 <p>Takes two block parameters (<code>Cond</code> and <code>F</code>). Continually execute <code>F</code> while <code>Cond</code> evaluates to True.</p>
-<!--cognate--><div class="code"><pre><code>
-While (True) ( Print "This will print forever..." );
-While (False) ( Print "This won't print at all..." );
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L96-L101">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def While (
-	Def Cond;
-	Def F;
-	Let Result be Cond;
-	When Result then ( F ; While (Cond) (F) )
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #a71d5d'>While</span> <span style='color: #4e4e4e'>(</span>True<span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;This will print forever...&quot;</span> <span style='color: #4e4e4e'>)</span>;
+<span style='color: #a71d5d'>While</span> <span style='color: #4e4e4e'>(</span>False<span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;This won&#39;t print at all...&quot;</span> <span style='color: #4e4e4e'>)</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L96-L101">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #a71d5d'>While</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Cond</span>;
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>Result</span> <span style='color: #333333'>be</span> <span style='color: #795da3'>Cond</span>;
+	<span style='color: #a71d5d'>When</span> <span style='color: #795da3'>Result</span> <span style='color: #333333'>then</span> <span style='color: #4e4e4e'>(</span> <span style='color: #795da3'>F</span> ; <span style='color: #a71d5d'>While</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>Cond</span><span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>F</span><span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>)</span>
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="until">Until</h2>
 <p>Opposite of While. Takes two block parameters (<code>Cond</code> and <code>F</code>). Continually execute <code>F</code> until <code>Cond</code> evaluates to True.</p>
-<!--cognate--><div class="code"><pre><code>
-Until (False) ( Print "This will print forever..." );
-Until (True) ( Print "This won't print at all..." );
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L111-L116">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Until (
-	Def Cond;
-	Def F;
-	Let Result be Cond;
-	Unless Result then ( F ; Until (Cond) (F) );
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #a71d5d'>Until</span> <span style='color: #4e4e4e'>(</span>False<span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;This will print forever...&quot;</span> <span style='color: #4e4e4e'>)</span>;
+<span style='color: #a71d5d'>Until</span> <span style='color: #4e4e4e'>(</span>True<span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;This won&#39;t print at all...&quot;</span> <span style='color: #4e4e4e'>)</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L111-L116">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #a71d5d'>Until</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Cond</span>;
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>Result</span> <span style='color: #333333'>be</span> <span style='color: #795da3'>Cond</span>;
+	<span style='color: #a71d5d'>Unless</span> <span style='color: #795da3'>Result</span> <span style='color: #333333'>then</span> <span style='color: #4e4e4e'>(</span> <span style='color: #795da3'>F</span> ; <span style='color: #a71d5d'>Until</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>Cond</span><span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>F</span><span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>)</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="times">Times</h2>
 <p>Takes a number (<code>N</code>) and a block (<code>F</code>) as parameters. Evaluates <code>F</code> <code>N</code> times.</p>
-<!--cognate--><div class="code"><pre><code>
-Times 3 ( Print "Hip Hip Hooray!" );
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L125-L129">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Times (
-	Let N be Of (Integer?);
-	Def F;
-	Unless Zero? N ( F ; Times - 1 N (F) );
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Times</span> <span style='color: #0086b3'>3</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Print</span> <span style='color: #183691'>&quot;Hip Hip Hooray!&quot;</span> <span style='color: #4e4e4e'>)</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L125-L129">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Times</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>N</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Integer?</span><span style='color: #4e4e4e'>)</span>;
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span>;
+	<span style='color: #a71d5d'>Unless</span> <span style='color: #183691'>Zero?</span> <span style='color: #795da3'>N</span> <span style='color: #4e4e4e'>(</span> <span style='color: #795da3'>F</span> ; <span style='color: #183691'>Times</span> <span style='font-weight: bold;color: #4e4e4e'>-</span> <span style='color: #0086b3'>1</span> <span style='color: #795da3'>N</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>F</span><span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>)</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="with">With</h2>
 <p>Takes symbol parameter <code>Mode</code>, string parameter <code>Filename</code> and block parameter <code>Body</code>. Opens the file <code>Filename</code> in mode <code>Mode</code>. Evaluates <code>Body</code>, passing it a reference to the file.</p>
-<!--cognate--><div class="code"><pre><code>
-With \read "foo.txt" (
-	Let F be the file handle;
-	Print Read-file F;
-);
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L142-L149">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def With (
-	Let Mode be Of (Symbol?);
-	Let Filename be Of (String?);
-	Def Body;
-	Let Fp be Open as Mode Filename;
-	Body Fp;
-	Close Fp
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #a71d5d'>With</span> \read <span style='color: #183691'>&quot;foo.txt&quot;</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>F</span> <span style='color: #333333'>be</span> <span style='color: #333333'>the</span> <span style='color: #333333'>file</span> <span style='color: #333333'>handle</span>;
+	<span style='color: #183691'>Print</span> <span style='color: #183691'>Read-file</span> <span style='color: #795da3'>F</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L142-L149">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #a71d5d'>With</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>Mode</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #794da3'>Symbol?</span><span style='color: #4e4e4e'>)</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>Filename</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #794da3'>String?</span><span style='color: #4e4e4e'>)</span>;
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Body</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>Fp</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Open</span> <span style='color: #333333'>as</span> <span style='color: #795da3'>Mode</span> <span style='color: #795da3'>Filename</span>;
+	<span style='color: #795da3'>Body</span> <span style='color: #795da3'>Fp</span>;
+	<span style='color: #183691'>Close</span> <span style='color: #795da3'>Fp</span>
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="reverse">Reverse</h2>
 <p>Returns the list parameter reversed.</p>
-<!--cognate--><div class="code"><pre><code>
-Print Reverse List (1 2 3);
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L158-L160">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Reverse (
-	Fold ( Push ) from Empty over List!;
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #183691'>Reverse</span> <span style='color: #794da3'>List</span> <span style='color: #4e4e4e'>(</span><span style='color: #0086b3'>1</span> <span style='color: #0086b3'>2</span> <span style='color: #0086b3'>3</span><span style='color: #4e4e4e'>)</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L158-L160">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Reverse</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #183691'>Fold</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Push</span> <span style='color: #4e4e4e'>)</span> <span style='color: #333333'>from</span> <span style='color: #183691'>Empty</span> <span style='color: #333333'>over</span> <span style='color: #794da3'>List!</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="for">For</h2>
 <p>Takes a block (<code>F</code>) and a list (<code>L</code>) as parameters. Applies a block to each element in a list</p>
-<!--cognate--><div class="code"><pre><code>
-For each in Range 1 to 100 ( Print );
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L169-L177">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def For (
-	~~ Tail recursive;
-	Let L be Of (List?);
-	Def F;
-	When Not Empty? L (
-		F First L;
-		For each in Rest L do (F);
-	)
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #a71d5d'>For</span> <span style='color: #333333'>each</span> <span style='color: #333333'>in</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>100</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Print</span> <span style='color: #4e4e4e'>)</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L169-L177">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #a71d5d'>For</span> <span style='color: #4e4e4e'>(</span>
+	<span style='font-style: italic;color: #969896'>~~ Tail recursive;</span>
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #794da3'>List?</span><span style='color: #4e4e4e'>)</span>;
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span>;
+	<span style='color: #a71d5d'>When</span> <span style='font-weight: bold;color: #4e4e4e'>Not</span> <span style='color: #183691'>Empty?</span> <span style='color: #795da3'>L</span> <span style='color: #4e4e4e'>(</span>
+		<span style='color: #795da3'>F</span> <span style='color: #183691'>First</span> <span style='color: #795da3'>L</span>;
+		<span style='color: #a71d5d'>For</span> <span style='color: #333333'>each</span> <span style='color: #333333'>in</span> <span style='color: #183691'>Rest</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>do</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>F</span><span style='color: #4e4e4e'>)</span>;
+	<span style='color: #4e4e4e'>)</span>
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="fold">Fold</h2>
 <p>Takes a block (<code>F</code>), initial value (<code>I</code>), and list (<code>L</code>) as parameters. Applies <code>F</code> to each element in <code>L</code>, pushing <code>I</code> to the stack first.</p>
-<!--cognate--><div class="code"><pre><code>
-Fold (*) from 1 over Range 1 to 10;
-Print;
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L187-L192">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Fold (
-	Def F;
-	Let I;
-	Let L be Of (List?);
-	I ; For each in L do (F);
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Fold</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>*</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>from</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>over</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>10</span>;
+<span style='color: #183691'>Print</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L187-L192">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Fold</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>I</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #794da3'>List?</span><span style='color: #4e4e4e'>)</span>;
+	<span style='color: #795da3'>I</span> ; <span style='color: #a71d5d'>For</span> <span style='color: #333333'>each</span> <span style='color: #333333'>in</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>do</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>F</span><span style='color: #4e4e4e'>)</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="puts">Puts</h2>
 <p>Builds a string from a block parameter and prints it to standard output, without a newline.</p>
-<!--cognate--><div class="code"><pre><code>
-Puts ( "The square of 10 is " * Twin 10 "\n");
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L201-L201">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Puts ( Put Fold ( Join Show ) from "" over Reverse List);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Puts</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>&quot;The square of 10 is &quot;</span> <span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='color: #183691'>Twin</span> <span style='color: #0086b3'>10</span> <span style='color: #183691'>&quot;<span style='color: #183691'>\n</span>&quot;</span><span style='color: #4e4e4e'>)</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L201-L201">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Puts</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Put</span> <span style='color: #183691'>Fold</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Join</span> <span style='color: #183691'>Show</span> <span style='color: #4e4e4e'>)</span> <span style='color: #333333'>from</span> <span style='color: #183691'>&quot;&quot;</span> <span style='color: #333333'>over</span> <span style='color: #183691'>Reverse</span> <span style='color: #794da3'>List</span><span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="prints">Prints</h2>
 <p>Builds a string from a block parameter and prints it to standard output, with a newline.</p>
-<!--cognate--><div class="code"><pre><code>
-Puts ( "The square of 10 is " * Twin 10);
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L210-L210">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Prints ( Print Fold ( Join Show ) from "" over Reverse List);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Puts</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>&quot;The square of 10 is &quot;</span> <span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='color: #183691'>Twin</span> <span style='color: #0086b3'>10</span><span style='color: #4e4e4e'>)</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L210-L210">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Prints</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Print</span> <span style='color: #183691'>Fold</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Join</span> <span style='color: #183691'>Show</span> <span style='color: #4e4e4e'>)</span> <span style='color: #333333'>from</span> <span style='color: #183691'>&quot;&quot;</span> <span style='color: #333333'>over</span> <span style='color: #183691'>Reverse</span> <span style='color: #794da3'>List</span><span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="filter">Filter</h2>
 <p>Takes a block parameter <code>Predicate</code> and a list <code>L</code>. Applies <code>Predicate</code> to each element in <code>L</code>. Returns a list containing only the elements where <code>Predicate</code> evaluated to True.</p>
-<!--cognate--><div class="code"><pre><code>
-Def Even? as (Zero? Modulo 2);
-Filter (Even?) over Range 1 to 100;
-Print;
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L221-L231">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Filter (
-	Def Predicate;
-	Let L be Of (List?);
-   Empty;
-	For each in L (
-		Let I;
-		Let R be Predicate I;
-		When R ( Push I );
-	);
-	Reverse;
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Even?</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Zero?</span> <span style='color: #183691'>Modulo</span> <span style='color: #0086b3'>2</span><span style='color: #4e4e4e'>)</span>;
+<span style='color: #183691'>Filter</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>Even?</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>over</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>100</span>;
+<span style='color: #183691'>Print</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L221-L231">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Filter</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Predicate</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #794da3'>List?</span><span style='color: #4e4e4e'>)</span>;
+   <span style='color: #183691'>Empty</span>;
+	<span style='color: #a71d5d'>For</span> <span style='color: #333333'>each</span> <span style='color: #333333'>in</span> <span style='color: #795da3'>L</span> <span style='color: #4e4e4e'>(</span>
+		<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>I</span>;
+		<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>R</span> <span style='color: #333333'>be</span> <span style='color: #795da3'>Predicate</span> <span style='color: #795da3'>I</span>;
+		<span style='color: #a71d5d'>When</span> <span style='color: #795da3'>R</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Push</span> <span style='color: #795da3'>I</span> <span style='color: #4e4e4e'>)</span>;
+	<span style='color: #4e4e4e'>)</span>;
+	<span style='color: #183691'>Reverse</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="min">Min</h2>
 <p>Takes two number parameters and returns the smaller one.</p>
-<!--cognate--><div class="code"><pre><code>
-Print Min 3 10;
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L240-L244">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Min as (
-	Let A be Of (Number?);
-	Let B be Of (Number?);
-	If < A B then B else A;
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #183691'>Min</span> <span style='color: #0086b3'>3</span> <span style='color: #0086b3'>10</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L240-L244">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Min</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>A</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #794da3'>Number?</span><span style='color: #4e4e4e'>)</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>B</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #794da3'>Number?</span><span style='color: #4e4e4e'>)</span>;
+	<span style='color: #a71d5d'>If</span> <span style='font-weight: bold;color: #4e4e4e'>&lt;</span> <span style='color: #795da3'>A</span> <span style='color: #795da3'>B</span> <span style='color: #333333'>then</span> <span style='color: #795da3'>B</span> <span style='color: #333333'>else</span> <span style='color: #795da3'>A</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="max">Max</h2>
 <p>Takes two number parameters and returns the larger one.</p>
-<!--cognate--><div class="code"><pre><code>
-Print Max 3 10;
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L253-L257">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Max as (
-	Let A be Of (Number?);
-	Let B be Of (Number?);
-	If < A B then A else B;
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #183691'>Max</span> <span style='color: #0086b3'>3</span> <span style='color: #0086b3'>10</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L253-L257">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Max</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>A</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #794da3'>Number?</span><span style='color: #4e4e4e'>)</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>B</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #794da3'>Number?</span><span style='color: #4e4e4e'>)</span>;
+	<span style='color: #a71d5d'>If</span> <span style='font-weight: bold;color: #4e4e4e'>&lt;</span> <span style='color: #795da3'>A</span> <span style='color: #795da3'>B</span> <span style='color: #333333'>then</span> <span style='color: #795da3'>A</span> <span style='color: #333333'>else</span> <span style='color: #795da3'>B</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="take-while">Take-while</h2>
 <p>Takes a predicate block (<code>F</code>) and a list (<code>L</code>) as parameters. Builds a new list by taking elements one by one from <code>L</code> and evaluating <code>F</code> on them. Stops building the list when the <code>F</code> first evaluates to False.</p>
-<!--cognate--><div class="code"><pre><code>
-Print Take-while (< 10) Range 1 to 100;
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L266-L281">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Take-while (
-	Def F;
-	Let L be Of (List?);
-	Def H as (
-		Let L;
-		Unless Empty? L (
-			Let I be First L;
-			Let R be F of I;
-			When R then (
-				Push I;
-				H Rest L
-			)
-		)
-	);
-	Reverse H L Empty;
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #a71d5d'>Take-while</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>&lt;</span> <span style='color: #0086b3'>10</span><span style='color: #4e4e4e'>)</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>100</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L266-L281">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #a71d5d'>Take-while</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #794da3'>List?</span><span style='color: #4e4e4e'>)</span>;
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>H</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span>
+		<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span>;
+		<span style='color: #a71d5d'>Unless</span> <span style='color: #183691'>Empty?</span> <span style='color: #795da3'>L</span> <span style='color: #4e4e4e'>(</span>
+			<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>I</span> <span style='color: #333333'>be</span> <span style='color: #183691'>First</span> <span style='color: #795da3'>L</span>;
+			<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>R</span> <span style='color: #333333'>be</span> <span style='color: #795da3'>F</span> <span style='color: #333333'>of</span> <span style='color: #795da3'>I</span>;
+			<span style='color: #a71d5d'>When</span> <span style='color: #795da3'>R</span> <span style='color: #333333'>then</span> <span style='color: #4e4e4e'>(</span>
+				<span style='color: #183691'>Push</span> <span style='color: #795da3'>I</span>;
+				<span style='color: #795da3'>H</span> <span style='color: #183691'>Rest</span> <span style='color: #795da3'>L</span>
+			<span style='color: #4e4e4e'>)</span>
+		<span style='color: #4e4e4e'>)</span>
+	<span style='color: #4e4e4e'>)</span>;
+	<span style='color: #183691'>Reverse</span> <span style='color: #795da3'>H</span> <span style='color: #795da3'>L</span> <span style='color: #183691'>Empty</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="all">All</h2>
 <p>Takes a predicate block (<code>F</code>) and list (<code>L</code>) as parameters. Applies <code>F</code> to each element of <code>L</code>, returning True if <code>F</code> returned True every time, else returning False.</p>
-<!--cognate--><div class="code"><pre><code>
-Print All (< 100) Range 1 to 10;
-Print All (< 10) Range 1 to 100;
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L291-L300">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def All (
-	Def F;
-	Let L be Of (List?);
-	Do If Empty? L then ( True )
-	else (
-		Do If F on First L
-			then ( All (F) of Rest of L )
-			else ( False )
-	)
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #183691'>All</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>&lt;</span> <span style='color: #0086b3'>100</span><span style='color: #4e4e4e'>)</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>10</span>;
+<span style='color: #183691'>Print</span> <span style='color: #183691'>All</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>&lt;</span> <span style='color: #0086b3'>10</span><span style='color: #4e4e4e'>)</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>100</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L291-L300">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>All</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #794da3'>List?</span><span style='color: #4e4e4e'>)</span>;
+	<span style='color: #a71d5d'>Do</span> <span style='color: #a71d5d'>If</span> <span style='color: #183691'>Empty?</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>then</span> <span style='color: #4e4e4e'>(</span> True <span style='color: #4e4e4e'>)</span>
+	<span style='color: #333333'>else</span> <span style='color: #4e4e4e'>(</span>
+		<span style='color: #a71d5d'>Do</span> <span style='color: #a71d5d'>If</span> <span style='color: #795da3'>F</span> <span style='color: #333333'>on</span> <span style='color: #183691'>First</span> <span style='color: #795da3'>L</span>
+			<span style='color: #333333'>then</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>All</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>F</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>of</span> <span style='color: #183691'>Rest</span> <span style='color: #333333'>of</span> <span style='color: #795da3'>L</span> <span style='color: #4e4e4e'>)</span>
+			<span style='color: #333333'>else</span> <span style='color: #4e4e4e'>(</span> False <span style='color: #4e4e4e'>)</span>
+	<span style='color: #4e4e4e'>)</span>
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="none">None</h2>
 <p>Takes a predicate block and list as parameters. Returns True if evaluating the predicate on all of the list elements gives False, else returns False.</p>
-<!--cognate--><div class="code"><pre><code>
-Print None (> 100) Range 1 to 10;
-Print None (> 10) Range 1 to 100;
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L310-L314">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def None (
-	Def P;
-	Let L;
-	All ( Not P ) of L;
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #183691'>None</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>&gt;</span> <span style='color: #0086b3'>100</span><span style='color: #4e4e4e'>)</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>10</span>;
+<span style='color: #183691'>Print</span> <span style='color: #183691'>None</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>&gt;</span> <span style='color: #0086b3'>10</span><span style='color: #4e4e4e'>)</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>100</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L310-L314">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>None</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>P</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span>;
+	<span style='color: #183691'>All</span> <span style='color: #4e4e4e'>(</span> <span style='font-weight: bold;color: #4e4e4e'>Not</span> <span style='color: #795da3'>P</span> <span style='color: #4e4e4e'>)</span> <span style='color: #333333'>of</span> <span style='color: #795da3'>L</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="append">Append</h2>
 <p>Takes two list parameters and returns a new list created by joining the first list onto the end of the second list.</p>
-<!--cognate--><div class="code"><pre><code>
-Print Append List (4 5 6) to List (1 2 3);
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L323-L330">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Append (
-	Let L2;
-	Let L1;
-	L2;
-	For each in Reverse L1 (
-		Push;
-	)
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #183691'>Append</span> <span style='color: #794da3'>List</span> <span style='color: #4e4e4e'>(</span><span style='color: #0086b3'>4</span> <span style='color: #0086b3'>5</span> <span style='color: #0086b3'>6</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>to</span> <span style='color: #794da3'>List</span> <span style='color: #4e4e4e'>(</span><span style='color: #0086b3'>1</span> <span style='color: #0086b3'>2</span> <span style='color: #0086b3'>3</span><span style='color: #4e4e4e'>)</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L323-L330">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Append</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L2</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L1</span>;
+	<span style='color: #795da3'>L2</span>;
+	<span style='color: #a71d5d'>For</span> <span style='color: #333333'>each</span> <span style='color: #333333'>in</span> <span style='color: #183691'>Reverse</span> <span style='color: #795da3'>L1</span> <span style='color: #4e4e4e'>(</span>
+		<span style='color: #183691'>Push</span>;
+	<span style='color: #4e4e4e'>)</span>
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="prepend">Prepend</h2>
 <p>Takes two list parameters and returns a new list created by joining the second list onto the end of the first list.</p>
-<!--cognate--><div class="code"><pre><code>
-Print Prepend List (1 2 3) to List (4 5 6);
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L339-L339">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Prepend ( Swap ; Append );
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #183691'>Prepend</span> <span style='color: #794da3'>List</span> <span style='color: #4e4e4e'>(</span><span style='color: #0086b3'>1</span> <span style='color: #0086b3'>2</span> <span style='color: #0086b3'>3</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>to</span> <span style='color: #794da3'>List</span> <span style='color: #4e4e4e'>(</span><span style='color: #0086b3'>4</span> <span style='color: #0086b3'>5</span> <span style='color: #0086b3'>6</span><span style='color: #4e4e4e'>)</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L339-L339">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Prepend</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Swap</span> ; <span style='color: #183691'>Append</span> <span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="case">Case</h2>
 <p>Takes a predicate block <code>Pred</code> and two other blocks <code>If-true</code> and <code>If-false</code>. Returns a block that takes one parameter (<code>X</code>) and applies the predicate to it. If this gives True then <code>If-true</code> is evaluated with <code>X</code> as a parameter. If not <code>If-false</code> is evaluated with <code>X</code> as a parameter.</p>
-<!--cognate--><div class="code"><pre><code>
-Def Multiple as ( Zero? Modulo );
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Multiple</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Zero?</span> <span style='color: #183691'>Modulo</span> <span style='color: #4e4e4e'>)</span>;
 
-Def Fizzbuzz
-	Case (Multiple of 15) then ( "Fizzbuzz" Drop )
-	Case (Multiple of 3)  then ( "Fizz" Drop )
-	Case (Multiple of 5)  then ( "Buzz" Drop )
-	else ( just return the number );
-</code></pre></div>
-<p>For each in Range 1 to 100 ( Print Fizzbuzz )</p>
+<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Fizzbuzz</span>
+	<span style='color: #a71d5d'>Case</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>Multiple</span> <span style='color: #333333'>of</span> <span style='color: #0086b3'>15</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>then</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>&quot;Fizzbuzz&quot;</span> <span style='color: #183691'>Drop</span> <span style='color: #4e4e4e'>)</span>
+	<span style='color: #a71d5d'>Case</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>Multiple</span> <span style='color: #333333'>of</span> <span style='color: #0086b3'>3</span><span style='color: #4e4e4e'>)</span>  <span style='color: #333333'>then</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>&quot;Fizz&quot;</span> <span style='color: #183691'>Drop</span> <span style='color: #4e4e4e'>)</span>
+	<span style='color: #a71d5d'>Case</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>Multiple</span> <span style='color: #333333'>of</span> <span style='color: #0086b3'>5</span><span style='color: #4e4e4e'>)</span>  <span style='color: #333333'>then</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>&quot;Buzz&quot;</span> <span style='color: #183691'>Drop</span> <span style='color: #4e4e4e'>)</span>
+	<span style='color: #333333'>else</span> <span style='color: #4e4e4e'>(</span> <span style='color: #333333'>just</span> <span style='color: #333333'>return</span> <span style='color: #333333'>the</span> <span style='color: #333333'>number</span> <span style='color: #4e4e4e'>)</span>;
+</code></pre></div><p>For each in Range 1 to 100 ( Print Fizzbuzz )</p>
 <details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L356-L365">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Case as (
-	Def Pred;
-	Def If-true;
-	Def If-false;
-	(
-		Let X;
-		Let B be Pred X;
-		Do If B then (If-true X) else (If-false X)
-	);
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #a71d5d'>Case</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Pred</span>;
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>If-true</span>;
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>If-false</span>;
+	<span style='color: #4e4e4e'>(</span>
+		<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>X</span>;
+		<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>B</span> <span style='color: #333333'>be</span> <span style='color: #795da3'>Pred</span> <span style='color: #795da3'>X</span>;
+		<span style='color: #a71d5d'>Do</span> <span style='color: #a71d5d'>If</span> <span style='color: #795da3'>B</span> <span style='color: #333333'>then</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>If-true</span> <span style='color: #795da3'>X</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>else</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>If-false</span> <span style='color: #795da3'>X</span><span style='color: #4e4e4e'>)</span>
+	<span style='color: #4e4e4e'>)</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="sort">Sort</h2>
 <p>Takes a list of numbers as a parameter and returns a list containing the same numbers in ascending order.</p>
-<!--cognate--><div class="code"><pre><code>
-Print Sort List ( 9 6 2 5 7 4 1 3 8);
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L374-L383">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Sort
-	Case (Empty?) ()
-	else (
-		Let L;
-		Let Pivot be First of L;
-		Sort Filter (<  Pivot) L;
-		Sort Filter (>= Pivot) Rest of L;
-		Push Pivot;
-		Append
-	);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #183691'>Sort</span> <span style='color: #794da3'>List</span> <span style='color: #4e4e4e'>(</span> <span style='color: #0086b3'>9</span> <span style='color: #0086b3'>6</span> <span style='color: #0086b3'>2</span> <span style='color: #0086b3'>5</span> <span style='color: #0086b3'>7</span> <span style='color: #0086b3'>4</span> <span style='color: #0086b3'>1</span> <span style='color: #0086b3'>3</span> <span style='color: #0086b3'>8</span><span style='color: #4e4e4e'>)</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L374-L383">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Sort</span>
+	<span style='color: #a71d5d'>Case</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Empty?</span><span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>(</span><span style='color: #4e4e4e'>)</span>
+	<span style='color: #333333'>else</span> <span style='color: #4e4e4e'>(</span>
+		<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span>;
+		<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>Pivot</span> <span style='color: #333333'>be</span> <span style='color: #183691'>First</span> <span style='color: #333333'>of</span> <span style='color: #795da3'>L</span>;
+		<span style='color: #183691'>Sort</span> <span style='color: #183691'>Filter</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>&lt;</span>  <span style='color: #795da3'>Pivot</span><span style='color: #4e4e4e'>)</span> <span style='color: #795da3'>L</span>;
+		<span style='color: #183691'>Sort</span> <span style='color: #183691'>Filter</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>&gt;=</span> <span style='color: #795da3'>Pivot</span><span style='color: #4e4e4e'>)</span> <span style='color: #183691'>Rest</span> <span style='color: #333333'>of</span> <span style='color: #795da3'>L</span>;
+		<span style='color: #183691'>Push</span> <span style='color: #795da3'>Pivot</span>;
+		<span style='color: #183691'>Append</span>
+	<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="map">Map</h2>
 <p>Takes a block (<code>F</code>) and a list (<code>L</code>) as parameters. Creates a new list where each element is the result of applying <code>F</code> to the corresponding element in <code>L</code>.</p>
-<!--cognate--><div class="code"><pre><code>
-Def Square as (* Twin);
-Map (Square) over the Range from 1 to 10;
-Print
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L394-L405">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Map (
-	Def F;
-	Let L be a List!;
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #795da3'>Square</span> <span style='color: #333333'>as</span> <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='color: #183691'>Twin</span><span style='color: #4e4e4e'>)</span>;
+<span style='color: #183691'>Map</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>Square</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>over</span> <span style='color: #333333'>the</span> <span style='color: #183691'>Range</span> <span style='color: #333333'>from</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>10</span>;
+<span style='color: #183691'>Print</span>
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L394-L405">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Map</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Def</span> <span style='color: #795da3'>F</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>be</span> <span style='color: #333333'>a</span> <span style='color: #794da3'>List!</span>;
 
-	Do If Empty? L ( L )
-	else (
-		Let X be First of L;
-		Let Res be F X;
+	<span style='color: #a71d5d'>Do</span> <span style='color: #a71d5d'>If</span> <span style='color: #183691'>Empty?</span> <span style='color: #795da3'>L</span> <span style='color: #4e4e4e'>(</span> <span style='color: #795da3'>L</span> <span style='color: #4e4e4e'>)</span>
+	<span style='color: #333333'>else</span> <span style='color: #4e4e4e'>(</span>
+		<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>X</span> <span style='color: #333333'>be</span> <span style='color: #183691'>First</span> <span style='color: #333333'>of</span> <span style='color: #795da3'>L</span>;
+		<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>Res</span> <span style='color: #333333'>be</span> <span style='color: #795da3'>F</span> <span style='color: #795da3'>X</span>;
 
-		return Push Res to Map (F) over Rest of L;
-	);
-);
-</code></pre></div>
-</details>
+		<span style='color: #333333'>return</span> <span style='color: #183691'>Push</span> <span style='color: #795da3'>Res</span> <span style='color: #333333'>to</span> <span style='color: #183691'>Map</span> <span style='color: #4e4e4e'>(</span><span style='color: #795da3'>F</span><span style='color: #4e4e4e'>)</span> <span style='color: #333333'>over</span> <span style='color: #183691'>Rest</span> <span style='color: #333333'>of</span> <span style='color: #795da3'>L</span>;
+	<span style='color: #4e4e4e'>)</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="discard">Discard</h2>
 <p>Takes an integer (<code>N</code>) and a list (<code>L</code>) as parameters. Returns a list created by removing the first <code>N</code> elements of <code>L</code>.</p>
-<!--cognate--><div class="code"><pre><code>
-Print Discard 4 from Range 1 to 10;
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L414-L421">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Discard (
-	Let N be Of (Integer?);
-	Let L be Of (List?);
-	Do If Zero? N ( L ) else (
-		When Empty? L ( Error "Cannot Discard more elements than in list" );
-		Discard - 1 N from Rest L
-	);
-);
-</code></pre></div>
-</details>
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #183691'>Discard</span> <span style='color: #0086b3'>4</span> <span style='color: #333333'>from</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>10</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L414-L421">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Discard</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>N</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Integer?</span><span style='color: #4e4e4e'>)</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #794da3'>List?</span><span style='color: #4e4e4e'>)</span>;
+	<span style='color: #a71d5d'>Do</span> <span style='color: #a71d5d'>If</span> <span style='color: #183691'>Zero?</span> <span style='color: #795da3'>N</span> <span style='color: #4e4e4e'>(</span> <span style='color: #795da3'>L</span> <span style='color: #4e4e4e'>)</span> <span style='color: #333333'>else</span> <span style='color: #4e4e4e'>(</span>
+		<span style='color: #a71d5d'>When</span> <span style='color: #183691'>Empty?</span> <span style='color: #795da3'>L</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Error</span> <span style='color: #183691'>&quot;Cannot Discard more elements than in list&quot;</span> <span style='color: #4e4e4e'>)</span>;
+		<span style='color: #183691'>Discard</span> <span style='font-weight: bold;color: #4e4e4e'>-</span> <span style='color: #0086b3'>1</span> <span style='color: #795da3'>N</span> <span style='color: #333333'>from</span> <span style='color: #183691'>Rest</span> <span style='color: #795da3'>L</span>
+	<span style='color: #4e4e4e'>)</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="take">Take</h2>
 <p>Takes an integer (<code>N</code>) and a list (<code>L</code>) as parameters. Returns a list containing only the first <code>N</code> elements of <code>L</code>.</p>
-<!--cognate--><div class="code"><pre><code>
-Print Take 4 from Range 1 to 10;
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L430-L438">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Take (
-	Let N be Of (Integer?);
-	Let L be Of (List?);
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #183691'>Take</span> <span style='color: #0086b3'>4</span> <span style='color: #333333'>from</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>10</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L430-L438">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Take</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>N</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Integer?</span><span style='color: #4e4e4e'>)</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #794da3'>List?</span><span style='color: #4e4e4e'>)</span>;
 
-	Do If Zero? N ( Empty list ) else (
-		When Empty? L ( Error "Cannot Take more elements than in list" );
-		Push First L to Take - 1 N from Rest of L
-	);
-);
-</code></pre></div>
-</details>
+	<span style='color: #a71d5d'>Do</span> <span style='color: #a71d5d'>If</span> <span style='color: #183691'>Zero?</span> <span style='color: #795da3'>N</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Empty</span> <span style='color: #333333'>list</span> <span style='color: #4e4e4e'>)</span> <span style='color: #333333'>else</span> <span style='color: #4e4e4e'>(</span>
+		<span style='color: #a71d5d'>When</span> <span style='color: #183691'>Empty?</span> <span style='color: #795da3'>L</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Error</span> <span style='color: #183691'>&quot;Cannot Take more elements than in list&quot;</span> <span style='color: #4e4e4e'>)</span>;
+		<span style='color: #183691'>Push</span> <span style='color: #183691'>First</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>to</span> <span style='color: #183691'>Take</span> <span style='font-weight: bold;color: #4e4e4e'>-</span> <span style='color: #0086b3'>1</span> <span style='color: #795da3'>N</span> <span style='color: #333333'>from</span> <span style='color: #183691'>Rest</span> <span style='color: #333333'>of</span> <span style='color: #795da3'>L</span>
+	<span style='color: #4e4e4e'>)</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="index">Index</h2>
 <p>Takes an integer (<code>N</code>) and a list (<code>L</code>) as parameters. Returns the <code>N</code>th element (indexed from zero) of <code>L</code>.</p>
-<!--cognate--><div class="code"><pre><code>
-Print Index 4 of Range 0 to 100;
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L447-L458">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Index (
-	Let N be Of (Integer?);
-	Let L be List!;
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #183691'>Index</span> <span style='color: #0086b3'>4</span> <span style='color: #333333'>of</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>0</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>100</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L447-L458">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Index</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>N</span> <span style='color: #333333'>be</span> <span style='color: #183691'>Of</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Integer?</span><span style='color: #4e4e4e'>)</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>L</span> <span style='color: #333333'>be</span> <span style='color: #794da3'>List!</span>;
 
-	When < 0 N ( Error Join "Invalid index " Show N );
+	<span style='color: #a71d5d'>When</span> <span style='font-weight: bold;color: #4e4e4e'>&lt;</span> <span style='color: #0086b3'>0</span> <span style='color: #795da3'>N</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Error</span> <span style='color: #183691'>Join</span> <span style='color: #183691'>&quot;Invalid index &quot;</span> <span style='color: #183691'>Show</span> <span style='color: #795da3'>N</span> <span style='color: #4e4e4e'>)</span>;
 
-	Do If Zero? N ( return First element of L )
-	else (
-		When Empty? L ( Error "Index is beyond end of list" );
-		Index - 1 N of Rest of L
-	);
-);
-</code></pre></div>
-</details>
+	<span style='color: #a71d5d'>Do</span> <span style='color: #a71d5d'>If</span> <span style='color: #183691'>Zero?</span> <span style='color: #795da3'>N</span> <span style='color: #4e4e4e'>(</span> <span style='color: #333333'>return</span> <span style='color: #183691'>First</span> <span style='color: #333333'>element</span> <span style='color: #333333'>of</span> <span style='color: #795da3'>L</span> <span style='color: #4e4e4e'>)</span>
+	<span style='color: #333333'>else</span> <span style='color: #4e4e4e'>(</span>
+		<span style='color: #a71d5d'>When</span> <span style='color: #183691'>Empty?</span> <span style='color: #795da3'>L</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Error</span> <span style='color: #183691'>&quot;Index is beyond end of list&quot;</span> <span style='color: #4e4e4e'>)</span>;
+		<span style='color: #183691'>Index</span> <span style='font-weight: bold;color: #4e4e4e'>-</span> <span style='color: #0086b3'>1</span> <span style='color: #795da3'>N</span> <span style='color: #333333'>of</span> <span style='color: #183691'>Rest</span> <span style='color: #333333'>of</span> <span style='color: #795da3'>L</span>
+	<span style='color: #4e4e4e'>)</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="range">Range</h2>
 <p>Takes two number parameters (<code>Start</code> and <code>End</code>). Returns a list of numbers ranging from <code>Start</code> to <code>End</code> inclusive of <code>Start</code> but not <code>End</code> with a step of 1.</p>
-<!--cognate--><div class="code"><pre><code>
-Print Range 1 to 100;
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L467-L481">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Range (
-	Let Start be Number!;
-	Let End be Number!;
+<div class="code"><pre><code><span style='color: #183691'>Print</span> <span style='color: #183691'>Range</span> <span style='color: #0086b3'>1</span> <span style='color: #333333'>to</span> <span style='color: #0086b3'>100</span>;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L467-L481">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Range</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>Start</span> <span style='color: #333333'>be</span> <span style='color: #794da3'>Number!</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>End</span> <span style='color: #333333'>be</span> <span style='color: #794da3'>Number!</span>;
 
-	When > End Start ~~ TODO? maybe we could have this create a reverse range.
-	(
-		Error Join Join Join "Invalid range " Show Start "..." Show End;
-	);
+	<span style='color: #a71d5d'>When</span> <span style='font-weight: bold;color: #4e4e4e'>&gt;</span> <span style='color: #795da3'>End</span> <span style='color: #795da3'>Start</span> <span style='font-style: italic;color: #969896'>~~ TODO? maybe we could have this create a reverse range.</span>
+	<span style='color: #4e4e4e'>(</span>
+		<span style='color: #183691'>Error</span> <span style='color: #183691'>Join</span> <span style='color: #183691'>Join</span> <span style='color: #183691'>Join</span> <span style='color: #183691'>&quot;Invalid range &quot;</span> <span style='color: #183691'>Show</span> <span style='color: #795da3'>Start</span> <span style='color: #183691'>&quot;...&quot;</span> <span style='color: #183691'>Show</span> <span style='color: #795da3'>End</span>;
+	<span style='color: #4e4e4e'>)</span>;
 
-	Reverse List (
-		Start;
-		While (Triplet ; < End) ( + 1 );
-		Drop; Drop;
-	)
-);
-</code></pre></div>
-</details>
+	<span style='color: #183691'>Reverse</span> <span style='color: #794da3'>List</span> <span style='color: #4e4e4e'>(</span>
+		<span style='color: #795da3'>Start</span>;
+		<span style='color: #a71d5d'>While</span> <span style='color: #4e4e4e'>(</span><span style='color: #183691'>Triplet</span> ; <span style='font-weight: bold;color: #4e4e4e'>&lt;</span> <span style='color: #795da3'>End</span><span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>(</span> <span style='font-weight: bold;color: #4e4e4e'>+</span> <span style='color: #0086b3'>1</span> <span style='color: #4e4e4e'>)</span>;
+		<span style='color: #183691'>Drop</span>; <span style='color: #183691'>Drop</span>;
+	<span style='color: #4e4e4e'>)</span>
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 <h2 id="assert">Assert</h2>
 <p>Takes a string (<code>Assertion</code>) and a boolean (<code>Result</code>). If <code>Result</code> is not True then throws an error, with the text of <code>Assertion</code> in the error message.</p>
-<!--cognate--><div class="code"><pre><code>
-Assert "This assertion will pass" True;
-Assert "This assertion will fail" False;
-</code></pre></div>
-<details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L491-L496">Source</a></summary>
-<!--cognate--><div class="code"><pre><code>
-Def Assert (
-	Let Assertion be String!;
-	Let Result be Boolean!;
+<div class="code"><pre><code><span style='color: #183691'>Assert</span> <span style='color: #183691'>&quot;This assertion will pass&quot;</span> True;
+<span style='color: #183691'>Assert</span> <span style='color: #183691'>&quot;This assertion will fail&quot;</span> False;
+</code></pre></div><details><summary><a href="https://github.com/cognate-lang/cognate/blob/master/src/prelude.cog#L491-L496">Source</a></summary>
+<div class="code"><pre><code><span style='color: #0086b3'>Def</span> <span style='color: #183691'>Assert</span> <span style='color: #4e4e4e'>(</span>
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>Assertion</span> <span style='color: #333333'>be</span> <span style='color: #794da3'>String!</span>;
+	<span style='color: #0086b3'>Let</span> <span style='color: #795da3'>Result</span> <span style='color: #333333'>be</span> <span style='color: #794da3'>Boolean!</span>;
 
-	Unless Result ( Error Join Join "Failed assertion: '" Assertion "'" );
-);
-</code></pre></div>
-</details>
+	<span style='color: #a71d5d'>Unless</span> <span style='color: #795da3'>Result</span> <span style='color: #4e4e4e'>(</span> <span style='color: #183691'>Error</span> <span style='color: #183691'>Join</span> <span style='color: #183691'>Join</span> <span style='color: #183691'>&quot;Failed assertion: &#39;&quot;</span> <span style='color: #795da3'>Assertion</span> <span style='color: #183691'>&quot;&#39;&quot;</span> <span style='color: #4e4e4e'>)</span>;
+<span style='color: #4e4e4e'>)</span>;
+</code></pre></div></details>
 
 
     </main>
