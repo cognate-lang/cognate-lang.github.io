@@ -272,7 +272,7 @@ Print Evens;
 `Filter` applies a function to each element of a list also. This function should return a boolean -- if this is `False` then the function is removed from the returned list.
 
 ```cognate
-Let Even? be (Zero? Modulo 2);
+Def Even? as (Zero? Modulo 2);
 Let Evens be Filter (Even?) over Range 1 to 100;
 Print Evens;
 ```
